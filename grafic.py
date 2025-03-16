@@ -2,7 +2,6 @@ import tkinter as tk
 
 
 def graf():
-    # бим
     global c
     c = tk.PhotoImage(file='kartinka/graf.png')
     c = c.subsample(3)
