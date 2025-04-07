@@ -67,7 +67,13 @@ class Maintenance(BaseModel):
     executor = CharField()
 
 
+class Svodka(BaseModel):
+    id = AutoField()
+    name = CharField()
+    price = CharField()
+
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
-                  User, Maintenance], safe=True)
+                  User, Maintenance, Svodka], safe=True)
 db.close()
