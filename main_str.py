@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import PhotoImage
-from connect import Svodka
+from connect import Svodka, News
 
 root = tk.Tk()
 root.geometry('1124x700')
@@ -11,6 +11,11 @@ root.title('Франчазер')
 def get_svodka():
     svodka = Svodka.select()
     return svodka
+
+
+def get_news():
+    news = News.select()
+    return news
 
 
 def open_main_str(_):
@@ -114,6 +119,17 @@ def open_main_str(_):
     t5 = tk.Label(pl_k5, text='Новости', background='#d1d8de',
                   font=('', 11))
     t5.place(x=4, y=9)
+
+    news = get_news()
+    y_posi = 53
+    for i in news:
+        c = tk.Label(kv5, text=f'{i.date}', background='white',
+                     font=('', 6))
+        c.place(x=10, y=y_posi)
+        d = tk.Label(kv5, text=f'{i.text}', background='white',
+                     font=('', 6))
+        d.place(x=60, y=y_posi)
+        y_posi += 30
 
 
 def open_monik_str(_):
@@ -370,6 +386,7 @@ lala.place(x=0, y=0)
 klk = tk.Label(root, background='#1e2329', width=40, height=50)
 klk.place(x=0, y=50)
 
+
 lkl = tk.Label(root, background='#060a0d', width=150, height=3)
 lkl.place(x=285, y=50)
 
@@ -381,7 +398,23 @@ ddd.place(x=290, y=60)
 
 sls = tk.Label(root, background='white', border=2, relief='solid',
                width=20, height=3)
-sls.place(x=1000, y=0)
+sls.place(x=980, y=0)
+ttt = tk.Label(sls, text='Контаурова Е.С', background='white',
+               fg='black')
+ttt.place(x=40, y=5)
+tt = tk.Label(sls, text='Администратор', background='white',
+              fg='#7f8182')
+tt.place(x=40, y=20)
+one = tk.Label(sls, width=2, background='#c7c7c7')
+one.place(x=7, y=13)
+one = tk.Label(sls, width=2, background='#2809ed')
+one.place(x=7, y=18)
+one = tk.Label(sls, width=2, background='#ed1826')
+one.place(x=7, y=25)
+one = tk.Label(sls, width=2, background='#fff')
+one.place(x=7, y=31)
+one = tk.Label(sls, width=2, background='#060a0d')
+one.place(x=7, y=47)
 
 ksks = tk.Label(root, background='#060a0d', width=10, height=3)
 ksks.place(x=206, y=50)

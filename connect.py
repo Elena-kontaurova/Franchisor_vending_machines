@@ -73,7 +73,13 @@ class Svodka(BaseModel):
     price = CharField()
 
 
+class News(BaseModel):
+    id = AutoField()
+    date = CharField()
+    text = CharField()
+
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
-                  User, Maintenance, Svodka], safe=True)
+                  User, Maintenance, Svodka, News], safe=True)
 db.close()
