@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import PhotoImage, messagebox
-from connect import Svodka, News, Torfavt
+from connect import Svodka, News, Torfavt, Kompany
 
 
 root = tk.Tk()
@@ -222,6 +222,11 @@ def get_tor():
     return torg
 
 
+def get_komp():
+    kom = Kompany.select()
+    return kom
+
+
 def open_torg_avt(_):
     ''' Администрирование / торговые автоматы'''
 
@@ -272,7 +277,25 @@ def open_torg_avt(_):
         d.place(x=140, y=240)
 
         def gr_zz():
-            pass
+            name = name1.get()
+            model = m.get()
+            kompany = k.get()
+            modem = m1.get()
+            adress = a.get()
+            word = w.get()
+            deist = d.get()
+
+            _ = Torfavt.create(
+                name=name,
+                model=model,
+                kompany=kompany,
+                modem=modem,
+                adress=adress,
+                word=word,
+                deist=deist
+            )
+            messagebox.showinfo('Успех', 'Запись успещно создана')
+            ff.destroy()
 
         cre = tk.Button(ff, text='Создать', background='#1489cc',
                         width=13, fg='white', command=gr_zz)
@@ -472,6 +495,13 @@ def open_torg_avt(_):
 
 
 def open_komp(_):
+    ''' Администрирование / Компании '''
+
+    def create_komp():
+        mm = tk.Toplevel()
+        mm.geometry('500x300')
+        mm.title('Создание компании')
+
     ff = tk.Label(root, background='#060a0d', width=100, height=10)
     ff.place(x=800, y=50)
     gg = tk.Label(root, text='Администирование / Компании',
@@ -481,6 +511,124 @@ def open_komp(_):
     hh = tk.Label(root, width=200, height=200,
                   background='#c4cacf')
     hh.place(x=285, y=100)
+    kvad = tk.Label(hh, width=100, height=34, background='white')
+    kvad.place(x=70, y=30)
+    hh = tk.Label(kvad, background='#ededed', width=100, height=3)
+    hh.place(x=0, y=0)
+    tt = tk.Label(hh, text='Cписок компаний', background='#ededed',
+                  fg='#1489cc', font=('', 12))
+    tt.place(x=10, y=5)
+    df = tk.Label(hh, text='Всего найдено 9 записей', background='#ededed',
+                  fg='black', font=('', 7))
+    df.place(x=12, y=25)
+    kn_create = tk.Button(hh, text='Добавить', background='#ededed',
+                          fg='black', command=create_komp)
+    kn_create.place(x=610, y=15)
+
+    table = tk.Label(kvad, width=97, height=29, background='#adb4b8')
+    table.place(x=10, y=60)
+    t_2 = tk.Label(table,
+                   text='Навазание',
+                   background='#adb4b8')
+    t_2.place(x=40, y=10)
+    t_3 = tk.Label(table, text='Вышестоящая', background='#adb4b8')
+    t_3.place(x=150, y=10)
+    t_4 = tk.Label(table, text='Адрес', background='#adb4b8')
+    t_4.place(x=290, y=10)
+    t_5 = tk.Label(table, text='Контакты', background='#adb4b8')
+    t_5.place(x=370, y=10)
+    t_6 = tk.Label(table, text='В работе с', background='#adb4b8')
+    t_6.place(x=460, y=10)
+    t_7 = tk.Label(table, text='Действия', background='#adb4b8')
+    t_7.place(x=560, y=10)
+
+    def update_komp(item):
+        mm = tk.Toplevel()
+        mm.geometry('500x200')
+        mm.title('Редактирование компании')
+
+        a = tk.Label(mm, text='Название:')
+        a.place(x=10, y=10)
+        f1 = tk.Entry(mm)
+        f1.insert(0, item.name)
+        f1.place(x=10, y=35)
+
+        b = tk.Label(mm, text='Вышестоящие:')
+        b.place(x=160, y=10)
+        f6 = tk.Entry(mm)
+        f6.insert(0, item.veshe)
+        f6.place(x=160, y=35)
+
+        c = tk.Label(mm, text='Адресс:')
+        c.place(x=310, y=10)
+        f2 = tk.Entry(mm)
+        f2.insert(0, item.adres)
+        f2.place(x=310, y=35)
+
+        d = tk.Label(mm, text='Контакты:')
+        d.place(x=10, y=70)
+        f3 = tk.Entry(mm)
+        f3.insert(0, item.kontak)
+        f3.place(x=10, y=95)
+
+        e = tk.Label(mm, text='В работе с:')
+        e.place(x=160, y=70)
+        f4 = tk.Entry(mm)
+        f4.insert(0, item.work)
+        f4.place(x=160, y=95)
+
+        kn = tk.Button(mm, text='Сохранить', width=20,
+                       background='#1489CC', fg='white')
+        kn.place(x=10, y=140)
+
+    def del_komp(item):
+        mm = tk.Toplevel()
+        mm.geometry('300x300')
+        mm.title('Удаление компании')
+
+    kom = get_komp()
+    lox = 50
+    for i in kom:
+        asas = '#d9dadb'
+        if i.id % 2 == 0:
+            asas = '#ededed'
+        dfd = tk.Label(table, width=97, height=2, background=asas)
+        dfd.place(x=0, y=lox)
+        lox += 40
+
+        h_2 = tk.Label(dfd, text=f'{i.name}', background=asas,
+                       wraplength=90, justify='center', fg='#1489CC')
+        h_2.place(x=40, y=0)
+
+        h_3 = tk.Label(dfd, text=f'{i.veshe}', background=asas,
+                       wraplength=70, justify='center', font=('', 7))
+        h_3.place(x=160, y=0)
+
+        h_4 = tk.Label(dfd, text=f'{i.adres}', background=asas,
+                       wraplength=80, justify='center', font=('', 9),
+                       fg='#1489CC')
+        h_4.place(x=280, y=0)
+
+        h_5 = tk.Label(dfd, text=f'{i.kontak}', background=asas)
+        h_5.place(x=370, y=5)
+
+        h_6 = tk.Label(dfd, text=f'{i.work}', background=asas,
+                       wraplength=70, justify='center', font=('', 10))
+        h_6.place(x=460, y=5)
+
+        h_8 = tk.Label(dfd, text='R', background=asas,
+                       fg='#1489CC')
+        h_8.place(x=580, y=5)
+        h_8.bind('<Button-1>', lambda event, item=i: update_komp(item))
+
+        h_9 = tk.Label(dfd, text='D', background=asas,
+                       fg='#1489CC')
+        h_9.place(x=600, y=5)
+        h_9.bind('<Button-1>', lambda event, item=i: del_komp(item))
+
+        h_0 = tk.Label(dfd, text='C', background=asas,
+                       fg='#1489CC')
+        h_0.place(x=620, y=5)
 
 
 def open_polsov(_):
@@ -702,6 +850,7 @@ hghhg.bind('<Button-1>', open_pod_menu_detot)
 
 ggg = PhotoImage(file='frame16.png')
 ggg = ggg.subsample(6)
+
 lkj = tk.Label(root, image=ggg, background='#1e2329')
 lkj.place(x=10, y=300)
 hhhhg = tk.Label(root, text='Учет ТМЦ', font=('', 14), background='#1e2329',

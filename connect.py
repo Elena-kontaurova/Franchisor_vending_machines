@@ -90,8 +90,19 @@ class Torfavt(BaseModel):
     deist = CharField()
 
 
+class Kompany(BaseModel):
+    id = AutoField()
+    name = CharField()
+    veshe = CharField()
+    adres = CharField()
+    kontak = CharField()
+    work = CharField()
+    deist = CharField(null=True)
+    prim = CharField()
+
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
                   User, Maintenance, Svodka, News,
-                  Torfavt], safe=True)
+                  Torfavt, Kompany], safe=True)
 db.close()
