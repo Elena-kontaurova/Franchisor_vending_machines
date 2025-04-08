@@ -79,7 +79,19 @@ class News(BaseModel):
     text = CharField()
 
 
+class Torfavt(BaseModel):
+    id = AutoField()
+    name = CharField()
+    model = CharField()
+    kompany = CharField()
+    modem = CharField()
+    adress = CharField()
+    word = CharField()
+    deist = CharField()
+
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
-                  User, Maintenance, Svodka, News], safe=True)
+                  User, Maintenance, Svodka, News,
+                  Torfavt], safe=True)
 db.close()

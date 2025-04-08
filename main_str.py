@@ -1,6 +1,7 @@
 import tkinter as tk
-from tkinter import PhotoImage
-from connect import Svodka, News
+from tkinter import PhotoImage, messagebox
+from connect import Svodka, News, Torfavt
+
 
 root = tk.Tk()
 root.geometry('1124x700')
@@ -216,7 +217,69 @@ def open_ychet_3(_):
     hh.place(x=285, y=100)
 
 
+def get_tor():
+    torg = Torfavt.select()
+    return torg
+
+
 def open_torg_avt(_):
+    ''' Администрирование / торговые автоматы'''
+
+    def create_zap():
+        ff = tk.Toplevel()
+        ff.geometry('300x500')
+        ff.title('Создание торгового автомата')
+
+        la = tk.Label(ff, background='#c4cacf', width=300, height=3)
+        la.place(x=0, y=0)
+        oglav = tk.Label(ff, text='Создание торгового аппарата',
+                         font=('', 15), fg='#1489cc', background='#c4cacf')
+        oglav.place(x=10, y=10)
+
+        name = tk.Label(ff, text='Название автомата:')
+        name.place(x=20, y=60)
+        name1 = tk.Entry(ff)
+        name1.place(x=140, y=60)
+
+        model = tk.Label(ff, text='Модель:')
+        model.place(x=20, y=90)
+        m = tk.Entry(ff)
+        m.place(x=140, y=90)
+
+        kompany = tk.Label(ff, text='Компания:')
+        kompany.place(x=20, y=120)
+        k = tk.Entry(ff)
+        k.place(x=140, y=120)
+
+        modem = tk.Label(ff, text='Модем:')
+        modem.place(x=20, y=150)
+        m1 = tk.Entry(ff)
+        m1.place(x=140, y=150)
+
+        adress = tk.Label(ff, text='Адерес/Место:')
+        adress.place(x=20, y=180)
+        a = tk.Entry(ff)
+        a.place(x=140, y=180)
+
+        word = tk.Label(ff, text='В работе с:')
+        word.place(x=20, y=210)
+        w = tk.Entry(ff)
+        w.place(x=140, y=210)
+
+        deist = tk.Label(ff, text='Действия:')
+        deist.place(x=20, y=240)
+        d = tk.Entry(ff)
+        d.place(x=140, y=240)
+
+        def gr_zz():
+            pass
+
+        cre = tk.Button(ff, text='Создать', background='#1489cc',
+                        width=13, fg='white', command=gr_zz)
+        cre.place(x=20, y=280)
+
+        ff.mainloop()
+
     ff = tk.Label(root, background='#060a0d', width=100, height=10)
     ff.place(x=800, y=50)
     gg = tk.Label(root, text='Администирование / Торговые автоматы',
@@ -226,6 +289,186 @@ def open_torg_avt(_):
     hh = tk.Label(root, width=200, height=200,
                   background='#c4cacf')
     hh.place(x=285, y=100)
+    kvad = tk.Label(hh, width=100, height=34, background='white')
+    kvad.place(x=70, y=30)
+    hh = tk.Label(kvad, background='#ededed', width=100, height=3)
+    hh.place(x=0, y=0)
+    tt = tk.Label(hh, text='Торговые автоматы', background='#ededed',
+                  fg='#1489cc', font=('', 12))
+    tt.place(x=10, y=5)
+    df = tk.Label(hh, text='Всего найдено 9 записей', background='#ededed',
+                  fg='black', font=('', 7))
+    df.place(x=12, y=25)
+    kn_create = tk.Button(hh, text='Добавить', background='#ededed',
+                          fg='black', command=create_zap)
+    kn_create.place(x=610, y=15)
+
+    table = tk.Label(kvad, width=97, height=29, background='#adb4b8')
+    table.place(x=10, y=60)
+    t_1 = tk.Label(table,
+                   text='ID', background='#adb4b8')
+    t_1.place(x=30, y=10)
+    t_2 = tk.Label(table,
+                   text='Навазание \n автомата',
+                   background='#adb4b8')
+    t_2.place(x=90, y=5)
+    t_3 = tk.Label(table, text='Модель', background='#adb4b8')
+    t_3.place(x=190, y=10)
+    t_4 = tk.Label(table, text='Компания', background='#adb4b8')
+    t_4.place(x=270, y=10)
+    t_5 = tk.Label(table, text='Модем', background='#adb4b8')
+    t_5.place(x=360, y=10)
+    t_6 = tk.Label(table, text='Адресс/Место', background='#adb4b8')
+    t_6.place(x=430, y=10)
+    t_7 = tk.Label(table, text='В работе \n с', background='#adb4b8')
+    t_7.place(x=530, y=5)
+    t_8 = tk.Label(table, text='Действия', background='#adb4b8')
+    t_8.place(x=600, y=10)
+
+    def update_torg_avt(item, name, model, kompany, modem, adress, word):
+        aga = Torfavt.get(Torfavt.id == item.id)
+        aga.name = name
+        aga.model = model
+        aga.kompany = kompany
+        aga.modem = modem
+        aga.adress = adress
+        aga.word = word
+        aga.save()
+
+    def redak_torg_avt(item):
+        mm = tk.Toplevel()
+        mm.geometry('500x300')
+        mm.title('Редактирование торгового автомата')
+
+        a = tk.Label(mm, text='Название автомата:')
+        a.place(x=20, y=20)
+        name = tk.Entry(mm)
+        name.insert(0, item.name)
+        name.place(x=20, y=45)
+
+        b = tk.Label(mm, text='Модель:')
+        b.place(x=180, y=20)
+
+        model = tk.Entry(mm)
+        model.insert(0, item.model)
+        model.place(x=180, y=45)
+
+        c = tk.Label(mm, text='Компания:')
+        c.place(x=20, y=85)
+
+        komp = tk.Entry(mm, width=40)
+        komp.insert(0, item.kompany)
+        komp.place(x=20, y=110)
+
+        d = tk.Label(mm, text='Модем:')
+        d.place(x=280, y=85)
+
+        modem = tk.Entry(mm)
+        modem.insert(0, item.modem)
+        modem.place(x=280, y=110)
+
+        e = tk.Label(mm, text='Адресс/Место:')
+        e.place(x=20, y=145)
+
+        adress = tk.Entry(mm, width=30)
+        adress.insert(0, item.adress)
+        adress.place(x=20, y=170)
+
+        f = tk.Label(mm, text='В работе с')
+        f.place(x=230, y=145)
+
+        word = tk.Entry(mm)
+        word.insert(0, item.word)
+        word.place(x=230, y=170)
+
+        kn = tk.Label(mm, text='Сохранить', width=25,
+                      background='#1489CC', fg='white')
+
+        kn = tk.Button(mm, text='Сохранить', width=25,
+                       background='#1489CC', fg='white')
+        kn.place(x=20, y=220)
+
+        def update_info():
+            new_name = name.get()
+            new_model = model.get()
+            new_komp = komp.get()
+            new_modem = modem.get()
+            new_adress = adress.get()
+            new_word = word.get()
+            update_torg_avt(item, new_name, new_model, new_komp,
+                            new_modem, new_adress, new_word)
+
+            messagebox.showinfo("Успех", "Данные успешно сохранены!")
+            mm.destroy()
+
+        kn.config(command=update_info)
+
+        mm.mainloop()
+
+    def delete_torg_avt(item):
+        mm = tk.Toplevel()
+        mm.geometry('250x100')
+        mm.title('Удаление торгового автомата')
+
+        def del_zap():
+            Torfavt.delete().where(Torfavt.id == item.id).execute()
+            messagebox.showinfo('Успех', 'Данные успешно удаленны')
+            mm.destroy()
+
+        def del_fram():
+            mm.destroy()
+
+        a = tk.Label(mm, text='Вы действительно хотите удалить запись?')
+        a.place(x=10, y=10)
+        yes = tk.Button(mm, text='Да', background='#f00c36', fg='white',
+                        width=13, command=del_zap)
+        yes.place(x=10, y=50)
+        no = tk.Button(mm, text='Нет', background='#0c14f0', fg='white',
+                       width=13, command=del_fram)
+        no.place(x=140, y=50)
+        mm.mainloop()
+
+    torg = get_tor()
+    lox = 50
+    for i in torg:
+        asas = '#d9dadb'
+        if i.id % 2 == 0:
+            asas = '#ededed'
+        dfd = tk.Label(table, width=97, height=2, background=asas)
+        dfd.place(x=0, y=lox)
+        lox += 40
+        h_1 = tk.Label(dfd, text=f'{i.id}', background=asas)
+        h_1.place(x=30, y=5)
+        h_2 = tk.Label(dfd, text=f'{i.name}', background=asas,
+                       wraplength=90, justify='center', fg='#1489CC')
+        h_2.place(x=100, y=5)
+        h_3 = tk.Label(dfd, text=f'{i.model}', background=asas,
+                       wraplength=70, justify='center', font=('', 8))
+        h_3.place(x=190, y=0)
+        h_4 = tk.Label(dfd, text=f'{i.kompany}', background=asas,
+                       wraplength=80, justify='center', font=('', 6),
+                       fg='#1489CC')
+        h_4.place(x=260, y=0)
+        h_5 = tk.Label(dfd, text=f'{i.modem}', background=asas)
+        h_5.place(x=350, y=5)
+        h_6 = tk.Label(dfd, text=f'{i.adress}', background=asas,
+                       wraplength=70, justify='center', font=('', 8))
+        h_6.place(x=440, y=0)
+        h_7 = tk.Label(dfd, text=f'{i.word}', background=asas)
+        h_7.place(x=530, y=5)
+        h_8 = tk.Label(dfd, text='R', background=asas,
+                       fg='#1489CC')
+        h_8.place(x=610, y=5)
+        h_8.bind('<Button-1>', lambda event, item=i: redak_torg_avt(item))
+
+        h_9 = tk.Label(dfd, text='D', background=asas,
+                       fg='#1489CC')
+        h_9.place(x=630, y=5)
+        h_9.bind('<Button-1>', lambda event, item=i: delete_torg_avt(item))
+
+        h_0 = tk.Label(dfd, text='C', background=asas,
+                       fg='#1489CC')
+        h_0.place(x=650, y=5)
 
 
 def open_komp(_):
