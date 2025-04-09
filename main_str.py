@@ -146,65 +146,86 @@ def open_monik_str(_):
 
     www = tk.Label(hh, background='white', width=106, height=35)
     www.place(x=40, y=40)
+
     hh = tk.Label(www, background='#dbdbdb', width=180, height=10)
     hh.place(x=0, y=0)
+    tete = tk.Label(www, text='380649 "ООО Торговые Автоматы"',
+                    background='white')
+    tete.place(x=16, y=156)
+    teta = tk.Label(www,
+                    text='Итого автоматов 9. Денег в автомата: 22460р',
+                    background='white')
+    teta.place(x=16, y=500)
+
     tex = tk.Label(hh, text='Монитор торговых автоматов',
                    background='#dbdbdb', fg='#0394fc',
                    font=('', 16))
-    tex.place(x=10, y=10)
+    tex.place(x=10, y=0)
     tex_ob = tk.Label(hh, text='Общее состояние', background='#dbdbdb',)
-    tex_ob.place(x=10, y=50)
+    tex_ob.place(x=10, y=42)
     o1 = tk.Label(hh, background='#06731d', text='',
                   relief='solid', border=1, height=2, width=5)
-    o1.place(x=14, y=80)
+    o1.place(x=14, y=68)
     o2 = tk.Label(hh, background='#f20723', text='',
                   relief='solid', border=1, height=2, width=5)
-    o2.place(x=54, y=80)
+    o2.place(x=54, y=68)
     o3 = tk.Label(hh, background='#0394fc', text='',
                   relief='solid', border=1, height=2, width=5)
-    o3.place(x=94, y=80)
+    o3.place(x=94, y=68)
 
     tex_pod = tk.Label(hh, text='Подключение', background='#dbdbdb')
-    tex_pod.place(x=150, y=50)
+    tex_pod.place(x=150, y=42)
     p1 = tk.Label(hh, background='white', text='Эк',
                   relief='solid', border=1, height=2, width=5,
                   fg='#0394fc')
-    p1.place(x=150, y=80)
+    p1.place(x=150, y=68)
     p2 = tk.Label(hh, background='white', text='MDV',
                   relief='solid', border=1, height=2, width=5,
                   fg='#0394fc')
-    p2.place(x=190, y=80)
+    p2.place(x=190, y=68)
     p3 = tk.Label(hh, background='white', text='EXE',
                   relief='solid', border=1, height=2, width=5,
                   fg='#0394fc')
-    p3.place(x=230, y=80)
+    p3.place(x=230, y=68)
 
     tex_dop = tk.Label(hh, text='Дополнительные статусы',
                        background='#dbdbdb')
-    tex_dop.place(x=290, y=50)
+    tex_dop.place(x=290, y=42)
+
     d1 = tk.Label(hh, background='white', text='1',
                   relief='solid', border=1, height=2, width=5,
                   fg='#f20723')
-    d1.place(x=290, y=80)
+    d1.place(x=290, y=68)
     d2 = tk.Label(hh, background='white', text='2',
                   relief='solid', border=1, height=2, width=5,
                   fg='#f20723')
-    d2.place(x=330, y=80)
+    d2.place(x=330, y=68)
     d3 = tk.Label(hh, background='white', text='3',
                   relief='solid', border=1, height=2, width=5,
                   fg='#0394fc')
-    d3.place(x=370, y=80)
+    d3.place(x=370, y=68)
     d4 = tk.Label(hh, background='white', text='4',
                   relief='solid', border=1, height=2, width=5,
                   fg='#0394fc')
-    d4.place(x=410, y=80)
+    d4.place(x=410, y=68)
     d5 = tk.Label(hh, background='white', text='5',
                   relief='solid', border=1, height=2, width=5,
                   fg='#0394fc')
-    d5.place(x=450, y=80)
+    d5.place(x=450, y=68)
 
     tex_sor = tk.Label(hh, text='Сортировка', background='#dbdbdb')
-    tex_sor.place(x=510, y=50)
+    tex_sor.place(x=510, y=42)
+    a1 = tk.Label(hh, background='white', text='По состоянию ТА',
+                  relief='solid', border=1, height=2, width=25,
+                  fg='#999696')
+    a1.place(x=510, y=68)
+
+    pri = tk.Button(hh, text='Применить', background='#0394fc',
+                    fg='white', width=19)
+    pri.place(x=13, y=115)
+    ohi = tk.Button(hh, text='Очистить', background='white',
+                    fg='black', width=19)
+    ohi.place(x=170, y=115)
 
     table = tk.Label(www, background='white', border=1,
                      relief='sunken', width=100, height=21)
@@ -268,6 +289,92 @@ def open_monik_str(_):
     dev = tk.Label(table, background='#f7f7fa', border=1,
                    relief='sunken', width=5, height=18)
     dev.place(x=665, y=48)
+
+    pp = 80
+    oo = 60
+    gg = 90
+    hh = 82
+    ggg = 98
+    l1 = 65
+    l2 = 93
+    za = 76
+    kk = 70
+    for i in range(4):
+        tk.Label(table, text=f'{i + 1}',
+                 background='#f7f7fa').place(x=20, y=pp)
+        tk.Label(table, text='903823 - "БЦ Московский"',
+                 background='#f7f7fa', justify='center',
+                 wraplength=75).place(x=80, y=oo)
+        tk.Label(table, text='Unicon Rosso'
+                 '\n Суворово 21',
+                 background='#f7f7fa', justify='center',
+                 wraplength=75, fg='#999696',
+                 font=('', 8)).place(x=80, y=gg)
+        tk.Label(table, border=1, relief='solid',
+                 background='#0394fc', width=3,
+                 height=1).place(x=53, y=pp)
+        tk.Label(table, text='T2',
+                 background='#f7f7fa', font=('', 12)).place(x=182, y=oo)
+        tk.Label(table, text='21 р',
+                 background='#f7f7fa',
+                 font=('', 9)).place(x=180, y=hh)
+        tk.Label(table, text='23:45',
+                 background='#f7f7fa',
+                 font=('', 9, 'bold')).place(x=175, y=ggg)
+        tk.Label(table, text='обща.',
+                 background='#07eafa').place(x=245, y=l1)
+        tk.Label(table, text='мини.',
+                 background='#07eafa').place(x=245, y=gg)
+
+        tk.Label(table, text='0 р.',
+                 background='#f7f7fa',
+                 font=('', 9, 'bold')).place(x=320, y=oo)
+        tk.Label(table, text='7820 р.',
+                 background='#f7f7fa',
+                 font=('', 9, 'bold')).place(x=320, y=za)
+        tk.Label(table, text='11 345 р.',
+                 background='#f7f7fa',
+                 font=('', 9, 'bold')).place(x=320, y=l2)
+
+        tk.Label(table, text='11 мин. назад',
+                 background='#f7f7fa').place(x=410, y=oo)
+        tk.Label(table, text='2 дня назад',
+                 background='#f7f7fa').place(x=410, y=za)
+        tk.Label(table, text='2 дня назад',
+                 background='#f7f7fa').place(x=410, y=l2)
+
+        tk.Label(table, text='247',
+                 background='#f7f7fa').place(x=673, y=pp)
+
+        tk.Label(table, border=1, relief='solid',
+                 background='#06731d',
+                 width=3, height=1).place(x=513, y=kk)
+        tk.Label(table, border=1, relief='solid',
+                 background='#06731d',
+                 width=3, height=1).place(x=543, y=kk)
+        tk.Label(table, border=1, relief='solid',
+                 background='#06731d',
+                 width=3, height=1).place(x=528, y=l2)
+
+        tk.Label(table, border=1, relief='solid',
+                 background='white', fg='#0394fc', text='EXE',
+                 width=3, height=1).place(x=600, y=kk)
+        tk.Label(table, border=1, relief='solid',
+                 background='white', fg='#0394fc', text='MV',
+                 width=3, height=1).place(x=630, y=kk)
+        tk.Label(table, border=1, relief='solid',
+                 background='white', fg='#0394fc', text='ZK',
+                 width=3, height=1).place(x=615, y=l2)
+
+        pp += 60
+        oo += 62
+        gg += 62
+        hh += 62
+        ggg += 62
+        l1 += 62
+        l2 += 62
+        za += 62
+        kk += 62
 
 
 def open_det_otc_str_1(_):
