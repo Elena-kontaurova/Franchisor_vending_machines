@@ -144,6 +144,131 @@ def open_monik_str(_):
                   background='#c4cacf')
     hh.place(x=285, y=100)
 
+    www = tk.Label(hh, background='white', width=106, height=35)
+    www.place(x=40, y=40)
+    hh = tk.Label(www, background='#dbdbdb', width=180, height=10)
+    hh.place(x=0, y=0)
+    tex = tk.Label(hh, text='Монитор торговых автоматов',
+                   background='#dbdbdb', fg='#0394fc',
+                   font=('', 16))
+    tex.place(x=10, y=10)
+    tex_ob = tk.Label(hh, text='Общее состояние', background='#dbdbdb',)
+    tex_ob.place(x=10, y=50)
+    o1 = tk.Label(hh, background='#06731d', text='',
+                  relief='solid', border=1, height=2, width=5)
+    o1.place(x=14, y=80)
+    o2 = tk.Label(hh, background='#f20723', text='',
+                  relief='solid', border=1, height=2, width=5)
+    o2.place(x=54, y=80)
+    o3 = tk.Label(hh, background='#0394fc', text='',
+                  relief='solid', border=1, height=2, width=5)
+    o3.place(x=94, y=80)
+
+    tex_pod = tk.Label(hh, text='Подключение', background='#dbdbdb')
+    tex_pod.place(x=150, y=50)
+    p1 = tk.Label(hh, background='white', text='Эк',
+                  relief='solid', border=1, height=2, width=5,
+                  fg='#0394fc')
+    p1.place(x=150, y=80)
+    p2 = tk.Label(hh, background='white', text='MDV',
+                  relief='solid', border=1, height=2, width=5,
+                  fg='#0394fc')
+    p2.place(x=190, y=80)
+    p3 = tk.Label(hh, background='white', text='EXE',
+                  relief='solid', border=1, height=2, width=5,
+                  fg='#0394fc')
+    p3.place(x=230, y=80)
+
+    tex_dop = tk.Label(hh, text='Дополнительные статусы',
+                       background='#dbdbdb')
+    tex_dop.place(x=290, y=50)
+    d1 = tk.Label(hh, background='white', text='1',
+                  relief='solid', border=1, height=2, width=5,
+                  fg='#f20723')
+    d1.place(x=290, y=80)
+    d2 = tk.Label(hh, background='white', text='2',
+                  relief='solid', border=1, height=2, width=5,
+                  fg='#f20723')
+    d2.place(x=330, y=80)
+    d3 = tk.Label(hh, background='white', text='3',
+                  relief='solid', border=1, height=2, width=5,
+                  fg='#0394fc')
+    d3.place(x=370, y=80)
+    d4 = tk.Label(hh, background='white', text='4',
+                  relief='solid', border=1, height=2, width=5,
+                  fg='#0394fc')
+    d4.place(x=410, y=80)
+    d5 = tk.Label(hh, background='white', text='5',
+                  relief='solid', border=1, height=2, width=5,
+                  fg='#0394fc')
+    d5.place(x=450, y=80)
+
+    tex_sor = tk.Label(hh, text='Сортировка', background='#dbdbdb')
+    tex_sor.place(x=510, y=50)
+
+    table = tk.Label(www, background='white', border=1,
+                     relief='sunken', width=100, height=21)
+    table.place(x=20, y=180)
+    oglav = tk.Label(table, background='#dbdbdb', border=1,
+                     relief='sunken', width=100, height=3)
+    oglav.place(x=0, y=0)
+
+    num = tk.Label(oglav, text='#', background='#dbdbdb')
+    num.place(x=15, y=15)
+    tor_avt = tk.Label(oglav, text='Торговый автомат', background='#dbdbdb')
+    tor_avt.place(x=48, y=15)
+    svaz = tk.Label(oglav, text='Связь', background='#dbdbdb')
+    svaz.place(x=174, y=15)
+    zagr = tk.Label(oglav, text='Загрузка', background='#dbdbdb')
+    zagr.place(x=234, y=15)
+    dene = tk.Label(oglav, text='Денеж. средства',
+                    background='#dbdbdb')
+    dene.place(x=300, y=15)
+    sob = tk.Label(oglav, text='События', background='#dbdbdb')
+    sob.place(x=420, y=15)
+    oboru = tk.Label(oglav, text='Оборудование', background='#dbdbdb')
+    oboru.place(x=494, y=15)
+    info = tk.Label(oglav, text='Информация', background='#dbdbdb')
+    info.place(x=584, y=15)
+    dop = tk.Label(oglav, text='Доп.', background='#dbdbdb')
+    dop.place(x=670, y=15)
+
+    p = tk.Label(table, background='#f7f7fa', border=1,
+                 relief='sunken', width=6, height=20)
+    p.place(x=0, y=48)
+
+    vt = tk.Label(table, background='#f7f7fa', border=1,
+                  relief='sunken', width=16, height=18)
+    vt.place(x=46, y=48)
+
+    tr = tk.Label(table, background='#f7f7fa', border=1,
+                  relief='sunken', width=14, height=18)
+    tr.place(x=160, y=48)
+
+    che = tk.Label(table, background='#f7f7fa', border=1,
+                   relief='sunken', width=10, height=18)
+    che.place(x=230, y=48)
+
+    pat = tk.Label(table, background='#f7f7fa', border=1,
+                   relief='sunken', width=15, height=18)
+    pat.place(x=300, y=48)
+
+    she = tk.Label(table, background='#f7f7fa', border=1,
+                   relief='sunken', width=13, height=18)
+    she.place(x=405, y=48)
+
+    sem = tk.Label(table, background='#f7f7fa', border=1,
+                   relief='sunken', width=13, height=18)
+    sem.place(x=495, y=48)
+
+    vos = tk.Label(table, background='#f7f7fa', border=1,
+                   relief='sunken', width=13, height=18)
+    vos.place(x=585, y=48)
+
+    dev = tk.Label(table, background='#f7f7fa', border=1,
+                   relief='sunken', width=5, height=18)
+    dev.place(x=665, y=48)
+
 
 def open_det_otc_str_1(_):
     ff = tk.Label(root, background='#060a0d', width=70, height=10)
@@ -499,8 +624,69 @@ def open_komp(_):
 
     def create_komp():
         mm = tk.Toplevel()
-        mm.geometry('500x300')
+        mm.geometry('500x200')
         mm.title('Создание компании')
+
+        a = tk.Label(mm, text='Название:')
+        a.place(x=30, y=10)
+        nana = tk.Entry(mm)
+        nana.place(x=30, y=30)
+
+        b = tk.Label(mm, text='Вышестоящая:')
+        b.place(x=190, y=10)
+        veve = tk.Entry(mm)
+        veve.insert(0, 'ООО Торговые автоматы')
+        veve.place(x=190, y=30)
+
+        c = tk.Label(mm, text='Адрес:')
+        c.place(x=350, y=10)
+        adad = tk.Entry(mm)
+        adad.place(x=350, y=30)
+
+        d = tk.Label(mm, text='Контакты:')
+        d.place(x=30, y=60)
+        koko = tk.Entry(mm)
+        koko.place(x=30, y=80)
+
+        e = tk.Label(mm, text='В работе с:')
+        e.place(x=190, y=60)
+        wowo = tk.Entry(mm)
+        wowo.place(x=190, y=80)
+
+        f = tk.Label(mm, text='Примечание:')
+        f.place(x=350, y=60)
+        prpr = tk.Entry(mm)
+        prpr.place(x=350, y=80)
+
+        def yes_button():
+            name = nana.get()
+            veshe = veve.get()
+            adres = adad.get()
+            kontak = koko.get()
+            work = wowo.get()
+            prim = prpr.get()
+
+            _ = Kompany.create(
+                name=name,
+                veshe=veshe,
+                adres=adres,
+                kontak=kontak,
+                work=work,
+                prim=prim
+            )
+            messagebox.showinfo('Успех', 'Компания успешно создана')
+            mm.destroy()
+
+        def no_button():
+            mm.destroy()
+
+        yes = tk.Button(mm, text='Добавить', width=13,
+                        background='#0c14f0', fg='white',
+                        command=yes_button)
+        yes.place(x=30, y=120)
+        no = tk.Button(mm, text='Отменить', background='#c2c2c4',
+                       fg='black', width=13, command=no_button)
+        no.place(x=150, y=120)
 
     ff = tk.Label(root, background='#060a0d', width=100, height=10)
     ff.place(x=800, y=50)
@@ -577,14 +763,54 @@ def open_komp(_):
         f4.insert(0, item.work)
         f4.place(x=160, y=95)
 
+        def update_kk(item, name, veshe, adres, kontak,
+                      work):
+            kom = Kompany.get(Kompany.id == item.id)
+            kom.name = name
+            kom.veshe = veshe
+            kom.adres = adres
+            kom.kontak = kontak
+            kom.work = work
+            kom.save()
+
+        def suda():
+            name = f1.get()
+            veshe = f6.get()
+            adres = f2.get()
+            kontak = f3.get()
+            work = f4.get()
+
+            update_kk(item, name, veshe, adres, kontak, work)
+            messagebox.showinfo('Успех', 'Изменения сохранены')
+            mm.destroy()
+
         kn = tk.Button(mm, text='Сохранить', width=20,
-                       background='#1489CC', fg='white')
+                       background='#1489CC', fg='white',
+                       command=suda)
         kn.place(x=10, y=140)
 
     def del_komp(item):
         mm = tk.Toplevel()
-        mm.geometry('300x300')
+        mm.geometry('300x100')
         mm.title('Удаление компании')
+
+        def no_but():
+            mm.destroy()
+
+        def yes_but():
+            Kompany.delete().where(Kompany.id == item.id).execute()
+            messagebox.showinfo('Успех!', 'Данные успешно удаленны')
+            mm.destroy()
+
+        vop = tk.Label(mm, text='Вы действительно хотите удалить "Компанию"?')
+        vop.place(x=10, y=10)
+        yes = tk.Button(mm, text='Да', width=13,
+                        background='#0c14f0', fg='white',
+                        command=yes_but)
+        yes.place(x=10, y=50)
+        no = tk.Button(mm, text='Нет', background='#c2c2c4',
+                       fg='black', width=13, command=no_but)
+        no.place(x=130, y=50)
 
     kom = get_komp()
     lox = 50
@@ -632,6 +858,7 @@ def open_komp(_):
 
 
 def open_polsov(_):
+    ''' Администирование / Пользователи'''
     ff = tk.Label(root, background='#060a0d', width=100, height=10)
     ff.place(x=800, y=50)
     gg = tk.Label(root, text='Администирование / Пользователи',
