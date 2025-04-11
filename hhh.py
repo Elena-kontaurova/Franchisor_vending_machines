@@ -1,8 +1,38 @@
 ''' api '''
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from connect import VendingMachine, Product, Sale, User, Maintenance
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
+
+templates = Jinja2Templates(directory='templates')
+app.mount('/static', StaticFiles(directory='static'), name='static')
+
+
+@app.get('/', response_class=HTMLResponse)
+async def main_str(request: Request):
+    return templates.TemplateResponse('index.html',
+                                      {'request': request})
+
+
+@app.get('/torg', response_class=HTMLResponse)
+async def torg_str(request: Request):
+    return templates.TemplateResponse('torg.html',
+                                      {'request': request})
+
+
+@app.get('/dogo', response_class=HTMLResponse)
+async def dogo_str(request: Request):
+    return templates.TemplateResponse('dogo.html',
+                                      {'request': request})
+
+
+@app.get('/nast', response_class=HTMLResponse)
+async def nast_str(request: Request):
+    return templates.TemplateResponse('nast.html',
+                                      {'request': request})
 
 
 @app.get('/vendi')
