@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "fa36c68f-8166-4660-80ad-dea1e22b4480",
+		"name": "API zalupa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44020459"
+	},
+	"item": [
+		{
+			"name": "New Folder",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/{{zalupa}}",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"{{zalupa}}"
+					]
+				},
+				"description": "всем привет"
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/{{zalupa}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"{{zalupa}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"name\": \"13121ef\"\r\n}"
+				},
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/{{zalupa}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"{{zalupa}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 13 Apr 2025 09:48:24 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "1949"
+						},
+						{
+							"key": "content-type",
+							"value": "text/html; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "<!DOCTYPE html>\n<html lang=\"ru\">\n    <head>\n        <meta charset=\"UTF-8\">\n        <title>Главная</title>\n        <link rel=\"stylesheet\", href=\"static/styl.css\">\n    </head>\n    <body>\n        <div class=\"bly\">\n            <div class=\"str_verh\"></div>\n            <div class=\"avtor\"></div>\n        </div>\n        <div class=\"container\">\n            <div class=\"menu\">\n                <h1>Навигация</h1>\n                <ul>\n                    <li>\n                        <a href=\"/\">\n                            <img src=\"/static/image/frame12.png\", class=\"img\">\n                    \n                        </a>\n                        <a href=\"/\", class=\"link-as-text\">\n                            <h3>Главная</h3>\n                        </a>\n                    </li>\n                    <li>\n                        <a href=\"/torg\">\n                            <img src=\"/static/image/frame13.png\", class=\"img\">\n                    \n                        </a>\n                        <a href=\"/torg\", class=\"link-as-text\">\n                            <h3>Торговые автоматы</h3>\n                        </a>\n                    </li>\n                    <li>\n                        <a href=\"/dogo\">\n                            <img src=\"/static/image/frame14.png\", class=\"img\">\n                    \n                        </a>\n                        <a href=\"/dogo\", class=\"link-as-text\">\n                            <h3>Договоры</h3>\n                        </a>\n                    </li>\n                    <li>\n                        <a href=\"/nast\">\n                            <img src=\"/static/image/frame15.png\", class=\"img\">\n                    \n                        </a>\n                        <a href=\"/nast\", class=\"link-as-text\">\n                            <h3>Настройки</h3>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n            <div class=\"str\">\n                <div class=\"verh\">\n                    <div class=\"zaeb\">ООО Торговые Автоматы</div>\n                </div>\n                <div class=\"str_nuz\"></div>\n            </div>\n        </div>\n    </div>\n</body>\n</html>"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "zalupa",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}
