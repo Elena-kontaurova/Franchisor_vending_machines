@@ -1,6 +1,7 @@
 ''' api '''
 from fastapi import FastAPI, Request
-from connect import VendingMachine, Product, Sale, User, Maintenance
+from connect import VendingMachine, Product, Sale, User, Maintenance, \
+    Torfavt, Kompany
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
@@ -96,3 +97,49 @@ async def get_mainte():
              'problems': ma.problems,
              'executor': ma.executor}
             for ma in mainte]
+
+
+@app.get('/torg/{torg_avt_id}')
+async def get_id_torg(torg_avt_id):
+    torg_avt = Torfavt.get(Torfavt.id == torg_avt_id)
+    return {
+        'id': torg_avt.id,
+        'name': torg_avt.name,
+        'model': torg_avt.model,
+        'kompany': torg_avt.kompany,
+        'modem': torg_avt.modem,
+        'adress': torg_avt.adress,
+        'word': torg_avt.word,
+        'deist': torg_avt.deist,
+    }
+
+
+@app.get('/comp/{copm_id}')
+async def get_id_comp(copm_id):
+    comp = Kompany.get(Kompany.id == copm_id)
+    return {
+        'id': comp.id,
+        'name': comp.name,
+        'veshe': comp.veshe,
+        'adres': comp.adres,
+        'kontak': comp.kontak,
+        'work': comp.work,
+        'deist': comp.deist,
+        'prim': comp.prim
+    }
+
+
+@app.get('/comp')
+async def get_comp():
+    com = Kompany.select()
+    return [{
+        'id': comp.id,
+        'name': comp.name,
+        'veshe': comp.veshe,
+        'adres': comp.adres,
+        'kontak': comp.kontak,
+        'work': comp.work,
+        'deist': comp.deist,
+        'prim': comp.prim
+    }
+     for comp in com]

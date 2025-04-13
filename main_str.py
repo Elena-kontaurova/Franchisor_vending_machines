@@ -1143,7 +1143,7 @@ one.place(x=7, y=47)
 
 ksks = tk.Label(root, background='#060a0d', width=10, height=3)
 ksks.place(x=206, y=50)
-menu = PhotoImage(file='menu.png')
+menu = PhotoImage(file='image/menu.png')
 menu = menu.subsample(5)
 dd = tk.Label(root, image=menu, background='#060a0d')
 dd.place(x=215, y=55)
@@ -1154,7 +1154,7 @@ asd = tk.Label(root, text='Навигация', background='#1e2329', fg='#c4cac
                font=('', 13))
 asd.place(x=10, y=62)
 
-df = PhotoImage(file='frame12.png')
+df = PhotoImage(file='image/frame12.png')
 df = df.subsample(6)
 ass = tk.Label(root, image=df, background='#1e2329')
 ass.place(x=10, y=120)
@@ -1163,7 +1163,7 @@ hghg = tk.Label(root, text='Главная', font=('', 14), background='#1e2329'
 hghg.place(x=65, y=130)
 hghg.bind('<Button-1>', open_main_str)
 
-dfd = PhotoImage(file='frame13.png')
+dfd = PhotoImage(file='image/frame13.png')
 dfd = dfd.subsample(6)
 asff = tk.Label(root, image=dfd, background='#1e2329')
 asff.place(x=10, y=180)
@@ -1172,7 +1172,7 @@ hghgg = tk.Label(root, text='Монитор ТА', font=('', 14), background='#1
 hghgg.place(x=65, y=190)
 hghgg.bind('<Button-1>', open_monik_str)
 
-aaa = PhotoImage(file='frame14.png')
+aaa = PhotoImage(file='image/frame14.png')
 aaa = aaa.subsample(6)
 asas = tk.Label(root, image=aaa, background='#1e2329')
 asas.place(x=10, y=240)
@@ -1182,7 +1182,7 @@ hghhg = tk.Label(root, text='Детальные отчеты', font=('', 14),
 hghhg.place(x=65, y=250)
 hghhg.bind('<Button-1>', open_pod_menu_detot)
 
-ggg = PhotoImage(file='frame16.png')
+ggg = PhotoImage(file='image/frame16.png')
 ggg = ggg.subsample(6)
 
 lkj = tk.Label(root, image=ggg, background='#1e2329')
@@ -1192,7 +1192,7 @@ hhhhg = tk.Label(root, text='Учет ТМЦ', font=('', 14), background='#1e232
 hhhhg.place(x=65, y=310)
 hhhhg.bind('<Button-1>', open_pod_menu_ychet)
 
-ddd = PhotoImage(file='frame15.png')
+ddd = PhotoImage(file='image/frame15.png')
 ddd = ddd.subsample(6)
 sdf = tk.Label(root, image=ddd, background='#1e2329')
 sdf.place(x=10, y=360)
@@ -1202,10 +1202,10 @@ hhhhh = tk.Label(root, text='Администрирование', font=('', 14),
 hhhhh.place(x=65, y=370)
 hhhhh.bind('<Button-1>', open_pod_menu_admin)
 
-galka = PhotoImage(file='galka.png')
+galka = PhotoImage(file='image/galka.png')
 galka = galka.subsample(10)
 
-soss = PhotoImage(file='menuk.png')
+soss = PhotoImage(file='image/menuk.png')
 soss = soss.subsample(10)
 
 ff1 = tk.Label(root, image=galka, background='#1e2329')
@@ -1214,8 +1214,8 @@ ff1.bind('<Button-1>', close_pod_menu_detot)
 ff2 = tk.Label(root, image=galka, background='#1e2329')
 ff2.place(x=250, y=310)
 ff2.bind('<Button-1>', close_pod_menu_ychet)
-ff4 = tk.Label(root, image=galka, background='#1e2329')
-ff4.place(x=250, y=370)
-ff4.bind('<Button-1>', close_pod_menu_adnim)
+ff3 = tk.Label(root, image=galka, background='#1e2329')
+ff3.place(x=250, y=370)
+ff3.bind('<Button-1>', close_pod_menu_adnim)
 
 root.mainloop()

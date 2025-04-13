@@ -1,0 +1,460 @@
+{
+	"info": {
+		"_postman_id": "950855a9-58dd-4876-abed-346227d5a94d",
+		"name": "API Franchisor vending",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44020459"
+	},
+	"item": [
+		{
+			"name": "Torgovie_avtomat",
+			"item": [
+				{
+					"name": "torg_avtomat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{torgov_agt}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{torgov_agt}}"
+							]
+						},
+						"description": "Получает список всех торговых автоматов"
+					},
+					"response": [
+						{
+							"name": "primer_torg_avt",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/{{torgov_agt}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{torgov_agt}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "date",
+									"value": "Sun, 13 Apr 2025 21:40:23 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "2236"
+								},
+								{
+									"key": "content-type",
+									"value": "text/html; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE html>\n<html lang=\"ru\">\n    <head>\n        <meta charset=\"UTF-8\">\n        <title>Торговые автоматы</title>\n        <link rel=\"stylesheet\", href=\"static/styl.css\">\n    </head>\n    <body>\n        <div class=\"bly\">\n            <div class=\"str_verh\"></div>\n            <div class=\"avtor\"></div>\n        </div>\n        <div class=\"container\">\n            <div class=\"menu\">\n                <h1>Навигация</h1>\n                <ul>\n                    <li>\n                        <a href=\"/\">\n                            <img src=\"/static/image/frame12.png\", class=\"img\">\n                    \n                        </a>\n                        <a href=\"/\", class=\"link-as-text\">\n                            <h3>Главная</h3>\n                        </a>\n                    </li>\n                    <li>\n                        <a href=\"/torg\">\n                            <img src=\"/static/image/frame13.png\", class=\"img\">\n                    \n                        </a>\n                        <a href=\"/torg\", class=\"link-as-text\">\n                            <h3>Торговые автоматы</h3>\n                        </a>\n                    </li>\n                    <li>\n                        <a href=\"/dogo\">\n                            <img src=\"/static/image/frame14.png\", class=\"img\">\n                    \n                        </a>\n                        <a href=\"/dogo\", class=\"link-as-text\">\n                            <h3>Договоры</h3>\n                        </a>\n                    </li>\n                    <li>\n                        <a href=\"/nast\">\n                            <img src=\"/static/image/frame15.png\", class=\"img\">\n                    \n                        </a>\n                        <a href=\"/nast\", class=\"link-as-text\">\n                            <h3>Настройки</h3>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n            <div class=\"str\">\n                <div class=\"verh\">\n                    <div class=\"zaeb\">ООО Торговые Автоматы</div>\n                </div>\n                <div class=\"str_nuz\">\n                    <div class=\"table\">\n                        <div class=\"t_1\">\n                            <h>Торговые автоматы</h>\n                        </div>\n                        <div class=\"t_2\">\n\n                    </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</body>\n</html>"
+						}
+					]
+				},
+				{
+					"name": "torg_avt_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Проверка структуры ответа\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.have.property('id');\r",
+									"    pm.expect(responseJson).to.have.property('name');\r",
+									"    pm.expect(responseJson).to.have.property('model');\r",
+									"    pm.expect(responseJson).to.have.property('kompany');\r",
+									"    pm.expect(responseJson).to.have.property('modem');\r",
+									"    pm.expect(responseJson).to.have.property('adress');\r",
+									"    pm.expect(responseJson).to.have.property('word');\r",
+									"    pm.expect(responseJson).to.have.property('deist');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{torgov_agt}}/{{id_torg}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{torgov_agt}}",
+								"{{id_torg}}"
+							]
+						},
+						"description": "Получает торговый автомат по id"
+					},
+					"response": [
+						{
+							"name": "primer_id_avt",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/{{torgov_agt}}/{{id_torg}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{torgov_agt}}",
+										"{{id_torg}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Sun, 13 Apr 2025 21:39:54 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "219"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Досаф\",\n    \"model\": \"Uniceon Roooa\",\n    \"kompany\": \"1239879 OOO Торговые автоматы\",\n    \"modem\": \"12387126541\",\n    \"adress\": \"Кострома Филиппова \",\n    \"word\": \"12.01.2025\",\n    \"deist\": \"фото\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Compani",
+			"item": [
+				{
+					"name": "compani",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Проверка структуры ответа\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson[0]).to.have.property('work');\r",
+									"    pm.expect(responseJson[0]).to.have.property('prim');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{compani}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{compani}}"
+							]
+						},
+						"description": "Получает список компаний"
+					},
+					"response": [
+						{
+							"name": "primer_camoani",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/{{compani}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{compani}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Sun, 13 Apr 2025 21:42:44 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "1863"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Лучшая компани\",\n        \"veshe\": \"ООО Торговые автоматы\",\n        \"adres\": \"Кострома Ленина\",\n        \"kontak\": \"123-456\",\n        \"work\": \"08.01.2025\",\n        \"deist\": null,\n        \"prim\": \"g\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Название комапании\",\n        \"veshe\": \"ООО Торговые автоматы\",\n        \"adres\": \"Кострома Ленина\",\n        \"kontak\": \"123-456\",\n        \"work\": \"08.01.2025\",\n        \"deist\": null,\n        \"prim\": \"g\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Название комапании\",\n        \"veshe\": \"ООО Торговые автоматы\",\n        \"adres\": \"Кострома Ленина\",\n        \"kontak\": \"123-456\",\n        \"work\": \"08.01.2025\",\n        \"deist\": null,\n        \"prim\": \"g\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Название комапании\",\n        \"veshe\": \"ООО Торговые автоматы\",\n        \"adres\": \"Кострома Ленина\",\n        \"kontak\": \"123-456\",\n        \"work\": \"08.01.2025\",\n        \"deist\": null,\n        \"prim\": \"g\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Название комапании\",\n        \"veshe\": \"ООО Торговые автоматы\",\n        \"adres\": \"Кострома Ленина\",\n        \"kontak\": \"123-456\",\n        \"work\": \"08.01.2025\",\n        \"deist\": null,\n        \"prim\": \"g\"\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Название комапании\",\n        \"veshe\": \"ООО Торговые автоматы\",\n        \"adres\": \"Кострома Ленина\",\n        \"kontak\": \"123-456\",\n        \"work\": \"08.01.2025\",\n        \"deist\": null,\n        \"prim\": \"g\"\n    },\n    {\n        \"id\": 7,\n        \"name\": \"Название комапании\",\n        \"veshe\": \"ООО Торговые автоматы\",\n        \"adres\": \"Кострома Ленина\",\n        \"kontak\": \"123-456\",\n        \"work\": \"08.01.2025\",\n        \"deist\": null,\n        \"prim\": \"g\"\n    },\n    {\n        \"id\": 9,\n        \"name\": \"Название комапании\",\n        \"veshe\": \"ООО Торговые автоматы\",\n        \"adres\": \"Кострома Ленина\",\n        \"kontak\": \"123-456\",\n        \"work\": \"08.01.2025\",\n        \"deist\": null,\n        \"prim\": \"g\"\n    },\n    {\n        \"id\": 10,\n        \"name\": \"Лучшая компания\",\n        \"veshe\": \"ООО Торговые автоматы\",\n        \"adres\": \"Котсрома ленина\",\n        \"kontak\": \"123-456\",\n        \"work\": \"09.04.2025\",\n        \"deist\": null,\n        \"prim\": \"рр\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "compani_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Проверка структуры ответа\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.have.property('work');\r",
+									"    pm.expect(responseJson).to.have.property('prim');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{compani}}/{{copmpani_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{compani}}",
+								"{{copmpani_id}}"
+							]
+						},
+						"description": "Получает компанию по id"
+					},
+					"response": [
+						{
+							"name": "promer_compani_id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/{{compani}}/{{copmpani_id}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{compani}}",
+										"{{copmpani_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Sun, 13 Apr 2025 21:42:59 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "199"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Лучшая компани\",\n    \"veshe\": \"ООО Торговые автоматы\",\n    \"adres\": \"Кострома Ленина\",\n    \"kontak\": \"123-456\",\n    \"work\": \"08.01.2025\",\n    \"deist\": null,\n    \"prim\": \"g\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "monitoring",
+			"item": [
+				{
+					"name": "monitoring",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/dogo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"dogo"
+							]
+						},
+						"description": "Получает список мониторингов"
+					},
+					"response": [
+						{
+							"name": "primer_moni",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/dogo",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dogo"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "date",
+									"value": "Sun, 13 Apr 2025 21:34:54 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "1951"
+								},
+								{
+									"key": "content-type",
+									"value": "text/html; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<!DOCTYPE html>\n<html lang=\"ru\">\n    <head>\n        <meta charset=\"UTF-8\">\n        <title>Договоры</title>\n        <link rel=\"stylesheet\", href=\"static/styl.css\">\n    </head>\n    <body>\n        <div class=\"bly\">\n            <div class=\"str_verh\"></div>\n            <div class=\"avtor\"></div>\n        </div>\n        <div class=\"container\">\n            <div class=\"menu\">\n                <h1>Навигация</h1>\n                <ul>\n                    <li>\n                        <a href=\"/\">\n                            <img src=\"/static/image/frame12.png\", class=\"img\">\n                    \n                        </a>\n                        <a href=\"/\", class=\"link-as-text\">\n                            <h3>Главная</h3>\n                        </a>\n                    </li>\n                    <li>\n                        <a href=\"/torg\">\n                            <img src=\"/static/image/frame13.png\", class=\"img\">\n                    \n                        </a>\n                        <a href=\"/torg\", class=\"link-as-text\">\n                            <h3>Торговые автоматы</h3>\n                        </a>\n                    </li>\n                    <li>\n                        <a href=\"/dogo\">\n                            <img src=\"/static/image/frame14.png\", class=\"img\">\n                    \n                        </a>\n                        <a href=\"/dogo\", class=\"link-as-text\">\n                            <h3>Договоры</h3>\n                        </a>\n                    </li>\n                    <li>\n                        <a href=\"/nast\">\n                            <img src=\"/static/image/frame15.png\", class=\"img\">\n                    \n                        </a>\n                        <a href=\"/nast\", class=\"link-as-text\">\n                            <h3>Настройки</h3>\n                        </a>\n                    </li>\n                </ul>\n            </div>\n            <div class=\"str\">\n                <div class=\"verh\">\n                    <div class=\"zaeb\">ООО Торговые Автоматы</div>\n                </div>\n                <div class=\"str_nuz\"></div>\n            </div>\n        </div>\n    </div>\n</body>\n</html>"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "torgov_agt",
+			"value": "torg",
+			"type": "string"
+		},
+		{
+			"key": "id_torg",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "compani",
+			"value": "comp",
+			"type": "string"
+		},
+		{
+			"key": "copmpani_id",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}

@@ -1,6 +1,6 @@
 ''' api '''
 from fastapi import FastAPI, Request
-from connect import VendingMachine, Product, Sale, User, Maintenance
+from connect import VendingMachine, Product, Sale, User, Maintenance, Torfavt
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
@@ -96,3 +96,18 @@ async def get_mainte():
              'problems': ma.problems,
              'executor': ma.executor}
             for ma in mainte]
+
+
+@app.get('/torgi/{torg_avt_id}')
+async def get_id_torg(torg_avt_id):
+    torg_avt = Torfavt.get(Torfavt.id == torg_avt_id)
+    return {
+        'id': torg_avt.id,
+        'name': torg_avt.name,
+        'model': torg_avt.model,
+        'kompany': torg_avt.kompany,
+        'modem': torg_avt.modem,
+        'adress': torg_avt.adress,
+        'word': torg_avt.word,
+        'deist': torg_avt.deist,
+    }
