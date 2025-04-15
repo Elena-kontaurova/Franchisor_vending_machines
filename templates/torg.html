@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Торговые автоматы</title>
-    <link rel="stylesheet", href="static/styl.css">
+    <link rel="stylesheet", href="static/style.css">
 </head>
 <body>
     <div class="bly">
@@ -59,7 +59,21 @@
                         <h>Торговые автоматы</h>
                     </div>
                     <div class="t_2">
+                        <h>ID</h>
+                        <h>Название автомата</h>
+                        <h>Модель</h>
+                        <h>Компания</h>
+                        <h>Модем</h>
+                        <h>Адрес/Место</h>
+                        <h>В работе с</h>
+                        <h>Действия</h>
 
+                        {% for avt in torg_avt %}
+                        <div class="tab">
+                            <div class="lox">{{ avt.id }}</div>
+                            <div class="naanaa">{{ avt.name }}</div>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

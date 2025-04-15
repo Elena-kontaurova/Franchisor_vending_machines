@@ -20,8 +20,20 @@ async def main_str(request: Request):
 
 @app.get('/torg', response_class=HTMLResponse)
 async def torg_str(request: Request):
+    torg_avt = Torfavt.select()
+    avtom = [{
+        'id': avt.id,
+        'name': avt.name,
+        'model': avt.model,
+        'kompany': avt.kompany,
+        'modem': avt.modem,
+        'adress': avt.adress,
+        'word': avt.word,
+        'deist': avt.deist,
+    } for avt in torg_avt]
     return templates.TemplateResponse('torg.html',
-                                      {'request': request})
+                                      {'request': request,
+                                       'torg_avt': avtom})
 
 
 @app.get('/dogo', response_class=HTMLResponse)

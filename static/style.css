@@ -107,10 +107,27 @@ li h3 {
 .t_2 {
     background-color: #f0f1f2;
     width: 1150px;
-    height: 500px;
+    height: 490px;
 }
 
-.h {
+.t_1 h {
     font-size: xx-large;
     padding-left: 40px;
+    color: #0d5fee;
+}
+
+.t_2 {
+    display: block;
+    padding-top: 10px;
+}
+
+.t_2 h {
+    padding-left: 57px;
+}
+
+.tab {
+    display: flex;
+    padding-left: 60px;
+    padding-top: 30px;
+
 }
