@@ -1,7 +1,7 @@
 ''' api '''
 from fastapi import FastAPI, Request
 from connect import VendingMachine, Product, Sale, User, Maintenance, \
-    Torfavt, Kompany
+    Torfavt, Kompany, Soston_svz, Zagrux, Denech_sredst, Inform_Status
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
@@ -155,3 +155,46 @@ async def get_comp():
         'prim': comp.prim
     }
      for comp in com]
+
+
+@app.get('/sostoinie')
+async def get_sost():
+    sost = Soston_svz.select()
+    return [{
+        'id': sos.id,
+        'comp': sos.comp,
+        'pay': sos.pay,
+        'time': sos.time
+    } for sos in sost]
+
+
+@app.get('/zagruz')
+async def get_zagruz():
+    zagr = Zagrux.select()
+    return [{
+        'id': zag.id,
+        'base': zag.base,
+        'minim': zag.minim
+    } for zag in zagr]
+
+
+@app.get('/denech')
+async def get_denech():
+    dene = Denech_sredst.select()
+    return [{
+        'id': den.id,
+        'one_den': den.one_den,
+        'two_den': den.two_den,
+        'three_den': den.three_den
+    } for den in dene]
+
+
+@app.get('/inform')
+async def get_inform():
+    info = Inform_Status.select()
+    return [{
+        'id': inf.id,
+        'podk': inf.podk,
+        'nastr': inf.nastr,
+        'oblak': inf.oblak
+    } for inf in info]

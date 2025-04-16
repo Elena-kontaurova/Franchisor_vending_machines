@@ -101,8 +101,36 @@ class Kompany(BaseModel):
     prim = CharField()
 
 
+class Soston_svz(BaseModel):
+    id = AutoField()
+    comp = CharField()
+    pay = CharField()
+    time = CharField()
+
+
+class Zagrux(BaseModel):
+    id = AutoField()
+    base = CharField()
+    minim = CharField()
+
+
+class Denech_sredst(BaseModel):
+    id = AutoField()
+    one_den = CharField()
+    two_den = CharField()
+    three_den = CharField()
+
+
+class Inform_Status(BaseModel):
+    id = AutoField()
+    podk = CharField()
+    nastr = CharField()
+    oblak = CharField()
+
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
                   User, Maintenance, Svodka, News,
-                  Torfavt, Kompany], safe=True)
+                  Torfavt, Kompany, Soston_svz,
+                  Zagrux, Denech_sredst, Inform_Status], safe=True)
 db.close()
