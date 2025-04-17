@@ -198,3 +198,5 @@ async def get_inform():
         'nastr': inf.nastr,
         'oblak': inf.oblak
     } for inf in info]
+
+# устала ужее
