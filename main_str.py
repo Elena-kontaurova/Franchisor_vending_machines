@@ -8,7 +8,6 @@ root.geometry('1124x700')
 root.resizable(False, False)
 root.title('Франчазер')
 
-
 def get_svodka():
     svodka = Svodka.select()
     return svodka
