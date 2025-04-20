@@ -128,9 +128,16 @@ class Inform_Status(BaseModel):
     oblak = CharField()
 
 
+class AutorizRegus(BaseModel):
+    id = AutoField()
+    user = CharField()
+    password = CharField()
+
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
                   User, Maintenance, Svodka, News,
                   Torfavt, Kompany, Soston_svz,
-                  Zagrux, Denech_sredst, Inform_Status], safe=True)
+                  Zagrux, Denech_sredst, Inform_Status,
+                  AutorizRegus], safe=True)
 db.close()

@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import PhotoImage, messagebox
-from connect import Svodka, News, Torfavt, Kompany
+from connect import Svodka, News, Torfavt, Kompany, AutorizRegus
 
 
 root = tk.Tk()
@@ -1217,6 +1217,11 @@ def open_glavna():
     ff3.bind('<Button-1>', close_pod_menu_adnim)
 
 
+def get_autoriz():
+    aut = AutorizRegus.select()
+    return aut
+
+
 def avtoriza(event=None):
     global lala
     lala = tk.Label(root, background='#1c1c15', width=50,
@@ -1237,7 +1242,19 @@ def avtoriza(event=None):
     pa = tk.Entry(lala)
     pa.place(x=120, y=155)
 
-    b = tk.Button(lala, text='Войти', command=open_glavna,
+    def proverka():
+        pole_one = us.get()
+        pole_two = pa.get()
+        aut = get_autoriz()
+        for i in aut:
+            if pole_one == i.user and pole_two == i.password:
+                open_glavna()
+                messagebox.showinfo('Успех', f'Добро пожаловать {i.user}!')
+                break
+        else:
+            messagebox.showinfo('Ошибка', 'Такого пользователя не найдено')
+
+    b = tk.Button(lala, text='Войти', command=proverka,
                   width=30, background='#6b6b5e', fg='white')
     b.place(x=65, y=380)
 
@@ -1267,7 +1284,18 @@ def requsts(_):
     pa = tk.Entry(lalal)
     pa.place(x=200, y=155)
 
-    b = tk.Button(lalal, text='Зарегистрироваться', command=open_glavna,
+    def reg():
+        userget = us.get()
+        paswget = pa.get()
+
+        _ = AutorizRegus.create(
+            user=userget,
+            password=paswget
+        )
+        messagebox.showinfo('Успех', 'Вы успешно зарегестрировались!')
+        open_glavna()
+
+    b = tk.Button(lalal, text='Зарегистрироваться', command=reg,
                   width=30, background='#6b6b5e', fg='white')
     b.place(x=65, y=380)
 
