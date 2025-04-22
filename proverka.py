@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import PhotoImage
 
+
 root = tk.Tk()
 root.geometry('500x500')
 mdvkar = PhotoImage(file='image_inform/mdvkar.png')
