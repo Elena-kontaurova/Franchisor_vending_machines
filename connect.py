@@ -139,5 +139,6 @@ db.create_tables([VendingMachine, Product, Sale,
                   User, Maintenance, Svodka, News,
                   Torfavt, Kompany, Soston_svz,
                   Zagrux, Denech_sredst, Inform_Status,
-                  AutorizRegus], safe=True)
+                  AutorizRegus], 
+                safe=True)
 db.close()
