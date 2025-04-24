@@ -1322,7 +1322,7 @@ def requsts(_):
             password=paswget
         )
         messagebox.showinfo('Успех', 'Вы успешно зарегестрировались!')
-        open_glavna()
+        capha()
 
     b = tk.Button(lalal, text='Зарегистрироваться', command=reg,
                   width=30, background='#6b6b5e', fg='white')
@@ -1332,6 +1332,31 @@ def requsts(_):
                    fg='white')
     avt.place(x=130, y=423)
     avt.bind('<Button-1>', lambda e: avtoriza())
+
+    def capha():
+        global caphass
+
+        def upup():
+            uu = main.get()
+            if str(three) == str(uu):
+                open_glavna()
+            else:
+                messagebox.showerror('Неверно', 'Попробуйте еще раз')
+
+        caphass = tk.Toplevel()
+        caphass.geometry('200x100')
+        caphass.title('Капча')
+        one = random.randint(1, 100)
+        two = random.randint(1, 100)
+        cc = random.randint(1, 100)
+        three = one + two - cc
+        print(three)
+        cap1 = tk.Label(caphass, text=f'{one}+{two}-{cc}')
+        cap1.pack()
+        main = tk.Entry(caphass)
+        main.pack()
+        knopka = tk.Button(caphass, text='Отправить', command=upup)
+        knopka.pack()
 
 
 avtoriza()
