@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import PhotoImage, messagebox
 from connect import Svodka, News, Torfavt, Kompany, AutorizRegus
+import random
 
 
 root = tk.Tk()
@@ -1102,6 +1103,7 @@ def open_glavna():
         ff3.config(image=galka)
 
     open_main_str()
+    caphass.destroy()
     root.config(background='#ccc')
     lala = tk.Label(root, background='white', width=160, height=3)
     lala.place(x=0, y=0)
@@ -1224,6 +1226,7 @@ def get_autoriz():
 
 def avtoriza(event=None):
     global lala
+    global caphass
     lala = tk.Label(root, background='#1c1c15', width=50,
                     height=30)
     lala.place(x=400, y=100)
@@ -1248,8 +1251,9 @@ def avtoriza(event=None):
         aut = get_autoriz()
         for i in aut:
             if pole_one == i.user and pole_two == i.password:
-                open_glavna()
-                messagebox.showinfo('Успех', f'Добро пожаловать {i.user}!')
+                # open_glavna()
+                capha()
+                # messagebox.showinfo('Успех', f'Добро пожаловать {i.user}!')
                 break
         else:
             messagebox.showinfo('Ошибка', 'Такого пользователя не найдено')
@@ -1262,6 +1266,31 @@ def avtoriza(event=None):
                      fg='white')
     regis.place(x=120, y=423)
     regis.bind('<Button-1>', requsts)
+
+    def capha():
+        global caphass
+
+        def upup():
+            uu = main.get()
+            if str(three) == str(uu):
+                open_glavna()
+            else:
+                messagebox.showerror('Неверно', 'Попробуйте еще раз')
+
+        caphass = tk.Toplevel()
+        caphass.geometry('200x100')
+        caphass.title('Капча')
+        one = random.randint(1, 100)
+        two = random.randint(1, 100)
+        cc = random.randint(1, 100)
+        three = one + two - cc
+        print(three)
+        cap1 = tk.Label(caphass, text=f'{one}+{two}-{cc}')
+        cap1.pack()
+        main = tk.Entry(caphass)
+        main.pack()
+        knopka = tk.Button(caphass, text='Отправить', command=upup)
+        knopka.pack()
 
 
 def requsts(_):
