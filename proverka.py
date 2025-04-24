@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import PhotoImage
 
+
 root = tk.Tk()
 root.geometry('500x500')
-
 mdvkar = PhotoImage(file='image_inform/mdvkar.png')
 mdvkar = mdvkar.subsample(30)
 nast = PhotoImage(file='image_inform/nast.png')
