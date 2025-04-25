@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import PhotoImage, messagebox
 from connect import Svodka, News, Torfavt, Kompany, AutorizRegus
 import random
-from grafic import graf
+from grafic import graf, svodk
 
 
 root = tk.Tk()
@@ -58,12 +58,15 @@ def open_main_str(event=None):
     kv2.place(x=300, y=60)
     pl_k2 = tk.Label(hh, width=32, height=3, background='#d1d8de')
     pl_k2.place(x=300, y=60)
+
+    s = svodk()
+
     t2 = tk.Label(pl_k2, text='Состояние сети', background='#d1d8de',
                   font=('', 11))
     t2.place(x=4, y=9)
-    tex_avt = tk.Label(kv2, text='тут состояние сети',
+    tex_avt = tk.Label(kv2, image=s,
                        background='white')
-    tex_avt.place(x=46, y=100)
+    tex_avt.place(x=40, y=50)
 
     kv3 = tk.Label(hh, width=32, height=12, background='white')
     kv3.place(x=580, y=60)
