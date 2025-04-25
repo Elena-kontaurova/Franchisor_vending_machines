@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import PhotoImage, messagebox
 from connect import Svodka, News, Torfavt, Kompany, AutorizRegus
 import random
+from grafic import draw_speedometer
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
 root = tk.Tk()
@@ -37,14 +39,26 @@ def open_main_str(event=None):
     kk.place(x=20, y=20)
     kv1 = tk.Label(hh, width=32, height=12, background='white')
     kv1.place(x=20, y=60)
-    pl_k1 = tk.Label(hh, width=32, height=3, background='#d1d8de')
+    pl_k1 = tk.Label(hh, width=32, height=1, background='#d1d8de')
     pl_k1.place(x=20, y=60)
-    t1 = tk.Label(pl_k1, text='Эффективность сети', background='#d1d8de',
-                  font=('', 11))
-    t1.place(x=4, y=9)
-    tex_avt = tk.Label(kv1, text='тут эффективность сети',
+
+    tex_avt = tk.Label(kv1,
                        background='white')
     tex_avt.place(x=46, y=100)
+    working_vending_machines = 90
+    total_vending_machines = 100
+    working_percentage = (
+        working_vending_machines / total_vending_machines) * 100
+    fig = draw_speedometer(working_percentage)
+
+    canvas = FigureCanvasTkAgg(fig, master=kv1)
+    canvas.draw()
+    canvas.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH,
+                                expand=1, padx=0, pady=0, anchor='nw')
+
+    t1 = tk.Label(pl_k1, text='Эффективность сети', background='#d1d8de',
+                  font=('', 11))
+    t1.place(x=4, y=0)
 
     kv2 = tk.Label(hh, width=32, height=12, background='white')
     kv2.place(x=300, y=60)
