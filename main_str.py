@@ -2,8 +2,7 @@ import tkinter as tk
 from tkinter import PhotoImage, messagebox
 from connect import Svodka, News, Torfavt, Kompany, AutorizRegus
 import random
-from grafic import draw_speedometer
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from grafic import graf
 
 
 root = tk.Tk()
@@ -24,6 +23,7 @@ def get_news():
 
 
 def open_main_str(event=None):
+    global kv1, hh
     ''' Личный кабинет главная'''
     ff = tk.Label(root, background='#060a0d', width=100, height=10)
     ff.place(x=800, y=50)
@@ -39,22 +39,16 @@ def open_main_str(event=None):
     kk.place(x=20, y=20)
     kv1 = tk.Label(hh, width=32, height=12, background='white')
     kv1.place(x=20, y=60)
-    pl_k1 = tk.Label(hh, width=32, height=1, background='#d1d8de')
+    pl_k1 = tk.Label(hh, width=32, height=3, background='#d1d8de')
     pl_k1.place(x=20, y=60)
 
     tex_avt = tk.Label(kv1,
-                       background='white')
-    tex_avt.place(x=46, y=100)
-    working_vending_machines = 90
-    total_vending_machines = 100
-    working_percentage = (
-        working_vending_machines / total_vending_machines) * 100
-    fig = draw_speedometer(working_percentage)
+                       background='white', width=35, height=9)
+    tex_avt.place(x=0, y=50)
 
-    canvas = FigureCanvasTkAgg(fig, master=kv1)
-    canvas.draw()
-    canvas.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH,
-                                expand=1, padx=0, pady=0, anchor='nw')
+    kartinka = graf()
+    uo = tk.Label(tex_avt, image=kartinka, background='white')
+    uo.place(x=20, y=10)
 
     t1 = tk.Label(pl_k1, text='Эффективность сети', background='#d1d8de',
                   font=('', 11))
