@@ -10,6 +10,7 @@ def graf():
 
 
 def svodk():
+    # дим
     global f
     f = tk.PhotoImage(file='svodka.png')
     f = f.subsample(3)
