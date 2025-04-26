@@ -111,3 +111,5 @@ async def get_id_torg(torg_avt_id):
         'word': torg_avt.word,
         'deist': torg_avt.deist,
     }
+
+ # эм
