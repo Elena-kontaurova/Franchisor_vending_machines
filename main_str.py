@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import PhotoImage, messagebox
 from connect import Svodka, News, Torfavt, Kompany, AutorizRegus
 import random
-from grafic import graf, svodk
+from grafic import graf, svodk, graf_1, graf_2
 
 
 root = tk.Tk()
@@ -94,6 +94,10 @@ def open_main_str(event=None):
     t4 = tk.Label(pl_k4, text='Динамика продаж за последние 10 дней',
                   background='#d1d8de',
                   font=('', 11))
+
+    kkk = tk.Label(kv4, background='white', width=70, height=10)
+    kkk.place(x=0, y=100)
+
     t4.place(x=4, y=9)
     tete = tk.Label(pl_k4,
                     text='Данные по продажам с 1.03.2025 по 10.03.2025',
@@ -113,17 +117,33 @@ def open_main_str(event=None):
         hhn.config(background='#1870b8', fg='white')
         hhk.config(background='white', fg='black')
 
+    pp = graf_1()
+    lkj = tk.Label(kkk, image=pp, background='white')
+    lkj.place(x=50, y=0)
+
+    def lox():
+        a = graf_1()
+        j = tk.Label(kkk, image=a, background='white')
+        j.place(x=50, y=0)
+
+    def lox_2():
+        a = graf_2()
+        j = tk.Label(kkk, image=a, background='white')
+        j.place(x=50, y=0)
+
     tete.place(x=4, y=37)
-    knop = tk.Label(pl_k4, width=18, height=1, background='#1870b8')
+    knop = tk.Label(pl_k4, width=18, height=1, background='#d1d8de')
     knop.place(x=4, y=60)
-    hhk = tk.Label(knop, text='По суммe', background='#1870b8', fg='white')
-    hhk.place(x=32, y=0)
+    hhk = tk.Button(knop, text='По суммe', background='#1870b8', fg='white',
+                    command=lox, width=18)
+    hhk.place(x=0, y=0)
     knop.bind('<Button-1>', cd_blu)
 
-    knop1 = tk.Label(pl_k4, width=18, height=1, background='white')
+    knop1 = tk.Label(pl_k4, width=18, height=1, background='#d1d8de')
     knop1.place(x=140, y=60)
-    hhn = tk.Label(knop1, text='По количеству', background='white', fg='black')
-    hhn.place(x=24, y=0)
+    hhn = tk.Button(knop1, text='По количеству', background='white',
+                    fg='black', width=18, command=lox_2)
+    hhn.place(x=0, y=0)
     knop1.bind('<Button-1>', cd_hh)
 
     kv5 = tk.Label(hh, width=32, height=17, background='white')

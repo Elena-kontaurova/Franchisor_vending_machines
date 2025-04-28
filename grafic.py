@@ -13,3 +13,17 @@ def svodk():
     f = tk.PhotoImage(file='svodka.png')
     f = f.subsample(3)
     return f
+
+
+def graf_1():
+    global d
+    d = tk.PhotoImage(file='ipl_dua.png')
+    d = d.subsample(2)
+    return d
+
+
+def graf_2():
+    global d
+    d = tk.PhotoImage(file='po_sum.png')
+    d = d.subsample(2)
+    return d
