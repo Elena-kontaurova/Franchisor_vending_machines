@@ -167,6 +167,7 @@ def open_main_str(event=None):
 
 
 def open_monik_str(_):
+    ''' СТРАНИЦА МОНИТОР ТА'''
     ff = tk.Label(root, background='#060a0d', width=100, height=10)
     ff.place(x=800, y=50)
     gg = tk.Label(root, text='Монитор ТА',
@@ -196,54 +197,111 @@ def open_monik_str(_):
     tex.place(x=10, y=0)
     tex_ob = tk.Label(hh, text='Общее состояние', background='#dbdbdb',)
     tex_ob.place(x=10, y=42)
-    o1 = tk.Label(hh, background='#06731d', text='',
-                  relief='solid', border=1, height=2, width=5)
+
+    def button_pressed_o1():
+        o1.config(relief='sunken')
+        o1.config(background='#0c4519')
+
+    o1 = tk.Button(hh, background='#06731d', text='',
+                   relief='solid', border=1, height=2, width=5,
+                   command=button_pressed_o1)
     o1.place(x=14, y=68)
-    o2 = tk.Label(hh, background='#f20723', text='',
-                  relief='solid', border=1, height=2, width=5)
+
+    def button_pressed_o2():
+        o2.config(relief='sunken')
+        o2.config(background='#8f1b29')
+
+    o2 = tk.Button(hh, background='#f20723', text='',
+                   relief='solid', border=1, height=2, width=5,
+                   command=button_pressed_o2)
     o2.place(x=54, y=68)
-    o3 = tk.Label(hh, background='#0394fc', text='',
-                  relief='solid', border=1, height=2, width=5)
+
+    def button_pressed_o3():
+        o3.config(relief='sunken')
+        o3.config(background='#0f517f')
+
+    o3 = tk.Button(hh, background='#0394fc', text='',
+                   relief='solid', border=1, height=2, width=5,
+                   command=button_pressed_o3)
     o3.place(x=94, y=68)
 
     tex_pod = tk.Label(hh, text='Подключение', background='#dbdbdb')
     tex_pod.place(x=150, y=42)
-    p1 = tk.Label(hh, background='white', text='Эк',
-                  relief='solid', border=1, height=2, width=5,
-                  fg='#0394fc')
+
+    def button_pressed_p1():
+        p1.config(relief='sunken')
+        p1.config(background='#dce0e3')
+
+    p1 = tk.Button(hh, background='white', text='Эк',
+                   relief='solid', border=1, height=2, width=5,
+                   fg='#0394fc', command=button_pressed_p1)
     p1.place(x=150, y=68)
-    p2 = tk.Label(hh, background='white', text='MDV',
-                  relief='solid', border=1, height=2, width=5,
-                  fg='#0394fc')
+
+    def button_pressed_p2():
+        p2.config(relief='sunken')
+        p2.config(background='#dce0e3')
+
+    p2 = tk.Button(hh, background='white', text='MDV',
+                   relief='solid', border=1, height=2, width=5,
+                   fg='#0394fc', command=button_pressed_p2)
     p2.place(x=190, y=68)
-    p3 = tk.Label(hh, background='white', text='EXE',
-                  relief='solid', border=1, height=2, width=5,
-                  fg='#0394fc')
+
+    def button_pressed_p3():
+        p3.config(relief='sunken')
+        p3.config(background='#dce0e3')
+
+    p3 = tk.Button(hh, background='white', text='EXE',
+                   relief='solid', border=1, height=2, width=5,
+                   fg='#0394fc', command=button_pressed_p3)
     p3.place(x=230, y=68)
 
     tex_dop = tk.Label(hh, text='Дополнительные статусы',
                        background='#dbdbdb')
     tex_dop.place(x=290, y=42)
 
-    d1 = tk.Label(hh, background='white', text='1',
-                  relief='solid', border=1, height=2, width=5,
-                  fg='#f20723')
+    def button_pressed_d1():
+        d1.config(relief='sunken')
+        d1.config(background='#dce0e3')
+
+    d1 = tk.Button(hh, background='white', text='1',
+                   relief='solid', border=1, height=2, width=5,
+                   fg='#f20723', command=button_pressed_d1)
     d1.place(x=290, y=68)
-    d2 = tk.Label(hh, background='white', text='2',
-                  relief='solid', border=1, height=2, width=5,
-                  fg='#f20723')
+
+    def button_pressed_d2():
+        d2.config(relief='sunken')
+        d2.config(background='#dce0e3')
+
+    d2 = tk.Button(hh, background='white', text='2',
+                   relief='solid', border=1, height=2, width=5,
+                   fg='#f20723', command=button_pressed_d2)
     d2.place(x=330, y=68)
-    d3 = tk.Label(hh, background='white', text='3',
-                  relief='solid', border=1, height=2, width=5,
-                  fg='#0394fc')
+
+    def button_pressed_d3():
+        d3.config(relief='sunken')
+        d3.config(background='#dce0e3')
+
+    d3 = tk.Button(hh, background='white', text='3',
+                   relief='solid', border=1, height=2, width=5,
+                   fg='#0394fc', command=button_pressed_d3)
     d3.place(x=370, y=68)
-    d4 = tk.Label(hh, background='white', text='4',
-                  relief='solid', border=1, height=2, width=5,
-                  fg='#0394fc')
+
+    def button_pressed_d4():
+        d4.config(relief='sunken')
+        d4.config(background='#dce0e3')
+
+    d4 = tk.Button(hh, background='white', text='4',
+                   relief='solid', border=1, height=2, width=5,
+                   fg='#0394fc', command=button_pressed_d4)
     d4.place(x=410, y=68)
-    d5 = tk.Label(hh, background='white', text='5',
-                  relief='solid', border=1, height=2, width=5,
-                  fg='#0394fc')
+
+    def button_pressed_d5():
+        d5.config(relief='sunken')
+        d5.config(background='#dce0e3')
+
+    d5 = tk.Button(hh, background='white', text='5',
+                   relief='solid', border=1, height=2, width=5,
+                   fg='#0394fc', command=button_pressed_d5)
     d5.place(x=450, y=68)
 
     tex_sor = tk.Label(hh, text='Сортировка', background='#dbdbdb')
@@ -253,11 +311,45 @@ def open_monik_str(_):
                   fg='#999696')
     a1.place(x=510, y=68)
 
+    def clearing_the_sorting():
+        o1.config(relief='solid')
+        o1.config(background='#06731d')
+
+        o2.config(relief='solid')
+        o2.config(background='#f20723')
+
+        o3.config(relief='solid')
+        o3.config(background='#0394fc')
+
+        p1.config(relief='solid')
+        p1.config(background='white')
+
+        p2.config(relief='solid')
+        p2.config(background='white')
+
+        p3.config(relief='solid')
+        p3.config(background='white')
+
+        d1.config(relief='solid')
+        d1.config(background='white')
+
+        d2.config(relief='solid')
+        d2.config(background='white')
+
+        d3.config(relief='solid')
+        d3.config(background='white')
+
+        d4.config(relief='solid')
+        d4.config(background='white')
+
+        d5.config(relief='solid')
+        d5.config(background='white')
+
     pri = tk.Button(hh, text='Применить', background='#0394fc',
                     fg='white', width=19)
     pri.place(x=13, y=115)
     ohi = tk.Button(hh, text='Очистить', background='white',
-                    fg='black', width=19)
+                    fg='black', width=19, command=clearing_the_sorting)
     ohi.place(x=170, y=115)
 
     table = tk.Label(www, background='white', border=1,
