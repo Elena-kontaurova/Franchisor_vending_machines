@@ -134,11 +134,22 @@ class AutorizRegus(BaseModel):
     password = CharField()
 
 
+class Otchet_torgov_avtomat(BaseModel):
+    id = AutoField()
+    itigo_avtomatov = IntegerField()
+    uspolzuen = CharField()
+    svobodno = CharField()
+    rabotaet = CharField()
+    ne_rabotaey = CharField()
+    trebue_obsluch = CharField()
+    provetka = CharField()
+
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
                   User, Maintenance, Svodka, News,
                   Torfavt, Kompany, Soston_svz,
                   Zagrux, Denech_sredst, Inform_Status,
-                  AutorizRegus], 
-                safe=True)
+                  AutorizRegus, Otchet_torgov_avtomat],
+                 safe=True)
 db.close()
