@@ -18,6 +18,7 @@ def svodk():
 
 
 def graf_1():
+    # мне не двадцать 
     global d
     d = tk.PhotoImage(file='kartinka/ipl_dua.png')
     d = d.subsample(2)
