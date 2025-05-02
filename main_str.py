@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import PhotoImage, messagebox
 from connect import Svodka, News, Torfavt, Kompany, AutorizRegus, \
-    Otchet_torgov_avtomat
+    Otchet_torgov_avtomat, Otchet_monitor
 import random
 from grafic import graf, svodk, graf_1, graf_2
 from reportlab.lib.pagesizes import letter
@@ -24,6 +24,9 @@ def get_otchet_torg_avt():
     c = Otchet_torgov_avtomat.select()
     return c
 
+def get_otchet_monik():
+    h = Otchet_monitor.select()
+    return h
 
 def get_svodka():
     svodka = Svodka.select()
@@ -708,8 +711,6 @@ def open_det_otc_str_1(_):
 
 def open_det_otc_str_2(_):
     ''' детальные отчеты - второй'''
-    ff = tk.Label(root, background='#060a0d', width=100, height=10)
-    ff.place(x=800, y=50)
     gg = tk.Label(root, text='Детальные отчеты/ Отчет 2',
                   background='#060a0d', fg='#c4cacf',
                   font=('', 12))
@@ -717,6 +718,60 @@ def open_det_otc_str_2(_):
     hh = tk.Label(root, width=200, height=200,
                   background='#c4cacf')
     hh.place(x=285, y=100)
+
+    lable_pod_formy = tk.Label(hh, background='#e1e5e8', width=115,
+                               height=37)
+    lable_pod_formy.place(x=12, y=20)
+
+    tabel = tk.Label(lable_pod_formy, background='#fcfcfc',
+                     width=60, height=15)
+    tabel.place(x=40, y=60)
+
+    tk.Label(lable_pod_formy, text='Отчет о мониторах',
+             background='#e1e5e8', font=('', 15)).place(x=50, y=20)
+
+    otchet = get_otchet_monik()
+
+    for i in otchet:
+        tk.Label(lable_pod_formy, text='Всего автоматов: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=80)
+        tk.Label(lable_pod_formy, text=f'{i.itogo_avtomatov}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=80)
+
+        tk.Label(lable_pod_formy, text='Работающих автоматов: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=110)
+        tk.Label(lable_pod_formy, text=f'{i.rabotaut}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=110)
+        
+        tk.Label(lable_pod_formy, text='Ожидают обслуживания: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=140)
+        tk.Label(lable_pod_formy, text=f'{i.repairs_are_pending}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=140)
+        
+        tk.Label(lable_pod_formy, text='Средний уровень загрузки: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=170)
+        tk.Label(lable_pod_formy, text=f'{i.uroven_sred}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=170)
+        
+        tk.Label(lable_pod_formy, text='Общая выручка с автоматов: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=200)
+        tk.Label(lable_pod_formy, text=f'{i.ob_verch}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=200)
+        
+        tk.Label(lable_pod_formy, text='Произведена замена: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=230)
+        tk.Label(lable_pod_formy, text=f'{i.zamenu}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=230)
+        
+        tk.Label(lable_pod_formy, text='Новое оборудование: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=230)
+        tk.Label(lable_pod_formy, text=f'{i.new_oborud}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=230)
+        
+        tk.Label(lable_pod_formy, text='Мониторинг автоматов: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=260)
+        tk.Label(lable_pod_formy, text=f'{i.monitor}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=260)
 
 
 def open_det_otc_str_3(_):
