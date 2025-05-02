@@ -707,6 +707,7 @@ def open_det_otc_str_1(_):
 
 
 def open_det_otc_str_2(_):
+    ''' детальные отчеты - второй'''
     ff = tk.Label(root, background='#060a0d', width=100, height=10)
     ff.place(x=800, y=50)
     gg = tk.Label(root, text='Детальные отчеты/ Отчет 2',
@@ -1336,7 +1337,7 @@ def open_glavna():
                       fg='white', font=('', 10))
         tt.place(x=30, y=10)
         tt.bind('<Button-1>', open_det_otc_str_1)
-        tg = tk.Label(atsosite, text='Отчет 2', background='#0b1217',
+        tg = tk.Label(atsosite, text='Отчет мониторы', background='#0b1217',
                       fg='white', font=('', 10))
         tg.place(x=30, y=30)
         tg.bind('<Button-1>', open_det_otc_str_2)
