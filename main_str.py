@@ -732,6 +732,125 @@ def open_det_otc_str_2(_):
 
     otchet = get_otchet_monik()
 
+    def export_to_pdf(otchet):
+        ''' метод для экпорта файла в pdf'''
+        pdf_file = 'report_monitor.pdf'
+        c = canvas.Canvas(pdf_file, pagesize=letter)
+        width, height = letter
+
+        pdfmetrics.registerFont(TTFont('Arial', 'Arial.ttf'))
+        c.setFont('Arial', 12)
+
+        y_posotion = height - 40
+
+        for i in otchet:
+            c.drawString(50, y_posotion,
+                         f'Всего автоматов: {i.itogo_avtomatov}')
+            y_posotion -= 20
+            c.drawString(50, y_posotion,
+                         f'Работающих автоматов: {i.rabotaut}')
+            y_posotion -= 20
+            c.drawString(50, y_posotion,
+                         f'Ожидают обслуживания: {i.repairs_are_pending}')
+            y_posotion -= 20
+            c.drawString(50, y_posotion,
+                         f'Средний уровень загрузки: {i.uroven_sred}')
+            y_posotion -= 20
+            c.drawString(50, y_posotion,
+                         f'Общая выручка с автоматов {i.ob_verch}')
+            y_posotion -= 20
+            c.drawString(50, y_posotion,
+                         f'Произведена замена: {i.zamenu}')
+            y_posotion -= 20
+            c.drawString(50, y_posotion,
+                         f'Новое оборудование: {i.new_oborud}')
+            y_posotion -= 20
+            c.drawString(50, y_posotion,
+                         f'Мониторнг автоматов: {i.monitor}')
+            y_posotion -= 20
+
+            if y_posotion < 40:
+                c.showPage()
+                y_posotion = height - 40
+            
+        c.save()
+        print(f'PDF файл "{pdf_file}" успешно сохранен')
+
+    def export_to_excel(otchet):
+        ''' экпорт в excel'''
+        workbook = openpyxl.Workbook()
+        sheet = workbook.active
+
+        headers = ['Всего автоматмов', 'Работающих автоматов',
+                   'Ожидают обслуживания', 'Средний уровень загрузки',
+                   'Общая выручка с автоматов', 'Произведена замена',
+                   'Новое оборудование', 'Мониторинг автоматов']
+        sheet.append(headers)
+        
+        for i in otchet:
+            row = [
+                i.itogo_avtomatov,
+                i.rabotaut,
+                i.repairs_are_pending,
+                i.uroven_sred,
+                i.ob_verch,
+                i.zamenu,
+                i.new_oborud,
+                i.monitor
+            ]
+            sheet.append(row)
+        
+        excel_file = 'report_monik_ex.xlsx'
+        workbook.save(excel_file)
+        print(f'Excel файл "{excel_file}" успешно сохранен.')
+
+    def export_to_csv(otchet):
+        ''' экспорт в csv'''
+        csv_file = 'report_monik_cs.csv'
+        with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+
+            headers = ['Всего автоматов', 'Работающих автоматов',
+                       'Ожидают обслуживания', 'Средний уровень загрузки',
+                       'Общая выручка с автоматов', 'Произведена замена',
+                       'Новое оборудование', 'Мониторинг автоматов']
+            writer.writerow(headers)
+
+            for i in otchet:
+                row = [
+                    i.itogo_avtomatov,
+                    i.rabotaut,
+                    i.repairs_are_pending,
+                    i.uroven_sred,
+                    i.ob_verch,
+                    i.zamenu,
+                    i.new_oborud,
+                    i.monitor
+                ]
+                writer.writerow(row)
+        
+        print(f'CSV файл "{csv_file}" успешно сохранен. ')
+
+    def export_to_word(otchet):
+        ''' экспорт в .txt'''
+        doc = Document()
+
+        doc.add_heading('Отчет о мониторах', level=1)
+
+        for i in otchet:
+            doc.add_paragraph(f'Всего автоматов: {i.itogo_avtomatov}')
+            doc.add_paragraph(f'Работающих автоматов: {i.rabotaut}')
+            doc.add_paragraph(f'Ожидают обслуживания: {i.repairs_are_pending}')
+            doc.add_paragraph(f'Средний уровень загрузки: {i.uroven_sred}')
+            doc.add_paragraph(f'Общая выручка с автоматов: {i.ob_verch}')
+            doc.add_paragraph(f'Произведена замена: {i.zamenu}')
+            doc.add_paragraph(f'Новое оборудование: {i.new_oborud}')
+            doc.add_paragraph(f'Мониторинг автоматов: {i.monitor}')
+        
+        word_file = 'report_monik_wo.docx'
+        doc.save(word_file)
+        print(f'Word файл "{word_file}" успешно сохранен')
+
     for i in otchet:
         tk.Label(lable_pod_formy, text='Всего автоматов: ',
                  background='#fcfcfc', font=('', 13)).place(x=50, y=80)
@@ -773,6 +892,26 @@ def open_det_otc_str_2(_):
         tk.Label(lable_pod_formy, text=f'{i.monitor}',
                  background='#fcfcfc', font=('', 13)).place(x=290, y=260)
 
+        button_pdf = tk.Button(lable_pod_formy, text='Экспортировать в pdf',
+                               width=20, background='#0e8ae3', fg='white',
+                               command=lambda: export_to_pdf(otchet))
+        button_pdf.place(x=50, y=320)
+
+        button_excel = tk.Button(lable_pod_formy,
+                                 text='Экспортировать в excel',
+                                 width=20, background='#0e8ae3', fg='white',
+                                 command=lambda: export_to_excel(otchet))
+        button_excel.place(x=50, y=360)
+
+        button_csv = tk.Button(lable_pod_formy, text='Экспортировать в csv',
+                               background='#0e8ae3', width=20, fg='white',
+                               command=lambda: export_to_csv(otchet))
+        button_csv.place(x=50, y=400)
+
+        button_word = tk.Button(lable_pod_formy, text='Экспортировать в .txt',
+                                background='#0e8ae3', width=20, fg='white',
+                                command=lambda: export_to_word(otchet))
+        button_word.place(x=50, y=440)
 
 def open_det_otc_str_3(_):
     ff = tk.Label(root, background='#060a0d', width=100, height=10)
