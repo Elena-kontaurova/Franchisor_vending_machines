@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import PhotoImage, messagebox
 from connect import Svodka, News, Torfavt, Kompany, AutorizRegus, \
-    Otchet_torgov_avtomat, Otchet_monitor
+    Otchet_torgov_avtomat, Otchet_monitor, Otchet_kompanyu
 import random
 from grafic import graf, svodk, graf_1, graf_2
 from reportlab.lib.pagesizes import letter
@@ -26,6 +26,10 @@ def get_otchet_torg_avt():
 
 def get_otchet_monik():
     h = Otchet_monitor.select()
+    return h
+
+def get_otchet_komp():
+    h = Otchet_kompanyu.select()
     return h
 
 def get_svodka():
@@ -914,9 +918,7 @@ def open_det_otc_str_2(_):
         button_word.place(x=50, y=440)
 
 def open_det_otc_str_3(_):
-    ff = tk.Label(root, background='#060a0d', width=100, height=10)
-    ff.place(x=900, y=50)
-    gg = tk.Label(root, text='Детальные отчеты / Отчет 3',
+    gg = tk.Label(root, text='Детальные отчеты/ Отчет 3',
                   background='#060a0d', fg='#c4cacf',
                   font=('', 12))
     gg.place(x=905, y=60)
@@ -924,8 +926,155 @@ def open_det_otc_str_3(_):
                   background='#c4cacf')
     hh.place(x=285, y=100)
 
+    lable_pod_formy = tk.Label(hh, background='#e1e5e8', width=115,
+                               height=37)
+    lable_pod_formy.place(x=12, y=20)
+
+    tabel = tk.Label(lable_pod_formy, background='#fcfcfc',
+                     width=60, height=10)
+    tabel.place(x=40, y=60)
+
+    tk.Label(lable_pod_formy, text='Отчет о компаниях',
+             background='#e1e5e8', font=('', 15)).place(x=50, y=20)
+
+    otchet = get_otchet_komp()
+
+    def export_to_pdf(otchet):
+        ''' экспорт в pdf'''
+        pdf_file = 'report_kompany.pdf'
+        c = canvas.Canvas(pdf_file, pagesize=letter)
+        width, height = letter
+
+        pdfmetrics.registerFont(TTFont('Arial', 'Arial.ttf'))
+        c.setFont('Arial', 12)
+
+        y_position = height - 40
+
+        for i in otchet:
+            c.drawString(50, y_position,
+                         f'Всего коммпаний: {i.itigo_kompanu}')
+            y_position -= 20
+            c.drawString(50, y_position, 
+                         f'Действующих компаний: {i.deqist}')
+            y_position -= 20
+            c.drawString(50, y_position,
+                         f'Сотрдуничество: {i.sotrud}')
+            y_position -= 20
+            c.drawString(50, y_position,
+                         f'Наличие автоматов: {i.naluch_avtom}')
+            y_position -= 2
+
+            if y_position < 40:
+                c.showPage()
+                y_position = height - 40
+    
+        c.save()
+        print(f'PDF файл "{pdf_file}" успешно сохранены')
+    
+    def export_to_excel(otchet):
+        ''' экспорт в excel'''
+        workbook = openpyxl.Workbook()
+        sheet = workbook.active
+
+        headers = ['Всего коммпаний', 'Действующих компаний',
+                   'Сотрдуничество', 'Наличие автоматов']
+        sheet.append(headers)
+
+        for i in otchet:
+            row = [
+                i.itigo_kompanu,
+                i.deqist,
+                i.sotrud,
+                i.naluch_avtom
+            ]
+            sheet.append(row)
+        
+        excel_file = 'report_kompan_ex.xlsx'
+        workbook.save(excel_file)
+        print(f'Excel файл "{excel_file}" успешно сохранен')
+    
+    def export_to_csv(otchet):
+        ''' экспорт в csv'''
+        csv_file = 'report_lomp.csv'
+        with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+
+            headers = ['Всего коммпаний', 'Действующих компаний',
+                       'Сотрдуничество', 'Наличие автоматов']
+            writer.writerow(headers)
+
+            for i in otchet:
+                row = [
+                    i.itigo_kompanu,
+                    i.deqist,
+                    i.sotrud,
+                    i.naluch_avtom
+                ]
+                writer.writerow(row)
+        
+        print(f'CSV файл "{csv_file}" успешно сохранен')
+    
+    def export_to_word(otchet):
+        ''' экспорт в word'''
+        doc = Document()
+
+        doc.add_heading('Отчет о компаниях', level=1)
+
+        for i in otchet:
+            doc.add_paragraph(f'Всего коммпаний: {i.itigo_kompanu}')
+            doc.add_paragraph(f'Действующих компаний: {i.deqist}')
+            doc.add_paragraph(f'Сотрдуничество: {i.sotrud}')
+            doc.add_paragraph(f'Наличие автоматов: {i.naluch_avtom}')
+        
+        word_file = 'report_komp.docx'
+        doc.save(word_file)
+        print(f'Word файл "{word_file}" успешно сохранен')
+
+    for i in otchet:
+        tk.Label(lable_pod_formy, text='Всего коммпаний: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=80)
+        tk.Label(lable_pod_formy, text=f'{i.itigo_kompanu}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=80)
+        
+        tk.Label(lable_pod_formy, text='Действующих компаний: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=110)
+        tk.Label(lable_pod_formy, text=f'{i.deqist}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=110)
+        
+        tk.Label(lable_pod_formy, text='Сотрдуничество: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=140)
+        tk.Label(lable_pod_formy, text=f'{i.sotrud}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=140)
+        
+        tk.Label(lable_pod_formy, text='Наличие автоматов: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=170)
+        tk.Label(lable_pod_formy, text=f'{i.naluch_avtom}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=170)
+    
+    button_pdf = tk.Button(lable_pod_formy, text='Экспортировать в pdf',
+                           width=20, background='#0e8ae3', fg='white',
+                           command=lambda: export_to_pdf(otchet))
+    button_pdf.place(x=50, y=260)
+
+    button_excel = tk.Button(lable_pod_formy,
+                             text='Экспортировать в excel',
+                             width=20, background='#0e8ae3', fg='white',
+                             command=lambda: export_to_excel(otchet))
+    button_excel.place(x=50, y=300)
+
+    button_csv = tk.Button(lable_pod_formy, text='Экспортировать в csv',
+                           background='#0e8ae3', width=20, fg='white',
+                           command=lambda: export_to_csv(otchet))
+    button_csv.place(x=50, y=340)
+
+    button_word = tk.Button(lable_pod_formy, text='Экспортировать в .txt',
+                            background='#0e8ae3', width=20, fg='white',
+                            command=lambda: export_to_word(otchet))
+    button_word.place(x=50, y=380)
+
 
 def open_ychet_1(_):
+    ''' страница с учетом товаров - '''
     ff = tk.Label(root, background='#060a0d', width=70, height=10)
     ff.place(x=800, y=50)
     gg = tk.Label(root, text='Учет ТМЦ / Учет 1',
@@ -1535,7 +1684,7 @@ def open_glavna():
                       fg='white', font=('', 10))
         tg.place(x=30, y=30)
         tg.bind('<Button-1>', open_det_otc_str_2)
-        tf = tk.Label(atsosite, text='Отчет 3', background='#0b1217',
+        tf = tk.Label(atsosite, text='Отчет компании', background='#0b1217',
                       fg='white', font=('', 10))
         tf.place(x=30, y=50)
         tf.bind('<Button-1>', open_det_otc_str_3)

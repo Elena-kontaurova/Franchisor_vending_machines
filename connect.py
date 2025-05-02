@@ -157,12 +157,19 @@ class Otchet_monitor(BaseModel):
     monitor = CharField()
 
 
+class Otchet_kompanyu(BaseModel):
+    id = AutoField()
+    itigo_kompanu = CharField()
+    deqist = CharField()
+    sotrud = CharField()
+    naluch_avtom = CharField() # наличие авттоматов
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
                   User, Maintenance, Svodka, News,
                   Torfavt, Kompany, Soston_svz,
                   Zagrux, Denech_sredst, Inform_Status,
                   AutorizRegus, Otchet_torgov_avtomat,
-                  Otchet_monitor],
+                  Otchet_monitor, Otchet_kompanyu],
                  safe=True)
 db.close()
