@@ -57,7 +57,7 @@ def fo_ychet_1():
 
 def one_ychet_2():
     global b
-    b = tk.PhotoImage(file='diagramm_ychet/iag_raskod.png')
+    b = tk.PhotoImage(file='diagramm_ychet/d1.png')
     b = b.subsample(3)
     return b
 
@@ -69,12 +69,12 @@ def two_ychet_2():
 
 def three_ychet_2():
     global bbb
-    bbb = tk.PhotoImage(file='diagramm_ychet/proc1_str2.png')
+    bbb = tk.PhotoImage(file='diagramm_ychet/d2.png')
     bbb = bbb.subsample(3)
     return bbb
 
 def fo_ychet_2():
     global bbbb
-    bbbb = tk.PhotoImage(file='diagramm_ychet/proc2_str2.png')
+    bbbb = tk.PhotoImage(file='diagramm_ychet/d3.png')
     bbbb = bbbb.subsample(3)
     return bbbb
