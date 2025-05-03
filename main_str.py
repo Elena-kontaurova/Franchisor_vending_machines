@@ -2,11 +2,12 @@ import tkinter as tk
 from tkinter import PhotoImage, messagebox
 from connect import Svodka, News, Torfavt, Kompany, AutorizRegus, \
     Otchet_torgov_avtomat, Otchet_monitor, Otchet_kompanyu, \
-    Forma_str1, Forma_str2
+    Forma_str1, Forma_str2, Forma_str3
 import random
 from grafic import graf, svodk, graf_1, graf_2, one_ychet_1, \
     two_ychet_1, three_ychet_1, fo_ychet_1, one_ychet_2, \
-    two_ychet_2, three_ychet_2, fo_ychet_2
+    two_ychet_2, three_ychet_2, fo_ychet_2, one_ychet_3, \
+    two_ychet_3, three_ychet_3, fo_ychet_3
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase.ttfonts import TTFont
@@ -1386,15 +1387,154 @@ def open_ychet_2(_):
 
 
 def open_ychet_3(_):
-    ff = tk.Label(root, background='#060a0d', width=100, height=10)
+    ''' страница с учетом товаров - '''
+
+    def form_one_str3():
+        n = tk.Toplevel()
+        n.geometry('170x300')
+
+        text = tk.Label(n, text='Заказать аппараты для снэков',
+                        font=('', 11, 'bold'), wraplength=170)
+        text.place(x=5, y=0)
+
+        date = tk.Label(n, text='Дата заказа: ', font=('', 11))
+        date.place(x=5, y=40)
+
+        d = tk.Entry(n)
+        d.place(x=5, y=70)
+
+        date_c = tk.Label(n, text='Дата доставки: ', font=('', 11))
+        date_c.place(x=5, y=100)
+
+        d1  = tk.Entry(n)
+        d1.place(x=5, y=130)
+
+        kol = tk.Label(n, text='Количество (шт): ', font=('', 11))
+        kol.place(x=5, y=160)
+
+        k = tk.Entry(n)
+        k.place(x=5, y=190)
+
+        def otprav():
+            a1 = d.get()
+            a2 = d1.get()
+            a3 = k.get()
+
+            mm = Forma_str3.create(
+                data_zac = a1,
+                data_doc = a2,
+                kol_vo = a3
+            )
+            messagebox.showinfo('Успех!', 'Форма успешно отправленна')
+            n.destroy()
+
+        b = tk.Button(n, text='Заказать', width=10,
+                      background='#10b351', command=otprav)
+        b.place(x=20, y=230)
+
+
+    ff = tk.Label(root, background='#060a0d', width=70, height=10)
     ff.place(x=800, y=50)
-    gg = tk.Label(root, text='Учет ТМЦ/ Учет 3',
+    gg = tk.Label(root, text='Учет ТМЦ / Учет 3',
                   background='#060a0d', fg='#c4cacf',
                   font=('', 12))
     gg.place(x=975, y=60)
+
     hh = tk.Label(root, width=200, height=200,
                   background='#c4cacf')
     hh.place(x=285, y=100)
+
+    text = tk.Label(hh, text='Учет аппаратов для снэков', background='#c4cacf',
+                    font=('', 17))
+    text.place(x=70, y=30)
+
+    d1 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d1.place(x=70, y=80)
+
+    d2 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d2.place(x=312, y=80)
+
+    d3 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d3.place(x=550, y=80)
+
+    d4 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d4.place(x=70, y=330)
+
+    d5 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d5.place(x=312, y=330)
+
+    d6 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d6.place(x=550, y=330)
+
+    pl1 = tk.Label(d1, background='#03824d', width=30, height=4)
+    pl1.place(x=0, y=0)
+
+    pl2 = tk.Label(d2, background='#03824d', width=30, height=4)
+    pl2.place(x=0, y=0)
+
+    pp1 = tk.Label(d3, background='#03824d', width=30, height=7)
+    pp1.place(x=0, y=0)
+
+    pp2 = tk.Label(d6, background='#03824d', width=30, height=7)
+    pp2.place(x=0, y=0)
+
+    b1 = tk.Label(d1, background='#fff', width=30, height=10)
+    b1.place(x=0, y=63)
+
+    a = one_ychet_3()
+    a1 = tk.Label(b1,image=a, background='#fff')
+    a1.place(x=3, y=0)
+
+    b2 = tk.Label(d2, background='#fff', width=30, height=10)
+    b2.place(x=0, y=63)
+
+    c = two_ychet_3()
+    c1 = tk.Label(b2, background='#fff', image=c)
+    c1.place(x=0, y=0)
+
+    b3 = tk.Label(d3, background='#fff', width=30, height=10)
+    b3.place(x=0, y=100)
+
+    n = tk.Label(b3, width=10, height=2, text='13.04.2025',
+                 background='#e1e4e5')
+    n.place(x=70, y=30)
+
+    b4 = tk.Label(d4, background='#fff', width=30, height=14)
+    b4.place(x=0, y=0)
+
+    f = three_ychet_3()
+    f1 = tk.Label(b4, image=f, background='#fff')
+    f1.place(x=0, y=40)
+
+    b5 = tk.Label(d5, background='#fff', width=30, height=14)
+    b5.place(x=0, y=0)
+
+    v = fo_ychet_3()
+    v1 = tk.Label(b5, image=v, background='#fff')
+    v1.place(x=0, y=40)
+
+    b6 = tk.Label(d6, background='#fff', width=30, height=7)
+    b6.place(x=0, y=100)
+
+    p = tk.Button(b6, width=10, height=2, text='Заказать',
+                 background='#e1e4e5', command=form_one_str3)
+    p.place(x=70, y=30)
+
+    t1 = tk.Label(pl1, text='Диаграмма расходов', background='#03824d',
+                  font=('', 12), fg='white')
+    t1.place(x=5, y=13)
+
+    t2 = tk.Label(pl2, text='Спрос на товар', background='#03824d',
+                  font=('', 12), fg='white')
+    t2.place(x=5, y=13)
+
+    t3 = tk.Label(pp1, text='Дата последней закупки', background='#03824d',
+                  font=('', 12), fg='white')
+    t3.place(x=15, y=35)
+
+    t6 = tk.Label(pp2, text='Форма заказа товара', background='#03824d',
+                  font=('', 12), fg='white')
+    t6.place(x=25, y=35)
 
 
 def get_tor():

@@ -178,6 +178,14 @@ class Forma_str2(BaseModel):
     data_doc = CharField()
     kol_vo = CharField()
 
+
+class Forma_str3(BaseModel):
+    id = AutoField()
+    data_zac = CharField()
+    data_doc = CharField()
+    kol_vo = CharField()
+
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
                   User, Maintenance, Svodka, News,
@@ -185,6 +193,6 @@ db.create_tables([VendingMachine, Product, Sale,
                   Zagrux, Denech_sredst, Inform_Status,
                   AutorizRegus, Otchet_torgov_avtomat,
                   Otchet_monitor, Otchet_kompanyu,
-                  Forma_str1, Forma_str2],
+                  Forma_str1, Forma_str2, Forma_str3],
                  safe=True)
 db.close()
