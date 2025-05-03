@@ -139,3 +139,9 @@ def asdf():
     ddd = tk.PhotoImage(file='image/frame15.png')
     ddd = ddd.subsample(6)
     return ddd
+
+def aaaaaa():
+    global ddd
+    ddd = tk.PhotoImage(file='logo/lk.png')
+    ddd = ddd.subsample(25)
+    return ddd

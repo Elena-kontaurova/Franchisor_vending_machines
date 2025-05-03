@@ -8,7 +8,7 @@ from grafic import graf, svodk, graf_1, graf_2, one_ychet_1, \
     two_ychet_1, three_ychet_1, fo_ychet_1, one_ychet_2, \
     two_ychet_2, three_ychet_2, fo_ychet_2, one_ychet_3, \
     two_ychet_3, three_ychet_3, fo_ychet_3, sosi, ss, \
-    sdff, sadofi, kjh, asdf
+    sdff, sadofi, kjh, asdf, aaaaaa
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase.ttfonts import TTFont
@@ -2193,8 +2193,10 @@ def open_glavna():
     open_main_str()
     caphass.destroy()
     root.config(background='#ccc')
+
     lala = tk.Label(root, background='white', width=160, height=3)
     lala.place(x=0, y=0)
+
 
     klk = tk.Label(root, background='#1e2329', width=40, height=50)
     klk.place(x=0, y=50)
@@ -2316,6 +2318,13 @@ def open_glavna():
     ff3 = tk.Label(root, image=galka, background='#1e2329')
     ff3.place(x=250, y=370)
     ff3.bind('<Button-1>', close_pod_menu_adnim)
+
+    vv = aaaaaa()
+    fsdf = tk.Label(root, background='white', width=100, height=3)
+    fsdf.place(x=0, y=0)
+
+    dfg = tk.Label(fsdf, image=vv, background='white')
+    dfg.place(x=30,y=0)
 
 
 def get_autoriz():
