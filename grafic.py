@@ -103,3 +103,39 @@ def fo_ychet_3():
     gggg = tk.PhotoImage(file='diagramm_ychet/f3.png')
     gggg = gggg.subsample(3)
     return gggg
+
+def sosi():
+    global menu
+    menu = tk.PhotoImage(file='image/menu.png')
+    menu = menu.subsample(5)
+    return menu
+
+def ss():
+    global df
+    df = tk.PhotoImage(file='image/frame12.png')
+    df = df.subsample(6)
+    return df
+
+def sdff():
+    global dfd
+    dfd = tk.PhotoImage(file='image/frame13.png')
+    dfd = dfd.subsample(6)
+    return dfd
+
+def sadofi():
+    global aaa
+    aaa = tk.PhotoImage(file='image/frame14.png')
+    aaa = aaa.subsample(6)
+    return aaa
+
+def kjh():
+    global ggg
+    ggg = tk.PhotoImage(file='image/frame16.png')
+    ggg = ggg.subsample(6)
+    return ggg
+
+def asdf():
+    global ddd
+    ddd = tk.PhotoImage(file='image/frame15.png')
+    ddd = ddd.subsample(6)
+    return ddd

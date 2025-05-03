@@ -7,7 +7,8 @@ import random
 from grafic import graf, svodk, graf_1, graf_2, one_ychet_1, \
     two_ychet_1, three_ychet_1, fo_ychet_1, one_ychet_2, \
     two_ychet_2, three_ychet_2, fo_ychet_2, one_ychet_3, \
-    two_ychet_3, three_ychet_3, fo_ychet_3
+    two_ychet_3, three_ychet_3, fo_ychet_3, sosi, ss, \
+    sdff, sadofi, kjh, asdf
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase.ttfonts import TTFont
@@ -2228,10 +2229,12 @@ def open_glavna():
 
     ksks = tk.Label(root, background='#060a0d', width=10, height=3)
     ksks.place(x=206, y=50)
-    menu = PhotoImage(file='image/menu.png')
-    menu = menu.subsample(5)
+    # menu = PhotoImage(file='image/menu.png')
+    # menu = menu.subsample(5)
+    menu = sosi()
     dd = tk.Label(root, image=menu, background='#060a0d')
     dd.place(x=215, y=55)
+
     # asd = tk.Label(text='Личный кабинет. Главная', font=('', 15))
     # asd.place(x=300, y=110)
 
@@ -2239,8 +2242,9 @@ def open_glavna():
                    font=('', 13))
     asd.place(x=10, y=62)
 
-    df = PhotoImage(file='image/frame12.png')
-    df = df.subsample(6)
+    # df = PhotoImage(file='image/frame12.png')
+    # df = df.subsample(6)
+    df = ss()
     ass = tk.Label(root, image=df, background='#1e2329')
     ass.place(x=10, y=120)
     hghg = tk.Label(root, text='Главная', font=('', 14), background='#1e2329',
@@ -2248,8 +2252,10 @@ def open_glavna():
     hghg.place(x=65, y=130)
     hghg.bind('<Button-1>', lambda e: open_main_str())
 
-    dfd = PhotoImage(file='image/frame13.png')
-    dfd = dfd.subsample(6)
+    # dfd = PhotoImage(file='image/frame13.png')
+    # dfd = dfd.subsample(6)
+
+    dfd = sdff()
     asff = tk.Label(root, image=dfd, background='#1e2329')
     asff.place(x=10, y=180)
     hghgg = tk.Label(root, text='Монитор ТА', font=('', 14),
@@ -2258,8 +2264,10 @@ def open_glavna():
     hghgg.place(x=65, y=190)
     hghgg.bind('<Button-1>', open_monik_str)
 
-    aaa = PhotoImage(file='image/frame14.png')
-    aaa = aaa.subsample(6)
+    # aaa = PhotoImage(file='image/frame14.png')
+    # aaa = aaa.subsample(6)
+
+    aaa = sadofi()
     asas = tk.Label(root, image=aaa, background='#1e2329')
     asas.place(x=10, y=240)
     hghhg = tk.Label(root, text='Детальные отчеты', font=('', 14),
@@ -2268,19 +2276,23 @@ def open_glavna():
     hghhg.place(x=65, y=250)
     hghhg.bind('<Button-1>', open_pod_menu_detot)
 
-    ggg = PhotoImage(file='image/frame16.png')
-    ggg = ggg.subsample(6)
+    # ggg = PhotoImage(file='image/frame16.png')
+    # ggg = ggg.subsample(6)
 
+    ggg = kjh()
     lkj = tk.Label(root, image=ggg, background='#1e2329')
     lkj.place(x=10, y=300)
+
     hhhhg = tk.Label(root, text='Учет ТМЦ', font=('', 14),
                      background='#1e2329',
                      fg='#c4cacf')
     hhhhg.place(x=65, y=310)
     hhhhg.bind('<Button-1>', open_pod_menu_ychet)
 
-    ddd = PhotoImage(file='image/frame15.png')
-    ddd = ddd.subsample(6)
+    # ddd = PhotoImage(file='image/frame15.png')
+    # ddd = ddd.subsample(6)
+
+    ddd = asdf()
     sdf = tk.Label(root, image=ddd, background='#1e2329')
     sdf.place(x=10, y=360)
     hhhhh = tk.Label(root, text='Администрирование', font=('', 14),

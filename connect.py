@@ -186,6 +186,12 @@ class Forma_str3(BaseModel):
     kol_vo = CharField()
 
 
+class Polzovat(BaseModel):
+    id = AutoField()
+    name = CharField()
+    naznach = CharField()
+
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
                   User, Maintenance, Svodka, News,
