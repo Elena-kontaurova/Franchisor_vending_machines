@@ -164,12 +164,20 @@ class Otchet_kompanyu(BaseModel):
     sotrud = CharField()
     naluch_avtom = CharField() # наличие авттоматов
 
+
+class Forma_str1(BaseModel):
+    id = AutoField()
+    data_zac = CharField()
+    data_doc = CharField()
+    kol_vo = CharField()
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
                   User, Maintenance, Svodka, News,
                   Torfavt, Kompany, Soston_svz,
                   Zagrux, Denech_sredst, Inform_Status,
                   AutorizRegus, Otchet_torgov_avtomat,
-                  Otchet_monitor, Otchet_kompanyu],
+                  Otchet_monitor, Otchet_kompanyu,
+                  Forma_str1],
                  safe=True)
 db.close()
