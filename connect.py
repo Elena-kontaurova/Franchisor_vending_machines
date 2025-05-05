@@ -11,7 +11,6 @@ class BaseModel(Model):
     class Meta:
         database = db
 
-
 class VendingMachine(BaseModel):
     id = AutoField()
     location = CharField()
