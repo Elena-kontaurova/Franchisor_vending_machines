@@ -16,7 +16,6 @@ async def main_str(request: Request):
     return templates.TemplateResponse('index.html',
                                       {'request': request})
 
-
 @app.get('/torg', response_class=HTMLResponse)
 async def torg_str(request: Request):
     return templates.TemplateResponse('torg.html',
