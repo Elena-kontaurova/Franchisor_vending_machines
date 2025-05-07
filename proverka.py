@@ -12,6 +12,7 @@ oblak = oblak.subsample(22)
 
 for i in range(4):
     # соси
+    # лох
     one = tk.Label(root, background='green', width=28, height=3)
     one.pack(padx=10, pady=10)
     mdv = tk.Label(one, image=mdvkar)
