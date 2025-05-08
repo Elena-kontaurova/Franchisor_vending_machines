@@ -13,7 +13,6 @@ app.mount('/static', StaticFiles(directory='static'), name='static')
 
 @app.get('/', response_class=HTMLResponse)
 async def main_str(request: Request):
-    """yes"""
     return templates.TemplateResponse('index.html',
                                       {'request': request})
 
