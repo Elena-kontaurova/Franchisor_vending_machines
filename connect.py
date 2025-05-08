@@ -6,7 +6,6 @@ from peewee import Model, MySQLDatabase, AutoField, IntegerField, \
 db = MySQLDatabase('franprof', user='root', password='root',
                    host='localhost', port=3306)
 
-
 class BaseModel(Model):
     class Meta:
         database = db
