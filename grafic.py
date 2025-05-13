@@ -18,7 +18,7 @@ def svodk():
 
 
 def graf_1():
-    # мне не двадцать 
+    # мне не двадцать
     global d
     d = tk.PhotoImage(file='kartinka/ipl_dua.png')
     d = d.subsample(2)
@@ -31,11 +31,13 @@ def graf_2():
     d = d.subsample(2)
     return d
 
+
 def one_ychet_1():
     global a
     a = tk.PhotoImage(file='diagramm_ychet/iag_raskod_str1.png')
     a = a.subsample(3)
     return a
+
 
 def two_ychet_1():
     global aa
@@ -43,11 +45,13 @@ def two_ychet_1():
     aa = aa.subsample(3)
     return aa
 
+
 def three_ychet_1():
     global aaa
     aaa = tk.PhotoImage(file='diagramm_ychet/proc1_str1.png')
     aaa = aaa.subsample(3)
     return aaa
+
 
 def fo_ychet_1():
     global aaaa
@@ -55,11 +59,13 @@ def fo_ychet_1():
     aaaa = aaaa.subsample(3)
     return aaaa
 
+
 def one_ychet_2():
     global b
     b = tk.PhotoImage(file='diagramm_ychet/d1.png')
     b = b.subsample(3)
     return b
+
 
 def two_ychet_2():
     global bb
@@ -67,11 +73,13 @@ def two_ychet_2():
     bb = bb.subsample(3)
     return bb
 
+
 def three_ychet_2():
     global bbb
     bbb = tk.PhotoImage(file='diagramm_ychet/d2.png')
     bbb = bbb.subsample(3)
     return bbb
+
 
 def fo_ychet_2():
     global bbbb
@@ -86,11 +94,13 @@ def one_ychet_3():
     g = g.subsample(3)
     return g
 
+
 def two_ychet_3():
     global gg
     gg = tk.PhotoImage(file='diagramm_ychet/f4.png')
     gg = gg.subsample(3)
     return gg
+
 
 def three_ychet_3():
     global ggg
@@ -98,11 +108,13 @@ def three_ychet_3():
     ggg = ggg.subsample(3)
     return ggg
 
+
 def fo_ychet_3():
     global gggg
     gggg = tk.PhotoImage(file='diagramm_ychet/f3.png')
     gggg = gggg.subsample(3)
     return gggg
+
 
 def sosi():
     global menu
@@ -110,11 +122,13 @@ def sosi():
     menu = menu.subsample(5)
     return menu
 
+
 def ss():
     global df
     df = tk.PhotoImage(file='image/frame12.png')
     df = df.subsample(6)
     return df
+
 
 def sdff():
     global dfd
@@ -122,11 +136,13 @@ def sdff():
     dfd = dfd.subsample(6)
     return dfd
 
+
 def sadofi():
     global aaa
     aaa = tk.PhotoImage(file='image/frame14.png')
     aaa = aaa.subsample(6)
     return aaa
+
 
 def kjh():
     global ggg
@@ -134,11 +150,13 @@ def kjh():
     ggg = ggg.subsample(6)
     return ggg
 
+
 def asdf():
     global ddd
     ddd = tk.PhotoImage(file='image/frame15.png')
     ddd = ddd.subsample(6)
     return ddd
+
 
 def aaaaaa():
     global ddd

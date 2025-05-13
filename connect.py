@@ -3,12 +3,14 @@ from peewee import Model, MySQLDatabase, AutoField, IntegerField, \
                     CharField, DateField, DateTimeField, FloatField, \
                     ForeignKeyField
 
-db = MySQLDatabase('franprof', user='root', password='root',
+db = MySQLDatabase('franprof', user='root', password='lenok',
                    host='localhost', port=3306)
+
 
 class BaseModel(Model):
     class Meta:
         database = db
+
 
 class VendingMachine(BaseModel):
     id = AutoField()
@@ -148,8 +150,8 @@ class Otchet_monitor(BaseModel):
     itogo_avtomatov = CharField()
     rabotaut = CharField()
     repairs_are_pending = CharField()
-    uroven_sred = CharField() # средний уровень загрузки 
-    ob_verch = CharField() # общая выручка
+    uroven_sred = CharField()  # средний уровень загрузки
+    ob_verch = CharField()  # общая выручка
     zamenu = CharField()
     new_oborud = CharField()
     monitor = CharField()
@@ -160,7 +162,7 @@ class Otchet_kompanyu(BaseModel):
     itigo_kompanu = CharField()
     deqist = CharField()
     sotrud = CharField()
-    naluch_avtom = CharField() # наличие авттоматов
+    naluch_avtom = CharField()  # наличие авттоматов
 
 
 class Forma_str1(BaseModel):

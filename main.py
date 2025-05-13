@@ -6,7 +6,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 
-app = FastAPI() # бл
+app = FastAPI()  # бл
 
 templates = Jinja2Templates(directory='templates')
 app.mount('/static', StaticFiles(directory='static'), name='static')
@@ -30,7 +30,7 @@ async def torg_str(request: Request):
         'adress': avt.adress,
         'word': avt.word,
         'deist': avt.deist,
-        
+
     } for avt in torg_avt]
     return templates.TemplateResponse('torg.html',
                                       {'request': request,

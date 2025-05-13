@@ -10,11 +10,13 @@ app = FastAPI()
 templates = Jinja2Templates(directory='templates')
 app.mount('/static', StaticFiles(directory='static'), name='static')
 
+
 @app.get('/', response_class=HTMLResponse)
 async def main_str(request: Request):
     """yyy"""
     return templates.TemplateResponse('index.html',
                                       {'request': request})
+
 
 @app.get('/torg', response_class=HTMLResponse)
 async def torg_str(request: Request):
@@ -110,5 +112,3 @@ async def get_id_torg(torg_avt_id):
         'word': torg_avt.word,
         'deist': torg_avt.deist,
     }
-
- # эм
