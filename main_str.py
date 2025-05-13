@@ -1,9 +1,14 @@
 import tkinter as tk
 from tkinter import PhotoImage, messagebox
 from connect import Svodka, News, Torfavt, Kompany, AutorizRegus, \
-    Otchet_torgov_avtomat
+    Otchet_torgov_avtomat, Otchet_monitor, Otchet_kompanyu, \
+    Forma_str1, Forma_str2, Forma_str3
 import random
-from grafic import graf, svodk, graf_1, graf_2
+from grafic import graf, svodk, graf_1, graf_2, one_ychet_1, \
+    two_ychet_1, three_ychet_1, fo_ychet_1, one_ychet_2, \
+    two_ychet_2, three_ychet_2, fo_ychet_2, one_ychet_3, \
+    two_ychet_3, three_ychet_3, fo_ychet_3, sosi, ss, \
+    sdff, sadofi, kjh, asdf, aaaaaa
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase.ttfonts import TTFont
@@ -25,6 +30,16 @@ def get_otchet_torg_avt():
     return c
 
 
+def get_otchet_monik():
+    h = Otchet_monitor.select()
+    return h
+
+
+def get_otchet_komp():
+    h = Otchet_kompanyu.select()
+    return h
+
+
 def get_svodka():
     svodka = Svodka.select()
     return svodka
@@ -33,6 +48,16 @@ def get_svodka():
 def get_news():
     news = News.select()
     return news
+
+
+def get_form_1():
+    c = Forma_str1.select()
+    return c
+
+
+def get_form_2():
+    c = Forma_str2.select()
+    return c
 
 
 def open_main_str(event=None):
@@ -710,7 +735,6 @@ def open_det_otc_str_2(_):
     ''' детальный отчет компании'''
     ff = tk.Label(root, background='#060a0d', width=100, height=10)
     ff.place(x=800, y=50)
-
     gg = tk.Label(root, text='Детальные отчеты/ Отчет 2',
                   background='#060a0d', fg='#c4cacf',
                   font=('', 12))
@@ -720,11 +744,203 @@ def open_det_otc_str_2(_):
                   background='#c4cacf')
     hh.place(x=285, y=100)
 
+    lable_pod_formy = tk.Label(hh, background='#e1e5e8', width=115,
+                               height=37)
+    lable_pod_formy.place(x=12, y=20)
+
+    tabel = tk.Label(lable_pod_formy, background='#fcfcfc',
+                     width=60, height=15)
+    tabel.place(x=40, y=60)
+
+    tk.Label(lable_pod_formy, text='Отчет о мониторах',
+             background='#e1e5e8', font=('', 15)).place(x=50, y=20)
+
+    otchet = get_otchet_monik()
+
+    def export_to_pdf(otchet):
+        ''' метод для экпорта файла в pdf'''
+        pdf_file = 'report_monitor.pdf'
+        c = canvas.Canvas(pdf_file, pagesize=letter)
+        width, height = letter
+
+        pdfmetrics.registerFont(TTFont('Arial', 'Arial.ttf'))
+        c.setFont('Arial', 12)
+
+        y_posotion = height - 40
+
+        for i in otchet:
+            c.drawString(50, y_posotion,
+                         f'Всего автоматов: {i.itogo_avtomatov}')
+            y_posotion -= 20
+            c.drawString(50, y_posotion,
+                         f'Работающих автоматов: {i.rabotaut}')
+            y_posotion -= 20
+            c.drawString(50, y_posotion,
+                         f'Ожидают обслуживания: {i.repairs_are_pending}')
+            y_posotion -= 20
+            c.drawString(50, y_posotion,
+                         f'Средний уровень загрузки: {i.uroven_sred}')
+            y_posotion -= 20
+            c.drawString(50, y_posotion,
+                         f'Общая выручка с автоматов {i.ob_verch}')
+            y_posotion -= 20
+            c.drawString(50, y_posotion,
+                         f'Произведена замена: {i.zamenu}')
+            y_posotion -= 20
+            c.drawString(50, y_posotion,
+                         f'Новое оборудование: {i.new_oborud}')
+            y_posotion -= 20
+            c.drawString(50, y_posotion,
+                         f'Мониторнг автоматов: {i.monitor}')
+            y_posotion -= 20
+
+            if y_posotion < 40:
+                c.showPage()
+                y_posotion = height - 40
+
+        c.save()
+        print(f'PDF файл "{pdf_file}" успешно сохранен')
+
+    def export_to_excel(otchet):
+        ''' экпорт в excel'''
+        workbook = openpyxl.Workbook()
+        sheet = workbook.active
+
+        headers = ['Всего автоматмов', 'Работающих автоматов',
+                   'Ожидают обслуживания', 'Средний уровень загрузки',
+                   'Общая выручка с автоматов', 'Произведена замена',
+                   'Новое оборудование', 'Мониторинг автоматов']
+        sheet.append(headers)
+
+        for i in otchet:
+            row = [
+                i.itogo_avtomatov,
+                i.rabotaut,
+                i.repairs_are_pending,
+                i.uroven_sred,
+                i.ob_verch,
+                i.zamenu,
+                i.new_oborud,
+                i.monitor
+            ]
+            sheet.append(row)
+
+        excel_file = 'report_monik_ex.xlsx'
+        workbook.save(excel_file)
+        print(f'Excel файл "{excel_file}" успешно сохранен.')
+
+    def export_to_csv(otchet):
+        ''' экспорт в csv'''
+        csv_file = 'report_monik_cs.csv'
+        with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+
+            headers = ['Всего автоматов', 'Работающих автоматов',
+                       'Ожидают обслуживания', 'Средний уровень загрузки',
+                       'Общая выручка с автоматов', 'Произведена замена',
+                       'Новое оборудование', 'Мониторинг автоматов']
+            writer.writerow(headers)
+
+            for i in otchet:
+                row = [
+                    i.itogo_avtomatov,
+                    i.rabotaut,
+                    i.repairs_are_pending,
+                    i.uroven_sred,
+                    i.ob_verch,
+                    i.zamenu,
+                    i.new_oborud,
+                    i.monitor
+                ]
+                writer.writerow(row)
+
+        print(f'CSV файл "{csv_file}" успешно сохранен. ')
+
+    def export_to_word(otchet):
+        ''' экспорт в .txt'''
+        doc = Document()
+
+        doc.add_heading('Отчет о мониторах', level=1)
+
+        for i in otchet:
+            doc.add_paragraph(f'Всего автоматов: {i.itogo_avtomatov}')
+            doc.add_paragraph(f'Работающих автоматов: {i.rabotaut}')
+            doc.add_paragraph(f'Ожидают обслуживания: {i.repairs_are_pending}')
+            doc.add_paragraph(f'Средний уровень загрузки: {i.uroven_sred}')
+            doc.add_paragraph(f'Общая выручка с автоматов: {i.ob_verch}')
+            doc.add_paragraph(f'Произведена замена: {i.zamenu}')
+            doc.add_paragraph(f'Новое оборудование: {i.new_oborud}')
+            doc.add_paragraph(f'Мониторинг автоматов: {i.monitor}')
+
+        word_file = 'report_monik_wo.docx'
+        doc.save(word_file)
+        print(f'Word файл "{word_file}" успешно сохранен')
+
+    for i in otchet:
+        tk.Label(lable_pod_formy, text='Всего автоматов: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=80)
+        tk.Label(lable_pod_formy, text=f'{i.itogo_avtomatov}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=80)
+
+        tk.Label(lable_pod_formy, text='Работающих автоматов: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=110)
+        tk.Label(lable_pod_formy, text=f'{i.rabotaut}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=110)
+
+        tk.Label(lable_pod_formy, text='Ожидают обслуживания: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=140)
+        tk.Label(lable_pod_formy, text=f'{i.repairs_are_pending}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=140)
+
+        tk.Label(lable_pod_formy, text='Средний уровень загрузки: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=170)
+        tk.Label(lable_pod_formy, text=f'{i.uroven_sred}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=170)
+
+        tk.Label(lable_pod_formy, text='Общая выручка с автоматов: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=200)
+        tk.Label(lable_pod_formy, text=f'{i.ob_verch}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=200)
+
+        tk.Label(lable_pod_formy, text='Произведена замена: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=230)
+        tk.Label(lable_pod_formy, text=f'{i.zamenu}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=230)
+
+        tk.Label(lable_pod_formy, text='Новое оборудование: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=230)
+        tk.Label(lable_pod_formy, text=f'{i.new_oborud}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=230)
+
+        tk.Label(lable_pod_formy, text='Мониторинг автоматов: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=260)
+        tk.Label(lable_pod_formy, text=f'{i.monitor}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=260)
+
+        button_pdf = tk.Button(lable_pod_formy, text='Экспортировать в pdf',
+                               width=20, background='#0e8ae3', fg='white',
+                               command=lambda: export_to_pdf(otchet))
+        button_pdf.place(x=50, y=320)
+
+        button_excel = tk.Button(lable_pod_formy,
+                                 text='Экспортировать в excel',
+                                 width=20, background='#0e8ae3', fg='white',
+                                 command=lambda: export_to_excel(otchet))
+        button_excel.place(x=50, y=360)
+
+        button_csv = tk.Button(lable_pod_formy, text='Экспортировать в csv',
+                               background='#0e8ae3', width=20, fg='white',
+                               command=lambda: export_to_csv(otchet))
+        button_csv.place(x=50, y=400)
+
+        button_word = tk.Button(lable_pod_formy, text='Экспортировать в .txt',
+                                background='#0e8ae3', width=20, fg='white',
+                                command=lambda: export_to_word(otchet))
+        button_word.place(x=50, y=440)
+
 
 def open_det_otc_str_3(_):
-    ff = tk.Label(root, background='#060a0d', width=100, height=10)
-    ff.place(x=900, y=50)
-    gg = tk.Label(root, text='Детальные отчеты / Отчет 3',
+    gg = tk.Label(root, text='Детальные отчеты/ Отчет 3',
                   background='#060a0d', fg='#c4cacf',
                   font=('', 12))
     gg.place(x=905, y=60)
@@ -732,41 +948,603 @@ def open_det_otc_str_3(_):
                   background='#c4cacf')
     hh.place(x=285, y=100)
 
+    lable_pod_formy = tk.Label(hh, background='#e1e5e8', width=115,
+                               height=37)
+    lable_pod_formy.place(x=12, y=20)
+
+    tabel = tk.Label(lable_pod_formy, background='#fcfcfc',
+                     width=60, height=10)
+    tabel.place(x=40, y=60)
+
+    tk.Label(lable_pod_formy, text='Отчет о компаниях',
+             background='#e1e5e8', font=('', 15)).place(x=50, y=20)
+
+    otchet = get_otchet_komp()
+
+    def export_to_pdf(otchet):
+        ''' экспорт в pdf'''
+        pdf_file = 'report_kompany.pdf'
+        c = canvas.Canvas(pdf_file, pagesize=letter)
+        width, height = letter
+
+        pdfmetrics.registerFont(TTFont('Arial', 'Arial.ttf'))
+        c.setFont('Arial', 12)
+
+        y_position = height - 40
+
+        for i in otchet:
+            c.drawString(50, y_position,
+                         f'Всего коммпаний: {i.itigo_kompanu}')
+            y_position -= 20
+            c.drawString(50, y_position,
+                         f'Действующих компаний: {i.deqist}')
+            y_position -= 20
+            c.drawString(50, y_position,
+                         f'Сотрдуничество: {i.sotrud}')
+            y_position -= 20
+            c.drawString(50, y_position,
+                         f'Наличие автоматов: {i.naluch_avtom}')
+            y_position -= 2
+
+            if y_position < 40:
+                c.showPage()
+                y_position = height - 40
+
+        c.save()
+        print(f'PDF файл "{pdf_file}" успешно сохранены')
+
+    def export_to_excel(otchet):
+        ''' экспорт в excel'''
+        workbook = openpyxl.Workbook()
+        sheet = workbook.active
+
+        headers = ['Всего коммпаний', 'Действующих компаний',
+                   'Сотрдуничество', 'Наличие автоматов']
+        sheet.append(headers)
+
+        for i in otchet:
+            row = [
+                i.itigo_kompanu,
+                i.deqist,
+                i.sotrud,
+                i.naluch_avtom
+            ]
+            sheet.append(row)
+
+        excel_file = 'report_kompan_ex.xlsx'
+        workbook.save(excel_file)
+        print(f'Excel файл "{excel_file}" успешно сохранен')
+
+    def export_to_csv(otchet):
+        ''' экспорт в csv'''
+        csv_file = 'report_lomp.csv'
+        with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+
+            headers = ['Всего коммпаний', 'Действующих компаний',
+                       'Сотрдуничество', 'Наличие автоматов']
+            writer.writerow(headers)
+
+            for i in otchet:
+                row = [
+                    i.itigo_kompanu,
+                    i.deqist,
+                    i.sotrud,
+                    i.naluch_avtom
+                ]
+                writer.writerow(row)
+
+        print(f'CSV файл "{csv_file}" успешно сохранен')
+
+    def export_to_word(otchet):
+        ''' экспорт в word'''
+        doc = Document()
+
+        doc.add_heading('Отчет о компаниях', level=1)
+
+        for i in otchet:
+            doc.add_paragraph(f'Всего коммпаний: {i.itigo_kompanu}')
+            doc.add_paragraph(f'Действующих компаний: {i.deqist}')
+            doc.add_paragraph(f'Сотрдуничество: {i.sotrud}')
+            doc.add_paragraph(f'Наличие автоматов: {i.naluch_avtom}')
+
+        word_file = 'report_komp.docx'
+        doc.save(word_file)
+        print(f'Word файл "{word_file}" успешно сохранен')
+
+    for i in otchet:
+        tk.Label(lable_pod_formy, text='Всего коммпаний: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=80)
+        tk.Label(lable_pod_formy, text=f'{i.itigo_kompanu}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=80)
+
+        tk.Label(lable_pod_formy, text='Действующих компаний: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=110)
+        tk.Label(lable_pod_formy, text=f'{i.deqist}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=110)
+
+        tk.Label(lable_pod_formy, text='Сотрдуничество: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=140)
+        tk.Label(lable_pod_formy, text=f'{i.sotrud}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=140)
+
+        tk.Label(lable_pod_formy, text='Наличие автоматов: ',
+                 background='#fcfcfc', font=('', 13)).place(x=50, y=170)
+        tk.Label(lable_pod_formy, text=f'{i.naluch_avtom}',
+                 background='#fcfcfc', font=('', 13)).place(x=290, y=170)
+
+    button_pdf = tk.Button(lable_pod_formy, text='Экспортировать в pdf',
+                           width=20, background='#0e8ae3', fg='white',
+                           command=lambda: export_to_pdf(otchet))
+    button_pdf.place(x=50, y=260)
+
+    button_excel = tk.Button(lable_pod_formy,
+                             text='Экспортировать в excel',
+                             width=20, background='#0e8ae3', fg='white',
+                             command=lambda: export_to_excel(otchet))
+    button_excel.place(x=50, y=300)
+
+    button_csv = tk.Button(lable_pod_formy, text='Экспортировать в csv',
+                           background='#0e8ae3', width=20, fg='white',
+                           command=lambda: export_to_csv(otchet))
+    button_csv.place(x=50, y=340)
+
+    button_word = tk.Button(lable_pod_formy, text='Экспортировать в .txt',
+                            background='#0e8ae3', width=20, fg='white',
+                            command=lambda: export_to_word(otchet))
+    button_word.place(x=50, y=380)
+
 
 def open_ychet_1(_):
+    ''' страница с учетом товаров - '''
+
+    def form_one_str1():
+        n = tk.Toplevel()
+        n.geometry('170x300')
+
+        text = tk.Label(n, text='Заказать аппараты для напитков',
+                        font=('', 11, 'bold'), wraplength=170)
+        text.place(x=5, y=0)
+
+        date = tk.Label(n, text='Дата заказа: ', font=('', 11))
+        date.place(x=5, y=40)
+
+        d = tk.Entry(n)
+        d.place(x=5, y=70)
+
+        date_c = tk.Label(n, text='Дата доставки: ', font=('', 11))
+        date_c.place(x=5, y=100)
+
+        d1 = tk.Entry(n)
+        d1.place(x=5, y=130)
+
+        kol = tk.Label(n, text='Количество (шт): ', font=('', 11))
+        kol.place(x=5, y=160)
+
+        k = tk.Entry(n)
+        k.place(x=5, y=190)
+
+        def otprav():
+            a1 = d.get()
+            a2 = d1.get()
+            a3 = k.get()
+
+            _ = Forma_str1.create(
+                data_zac=a1,
+                data_doc=a2,
+                kol_vo=a3
+            )
+            messagebox.showinfo('Успех!', 'Форма успешно отправленна')
+            n.destroy()
+
+        b = tk.Button(n, text='Заказать', width=10,
+                      background='#10b351', command=otprav)
+        b.place(x=20, y=230)
+
     ff = tk.Label(root, background='#060a0d', width=70, height=10)
     ff.place(x=800, y=50)
     gg = tk.Label(root, text='Учет ТМЦ / Учет 1',
                   background='#060a0d', fg='#c4cacf',
                   font=('', 12))
     gg.place(x=975, y=60)
+
     hh = tk.Label(root, width=200, height=200,
                   background='#c4cacf')
     hh.place(x=285, y=100)
 
+    text = tk.Label(hh, text='Учет аппаратов для напитков',
+                    background='#c4cacf',
+                    font=('', 17))
+    text.place(x=70, y=30)
+
+    d1 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d1.place(x=70, y=80)
+
+    d2 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d2.place(x=312, y=80)
+
+    d3 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d3.place(x=550, y=80)
+
+    d4 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d4.place(x=70, y=330)
+
+    d5 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d5.place(x=312, y=330)
+
+    d6 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d6.place(x=550, y=330)
+
+    pl1 = tk.Label(d1, background='#05617d', width=30, height=4)
+    pl1.place(x=0, y=0)
+
+    pl2 = tk.Label(d2, background='#05617d', width=30, height=4)
+    pl2.place(x=0, y=0)
+
+    pp1 = tk.Label(d3, background='#05617d', width=30, height=7)
+    pp1.place(x=0, y=0)
+
+    pp2 = tk.Label(d6, background='#05617d', width=30, height=7)
+    pp2.place(x=0, y=0)
+
+    b1 = tk.Label(d1, background='#fff', width=30, height=10)
+    b1.place(x=0, y=63)
+
+    a = one_ychet_1()
+    a1 = tk.Label(b1, image=a, background='#fff')
+    a1.place(x=3, y=0)
+
+    b2 = tk.Label(d2, background='#fff', width=30, height=10)
+    b2.place(x=0, y=63)
+
+    c = two_ychet_1()
+    c1 = tk.Label(b2, background='#fff', image=c)
+    c1.place(x=0, y=0)
+
+    b3 = tk.Label(d3, background='#fff', width=30, height=10)
+    b3.place(x=0, y=100)
+
+    n = tk.Label(b3, width=10, height=2, text='13.04.2025',
+                 background='#e1e4e5')
+    n.place(x=70, y=30)
+
+    b4 = tk.Label(d4, background='#fff', width=30, height=14)
+    b4.place(x=0, y=0)
+
+    f = three_ychet_1()
+    f1 = tk.Label(b4, image=f, background='#fff')
+    f1.place(x=0, y=40)
+
+    b5 = tk.Label(d5, background='#fff', width=30, height=14)
+    b5.place(x=0, y=0)
+
+    v = fo_ychet_1()
+    v1 = tk.Label(b5, image=v, background='#fff')
+    v1.place(x=0, y=40)
+
+    b6 = tk.Label(d6, background='#fff', width=30, height=7)
+    b6.place(x=0, y=100)
+
+    p = tk.Button(b6, width=10, height=2, text='Заказать',
+                  background='#e1e4e5', command=form_one_str1)
+    p.place(x=70, y=30)
+
+    t1 = tk.Label(pl1, text='Диаграмма расходов', background='#05617d',
+                  font=('', 12), fg='white')
+    t1.place(x=5, y=13)
+
+    t2 = tk.Label(pl2, text='Спрос на товар', background='#05617d',
+                  font=('', 12), fg='white')
+    t2.place(x=5, y=13)
+
+    t3 = tk.Label(pp1, text='Дата последней закупки', background='#05617d',
+                  font=('', 12), fg='white')
+    t3.place(x=15, y=35)
+
+    t6 = tk.Label(pp2, text='Форма заказа товара', background='#05617d',
+                  font=('', 12), fg='white')
+    t6.place(x=25, y=35)
+
 
 def open_ychet_2(_):
-    ff = tk.Label(root, background='#060a0d', width=100, height=10)
+    ''' страница с учетом товаров - '''
+
+    def form_one_str2():
+        n = tk.Toplevel()
+        n.geometry('170x300')
+
+        text = tk.Label(n, text='Заказать аппараты для сладостей',
+                        font=('', 11, 'bold'), wraplength=170)
+        text.place(x=5, y=0)
+
+        date = tk.Label(n, text='Дата заказа: ', font=('', 11))
+        date.place(x=5, y=40)
+
+        d = tk.Entry(n)
+        d.place(x=5, y=70)
+
+        date_c = tk.Label(n, text='Дата доставки: ', font=('', 11))
+        date_c.place(x=5, y=100)
+
+        d1 = tk.Entry(n)
+        d1.place(x=5, y=130)
+
+        kol = tk.Label(n, text='Количество (шт): ', font=('', 11))
+        kol.place(x=5, y=160)
+
+        k = tk.Entry(n)
+        k.place(x=5, y=190)
+
+        def otprav():
+            a1 = d.get()
+            a2 = d1.get()
+            a3 = k.get()
+
+            _ = Forma_str2.create(
+                data_zac=a1,
+                data_doc=a2,
+                kol_vo=a3
+            )
+            messagebox.showinfo('Успех!', 'Форма успешно отправленна')
+            n.destroy()
+
+        b = tk.Button(n, text='Заказать', width=10,
+                      background='#10b351', command=otprav)
+        b.place(x=20, y=230)
+
+    ff = tk.Label(root, background='#060a0d', width=70, height=10)
     ff.place(x=800, y=50)
     gg = tk.Label(root, text='Учет ТМЦ / Учет 2',
                   background='#060a0d', fg='#c4cacf',
                   font=('', 12))
     gg.place(x=975, y=60)
+
     hh = tk.Label(root, width=200, height=200,
                   background='#c4cacf')
     hh.place(x=285, y=100)
+
+    text = tk.Label(hh, text='Учет аппаратов для сладостей',
+                    background='#c4cacf',
+                    font=('', 17))
+    text.place(x=70, y=30)
+
+    d1 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d1.place(x=70, y=80)
+
+    d2 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d2.place(x=312, y=80)
+
+    d3 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d3.place(x=550, y=80)
+
+    d4 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d4.place(x=70, y=330)
+
+    d5 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d5.place(x=312, y=330)
+
+    d6 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d6.place(x=550, y=330)
+
+    pl1 = tk.Label(d1, background='#8c5342', width=30, height=4)
+    pl1.place(x=0, y=0)
+
+    pl2 = tk.Label(d2, background='#8c5342', width=30, height=4)
+    pl2.place(x=0, y=0)
+
+    pp1 = tk.Label(d3, background='#8c5342', width=30, height=7)
+    pp1.place(x=0, y=0)
+
+    pp2 = tk.Label(d6, background='#8c5342', width=30, height=7)
+    pp2.place(x=0, y=0)
+
+    b1 = tk.Label(d1, background='#f5f5f5', width=30, height=10)
+    b1.place(x=0, y=63)
+
+    a = one_ychet_2()
+    a1 = tk.Label(b1, image=a, background='#f5f5f5')
+    a1.place(x=3, y=0)
+
+    b2 = tk.Label(d2, background='#f5f5f5', width=30, height=10)
+    b2.place(x=0, y=63)
+
+    c = two_ychet_2()
+    c1 = tk.Label(b2, background='#f5f5f5', image=c)
+    c1.place(x=0, y=0)
+
+    b3 = tk.Label(d3, background='#f5f5f5', width=30, height=10)
+    b3.place(x=0, y=100)
+
+    n = tk.Label(b3, width=10, height=2, text='13.04.2025',
+                 background='#e1e4e5')
+    n.place(x=70, y=30)
+
+    b4 = tk.Label(d4, background='#f5f5f5', width=30, height=14)
+    b4.place(x=0, y=0)
+
+    f = three_ychet_2()
+    f1 = tk.Label(b4, image=f, background='#f5f5f5')
+    f1.place(x=0, y=40)
+
+    b5 = tk.Label(d5, background='#f5f5f5', width=30, height=14)
+    b5.place(x=0, y=0)
+
+    v = fo_ychet_2()
+    v1 = tk.Label(b5, image=v, background='#f5f5f5')
+    v1.place(x=0, y=40)
+
+    b6 = tk.Label(d6, background='#f5f5f5', width=30, height=7)
+    b6.place(x=0, y=100)
+
+    p = tk.Button(b6, width=10, height=2, text='Заказать',
+                  background='#e1e4e5', command=form_one_str2)
+    p.place(x=70, y=30)
+
+    t1 = tk.Label(pl1, text='Диаграмма расходов', background='#8c5342',
+                  font=('', 12), fg='white')
+    t1.place(x=5, y=13)
+
+    t2 = tk.Label(pl2, text='Спрос на товар', background='#8c5342',
+                  font=('', 12), fg='white')
+    t2.place(x=5, y=13)
+
+    t3 = tk.Label(pp1, text='Дата последней закупки', background='#8c5342',
+                  font=('', 12), fg='white')
+    t3.place(x=15, y=35)
+
+    t6 = tk.Label(pp2, text='Форма заказа товара', background='#8c5342',
+                  font=('', 12), fg='white')
+    t6.place(x=25, y=35)
 
 
 def open_ychet_3(_):
-    ff = tk.Label(root, background='#060a0d', width=100, height=10)
+    ''' страница с учетом товаров - '''
+
+    def form_one_str3():
+        n = tk.Toplevel()
+        n.geometry('170x300')
+
+        text = tk.Label(n, text='Заказать аппараты для снэков',
+                        font=('', 11, 'bold'), wraplength=170)
+        text.place(x=5, y=0)
+
+        date = tk.Label(n, text='Дата заказа: ', font=('', 11))
+        date.place(x=5, y=40)
+
+        d = tk.Entry(n)
+        d.place(x=5, y=70)
+
+        date_c = tk.Label(n, text='Дата доставки: ', font=('', 11))
+        date_c.place(x=5, y=100)
+
+        d1 = tk.Entry(n)
+        d1.place(x=5, y=130)
+
+        kol = tk.Label(n, text='Количество (шт): ', font=('', 11))
+        kol.place(x=5, y=160)
+
+        k = tk.Entry(n)
+        k.place(x=5, y=190)
+
+        def otprav():
+            a1 = d.get()
+            a2 = d1.get()
+            a3 = k.get()
+
+            _ = Forma_str3.create(
+                data_zac=a1,
+                data_doc=a2,
+                kol_vo=a3
+            )
+            messagebox.showinfo('Успех!', 'Форма успешно отправленна')
+            n.destroy()
+
+        b = tk.Button(n, text='Заказать', width=10,
+                      background='#10b351', command=otprav)
+        b.place(x=20, y=230)
+
+    ff = tk.Label(root, background='#060a0d', width=70, height=10)
     ff.place(x=800, y=50)
-    gg = tk.Label(root, text='Учет ТМЦ/ Учет 3',
+    gg = tk.Label(root, text='Учет ТМЦ / Учет 3',
                   background='#060a0d', fg='#c4cacf',
                   font=('', 12))
     gg.place(x=975, y=60)
+
     hh = tk.Label(root, width=200, height=200,
                   background='#c4cacf')
     hh.place(x=285, y=100)
+
+    text = tk.Label(hh, text='Учет аппаратов для снэков', background='#c4cacf',
+                    font=('', 17))
+    text.place(x=70, y=30)
+
+    d1 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d1.place(x=70, y=80)
+
+    d2 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d2.place(x=312, y=80)
+
+    d3 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d3.place(x=550, y=80)
+
+    d4 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d4.place(x=70, y=330)
+
+    d5 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d5.place(x=312, y=330)
+
+    d6 = tk.Label(hh, background='#d6d6d6', width=30, height=14)
+    d6.place(x=550, y=330)
+
+    pl1 = tk.Label(d1, background='#03824d', width=30, height=4)
+    pl1.place(x=0, y=0)
+
+    pl2 = tk.Label(d2, background='#03824d', width=30, height=4)
+    pl2.place(x=0, y=0)
+
+    pp1 = tk.Label(d3, background='#03824d', width=30, height=7)
+    pp1.place(x=0, y=0)
+
+    pp2 = tk.Label(d6, background='#03824d', width=30, height=7)
+    pp2.place(x=0, y=0)
+
+    b1 = tk.Label(d1, background='#fff', width=30, height=10)
+    b1.place(x=0, y=63)
+
+    a = one_ychet_3()
+    a1 = tk.Label(b1, image=a, background='#fff')
+    a1.place(x=3, y=0)
+
+    b2 = tk.Label(d2, background='#fff', width=30, height=10)
+    b2.place(x=0, y=63)
+
+    c = two_ychet_3()
+    c1 = tk.Label(b2, background='#fff', image=c)
+    c1.place(x=0, y=0)
+
+    b3 = tk.Label(d3, background='#fff', width=30, height=10)
+    b3.place(x=0, y=100)
+
+    n = tk.Label(b3, width=10, height=2, text='13.04.2025',
+                 background='#e1e4e5')
+    n.place(x=70, y=30)
+
+    b4 = tk.Label(d4, background='#fff', width=30, height=14)
+    b4.place(x=0, y=0)
+
+    f = three_ychet_3()
+    f1 = tk.Label(b4, image=f, background='#fff')
+    f1.place(x=0, y=40)
+
+    b5 = tk.Label(d5, background='#fff', width=30, height=14)
+    b5.place(x=0, y=0)
+
+    v = fo_ychet_3()
+    v1 = tk.Label(b5, image=v, background='#fff')
+    v1.place(x=0, y=40)
+
+    b6 = tk.Label(d6, background='#fff', width=30, height=7)
+    b6.place(x=0, y=100)
+
+    p = tk.Button(b6, width=10, height=2, text='Заказать',
+                  background='#e1e4e5', command=form_one_str3)
+    p.place(x=70, y=30)
+
+    t1 = tk.Label(pl1, text='Диаграмма расходов', background='#03824d',
+                  font=('', 12), fg='white')
+    t1.place(x=5, y=13)
+
+    t2 = tk.Label(pl2, text='Спрос на товар', background='#03824d',
+                  font=('', 12), fg='white')
+    t2.place(x=5, y=13)
+
+    t3 = tk.Label(pp1, text='Дата последней закупки', background='#03824d',
+                  font=('', 12), fg='white')
+    t3.place(x=15, y=35)
+
+    t6 = tk.Label(pp2, text='Форма заказа товара', background='#03824d',
+                  font=('', 12), fg='white')
+    t6.place(x=25, y=35)
 
 
 def get_tor():
@@ -1339,11 +2117,11 @@ def open_glavna():
                       fg='white', font=('', 10))
         tt.place(x=30, y=10)
         tt.bind('<Button-1>', open_det_otc_str_1)
-        tg = tk.Label(atsosite, text='Отчет компании', background='#0b1217',
+        tg = tk.Label(atsosite, text='Отчет мониторы', background='#0b1217',
                       fg='white', font=('', 10))
         tg.place(x=30, y=30)
         tg.bind('<Button-1>', open_det_otc_str_2)
-        tf = tk.Label(atsosite, text='Отчет 3', background='#0b1217',
+        tf = tk.Label(atsosite, text='Отчет компании', background='#0b1217',
                       fg='white', font=('', 10))
         tf.place(x=30, y=50)
         tf.bind('<Button-1>', open_det_otc_str_3)
@@ -1357,15 +2135,17 @@ def open_glavna():
         ststs = tk.Label(root, background='#0b1217',
                          width=40, height=5)
         ststs.place(x=0, y=350)
-        tt = tk.Label(ststs, text='Учет 1', background='#0b1217',
+        tt = tk.Label(ststs, text='Аппараты для напитков',
+                      background='#0b1217',
                       fg='white', font=('', 10))
         tt.place(x=30, y=10)
         tt.bind('<Button-1>', open_ychet_1)
-        tg = tk.Label(ststs, text='Учет 2', background='#0b1217',
+        tg = tk.Label(ststs, text='Аппараты для сладостей',
+                      background='#0b1217',
                       fg='white', font=('', 10))
         tg.place(x=30, y=30)
         tg.bind('<Button-1>', open_ychet_2)
-        tf = tk.Label(ststs, text='Учет 3', background='#0b1217',
+        tf = tk.Label(ststs, text='Аппараты для снеков', background='#0b1217',
                       fg='white', font=('', 10))
         tf.place(x=30, y=50)
         tf.bind('<Button-1>', open_ychet_3)
@@ -1424,6 +2204,7 @@ def open_glavna():
     open_main_str()
     caphass.destroy()
     root.config(background='#ccc')
+
     lala = tk.Label(root, background='white', width=160, height=3)
     lala.place(x=0, y=0)
 
@@ -1460,10 +2241,12 @@ def open_glavna():
 
     ksks = tk.Label(root, background='#060a0d', width=10, height=3)
     ksks.place(x=206, y=50)
-    menu = PhotoImage(file='image/menu.png')
-    menu = menu.subsample(5)
+    # menu = PhotoImage(file='image/menu.png')
+    # menu = menu.subsample(5)
+    menu = sosi()
     dd = tk.Label(root, image=menu, background='#060a0d')
     dd.place(x=215, y=55)
+
     # asd = tk.Label(text='Личный кабинет. Главная', font=('', 15))
     # asd.place(x=300, y=110)
 
@@ -1471,8 +2254,9 @@ def open_glavna():
                    font=('', 13))
     asd.place(x=10, y=62)
 
-    df = PhotoImage(file='image/frame12.png')
-    df = df.subsample(6)
+    # df = PhotoImage(file='image/frame12.png')
+    # df = df.subsample(6)
+    df = ss()
     ass = tk.Label(root, image=df, background='#1e2329')
     ass.place(x=10, y=120)
     hghg = tk.Label(root, text='Главная', font=('', 14), background='#1e2329',
@@ -1480,8 +2264,10 @@ def open_glavna():
     hghg.place(x=65, y=130)
     hghg.bind('<Button-1>', lambda e: open_main_str())
 
-    dfd = PhotoImage(file='image/frame13.png')
-    dfd = dfd.subsample(6)
+    # dfd = PhotoImage(file='image/frame13.png')
+    # dfd = dfd.subsample(6)
+
+    dfd = sdff()
     asff = tk.Label(root, image=dfd, background='#1e2329')
     asff.place(x=10, y=180)
     hghgg = tk.Label(root, text='Монитор ТА', font=('', 14),
@@ -1490,8 +2276,10 @@ def open_glavna():
     hghgg.place(x=65, y=190)
     hghgg.bind('<Button-1>', open_monik_str)
 
-    aaa = PhotoImage(file='image/frame14.png')
-    aaa = aaa.subsample(6)
+    # aaa = PhotoImage(file='image/frame14.png')
+    # aaa = aaa.subsample(6)
+
+    aaa = sadofi()
     asas = tk.Label(root, image=aaa, background='#1e2329')
     asas.place(x=10, y=240)
     hghhg = tk.Label(root, text='Детальные отчеты', font=('', 14),
@@ -1500,19 +2288,23 @@ def open_glavna():
     hghhg.place(x=65, y=250)
     hghhg.bind('<Button-1>', open_pod_menu_detot)
 
-    ggg = PhotoImage(file='image/frame16.png')
-    ggg = ggg.subsample(6)
+    # ggg = PhotoImage(file='image/frame16.png')
+    # ggg = ggg.subsample(6)
 
+    ggg = kjh()
     lkj = tk.Label(root, image=ggg, background='#1e2329')
     lkj.place(x=10, y=300)
+
     hhhhg = tk.Label(root, text='Учет ТМЦ', font=('', 14),
                      background='#1e2329',
                      fg='#c4cacf')
     hhhhg.place(x=65, y=310)
     hhhhg.bind('<Button-1>', open_pod_menu_ychet)
 
-    ddd = PhotoImage(file='image/frame15.png')
-    ddd = ddd.subsample(6)
+    # ddd = PhotoImage(file='image/frame15.png')
+    # ddd = ddd.subsample(6)
+
+    ddd = asdf()
     sdf = tk.Label(root, image=ddd, background='#1e2329')
     sdf.place(x=10, y=360)
     hhhhh = tk.Label(root, text='Администрирование', font=('', 14),
@@ -1536,6 +2328,13 @@ def open_glavna():
     ff3 = tk.Label(root, image=galka, background='#1e2329')
     ff3.place(x=250, y=370)
     ff3.bind('<Button-1>', close_pod_menu_adnim)
+
+    vv = aaaaaa()
+    fsdf = tk.Label(root, background='white', width=100, height=3)
+    fsdf.place(x=0, y=0)
+
+    dfg = tk.Label(fsdf, image=vv, background='white')
+    dfg.place(x=30, y=0)
 
 
 def get_autoriz():

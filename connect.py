@@ -3,14 +3,12 @@ from peewee import Model, MySQLDatabase, AutoField, IntegerField, \
                     CharField, DateField, DateTimeField, FloatField, \
                     ForeignKeyField
 
-db = MySQLDatabase('franprof', user='root', password='lenok',
+db = MySQLDatabase('franprof', user='root', password='root',
                    host='localhost', port=3306)
-
 
 class BaseModel(Model):
     class Meta:
         database = db
-
 
 class VendingMachine(BaseModel):
     id = AutoField()
@@ -145,11 +143,60 @@ class Otchet_torgov_avtomat(BaseModel):
     provetka = CharField()
 
 
+class Otchet_monitor(BaseModel):
+    id = AutoField()
+    itogo_avtomatov = CharField()
+    rabotaut = CharField()
+    repairs_are_pending = CharField()
+    uroven_sred = CharField() # средний уровень загрузки 
+    ob_verch = CharField() # общая выручка
+    zamenu = CharField()
+    new_oborud = CharField()
+    monitor = CharField()
+
+
+class Otchet_kompanyu(BaseModel):
+    id = AutoField()
+    itigo_kompanu = CharField()
+    deqist = CharField()
+    sotrud = CharField()
+    naluch_avtom = CharField() # наличие авттоматов
+
+
+class Forma_str1(BaseModel):
+    id = AutoField()
+    data_zac = CharField()
+    data_doc = CharField()
+    kol_vo = CharField()
+
+
+class Forma_str2(BaseModel):
+    id = AutoField()
+    data_zac = CharField()
+    data_doc = CharField()
+    kol_vo = CharField()
+
+
+class Forma_str3(BaseModel):
+    id = AutoField()
+    data_zac = CharField()
+    data_doc = CharField()
+    kol_vo = CharField()
+
+
+class Polzovat(BaseModel):
+    id = AutoField()
+    name = CharField()
+    naznach = CharField()
+
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
                   User, Maintenance, Svodka, News,
                   Torfavt, Kompany, Soston_svz,
                   Zagrux, Denech_sredst, Inform_Status,
-                  AutorizRegus, Otchet_torgov_avtomat],
+                  AutorizRegus, Otchet_torgov_avtomat,
+                  Otchet_monitor, Otchet_kompanyu,
+                  Forma_str1, Forma_str2, Forma_str3],
                  safe=True)
 db.close()
