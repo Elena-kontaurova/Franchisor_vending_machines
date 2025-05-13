@@ -707,12 +707,15 @@ def open_det_otc_str_1(_):
 
 
 def open_det_otc_str_2(_):
+    ''' детальный отчет компании'''
     ff = tk.Label(root, background='#060a0d', width=100, height=10)
     ff.place(x=800, y=50)
+
     gg = tk.Label(root, text='Детальные отчеты/ Отчет 2',
                   background='#060a0d', fg='#c4cacf',
                   font=('', 12))
     gg.place(x=905, y=60)
+
     hh = tk.Label(root, width=200, height=200,
                   background='#c4cacf')
     hh.place(x=285, y=100)
@@ -1336,7 +1339,7 @@ def open_glavna():
                       fg='white', font=('', 10))
         tt.place(x=30, y=10)
         tt.bind('<Button-1>', open_det_otc_str_1)
-        tg = tk.Label(atsosite, text='Отчет 2', background='#0b1217',
+        tg = tk.Label(atsosite, text='Отчет компании', background='#0b1217',
                       fg='white', font=('', 10))
         tg.place(x=30, y=30)
         tg.bind('<Button-1>', open_det_otc_str_2)
