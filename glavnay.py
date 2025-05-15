@@ -2128,7 +2128,7 @@ def open_polsov(_):
 
 
 def open_modem(_):
-    """see u later :3"""
+    """bump"""
     ff = tk.Label(root, background='#060a0d', width=100, height=10)
     ff.place(x=800, y=50)
     gg = tk.Label(root, text='Администирование / Модемы',
