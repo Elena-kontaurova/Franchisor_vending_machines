@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import PhotoImage, messagebox
 from connect import Svodka, News, Torfavt, Kompany, AutorizRegus, \
     Otchet_torgov_avtomat, Otchet_monitor, Otchet_kompanyu, \
-    Forma_str1, Forma_str2, Forma_str3
+    Forma_str1, Forma_str2, Forma_str3, User
 import random
 from grafic import graf, svodk, graf_1, graf_2, one_ychet_1, \
     two_ychet_1, three_ychet_1, fo_ychet_1, one_ychet_2, \
@@ -16,7 +16,6 @@ from reportlab.pdfbase import pdfmetrics
 import openpyxl
 import csv
 from docx import Document
-
 
 root = tk.Tk()
 root.geometry('1124x700')
@@ -2059,6 +2058,11 @@ def open_komp(_):
         h_0.place(x=620, y=5)
 
 
+def get_pol():
+    us = User.select()
+    return us
+
+
 def open_polsov(_):
     ''' Администирование / Пользователи'''
     ff = tk.Label(root, background='#060a0d', width=100, height=10)
@@ -2067,9 +2071,60 @@ def open_polsov(_):
                   background='#060a0d', fg='#c4cacf',
                   font=('', 12))
     gg.place(x=850, y=60)
+
     hh = tk.Label(root, width=200, height=200,
                   background='#c4cacf')
     hh.place(x=285, y=100)
+    kvad = tk.Label(hh, width=100, height=34, background='white')
+    kvad.place(x=70, y=30)
+    hh = tk.Label(kvad, background='#ededed', width=100, height=3)
+    hh.place(x=0, y=0)
+
+    tt = tk.Label(hh, text='Cписок пользователей', background='#ededed',
+                  fg='#1489cc', font=('', 12))
+    tt.place(x=10, y=5)
+    df = tk.Label(hh, text='Всего найдено записей', background='#ededed',
+                  fg='black', font=('', 7))
+    df.place(x=12, y=25)
+
+    table = tk.Label(kvad, width=97, height=29, background='#adb4b8')
+    table.place(x=10, y=60)
+    t_2 = tk.Label(table,
+                   text='ФИО пользователя',
+                   background='#adb4b8')
+    t_2.place(x=100, y=10)
+    t_3 = tk.Label(table, text='email', background='#adb4b8')
+    t_3.place(x=300, y=10)
+    t_4 = tk.Label(table, text='Телефон', background='#adb4b8')
+    t_4.place(x=430, y=10)
+    t_5 = tk.Label(table, text='Роль', background='#adb4b8')
+    t_5.place(x=560, y=10)
+
+    kom = get_pol()
+    lox = 50
+    for i in kom:
+        asas = '#d9dadb'
+        if i.id % 2 == 0:
+            asas = '#ededed'
+        dfd = tk.Label(table, width=97, height=2, background=asas)
+        dfd.place(x=0, y=lox)
+        lox += 40
+
+        h_2 = tk.Label(dfd, text=f'{i.full_name}', background=asas,
+                       justify='center', fg='#1489CC')
+        h_2.place(x=60, y=5)
+
+        h_3 = tk.Label(dfd, text=f'{i.email}', background=asas,
+                       justify='center')
+        h_3.place(x=280, y=5)
+
+        h_4 = tk.Label(dfd, text=f'{i.phone}', background=asas,
+                       font=('', 9),
+                       fg='#1489CC')
+        h_4.place(x=413, y=5)
+
+        h_5 = tk.Label(dfd, text=f'{i.role}', background=asas)
+        h_5.place(x=530, y=5)
 
 
 def open_modem(_):
@@ -2342,6 +2397,7 @@ def get_autoriz():
 def avtoriza(event=None):
     global lala
     global caphass
+
     lala = tk.Label(root, background='#1c1c15', width=50,
                     height=30)
     lala.place(x=400, y=100)
