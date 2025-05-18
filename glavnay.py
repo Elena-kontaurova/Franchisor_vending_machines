@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import PhotoImage, messagebox
 from connect import Svodka, News, Torfavt, Kompany, AutorizRegus, \
     Otchet_torgov_avtomat, Otchet_monitor, Otchet_kompanyu, \
-    Forma_str1, Forma_str2, Forma_str3, User
+    Forma_str1, Forma_str2, Forma_str3, User, Modem, Dop
 import random
 from grafic import graf, svodk, graf_1, graf_2, one_ychet_1, \
     two_ychet_1, three_ychet_1, fo_ychet_1, one_ychet_2, \
@@ -2127,6 +2127,11 @@ def open_polsov(_):
         h_5.place(x=530, y=5)
 
 
+def get_mod():
+    pp = Modem.select()
+    return pp
+
+
 def open_modem(_):
     """in a future broooo"""
     ff = tk.Label(root, background='#060a0d', width=100, height=10)
@@ -2139,6 +2144,62 @@ def open_modem(_):
                   background='#c4cacf')
     hh.place(x=285, y=100)
 
+    kvad = tk.Label(hh, width=100, height=34, background='white')
+    kvad.place(x=70, y=30)
+    hh = tk.Label(kvad, background='#ededed', width=100, height=3)
+    hh.place(x=0, y=0)
+
+    tt = tk.Label(hh, text='Cписок модемов', background='#ededed',
+                  fg='#1489cc', font=('', 12))
+    tt.place(x=10, y=5)
+    df = tk.Label(hh, text='Всего найдено записей', background='#ededed',
+                  fg='black', font=('', 7))
+    df.place(x=12, y=25)
+
+    table = tk.Label(kvad, width=97, height=29, background='#adb4b8')
+    table.place(x=10, y=60)
+    t_2 = tk.Label(table,
+                   text='Модель',
+                   background='#adb4b8')
+    t_2.place(x=100, y=10)
+    t_3 = tk.Label(table, text='Стандарт Wi-Fi', background='#adb4b8')
+    t_3.place(x=280, y=10)
+    t_4 = tk.Label(table, text='Интерфейс', background='#adb4b8')
+    t_4.place(x=420, y=10)
+    t_5 = tk.Label(table, text='Страна', background='#adb4b8')
+    t_5.place(x=580, y=10)
+
+    kom = get_mod()
+    lox = 50
+    for i in kom:
+        asas = '#d9dadb'
+        if i.id % 2 == 0:
+            asas = '#ededed'
+        dfd = tk.Label(table, width=97, height=2, background=asas)
+        dfd.place(x=0, y=lox)
+        lox += 40
+
+        h_2 = tk.Label(dfd, text=f'{i.model}', background=asas,
+                       justify='center', fg='#1489CC')
+        h_2.place(x=60, y=5)
+
+        h_3 = tk.Label(dfd, text=f'{i.wifi}', background=asas,
+                       justify='center')
+        h_3.place(x=280, y=5)
+
+        h_4 = tk.Label(dfd, text=f'{i.iter}', background=asas,
+                       font=('', 9),
+                       fg='#1489CC')
+        h_4.place(x=413, y=5)
+
+        h_5 = tk.Label(dfd, text=f'{i.strana}', background=asas)
+        h_5.place(x=580, y=5)
+
+
+def get_dop():
+    d = Dop.select()
+    return d
+
 
 def open_dop(_):
     ff = tk.Label(root, background='#060a0d', width=100, height=10)
@@ -2150,6 +2211,59 @@ def open_dop(_):
     hh = tk.Label(root, width=200, height=200,
                   background='#c4cacf')
     hh.place(x=285, y=100)
+
+    kvad = tk.Label(hh, width=100, height=34, background='white')
+    kvad.place(x=70, y=30)
+    hh = tk.Label(kvad, background='#ededed', width=100, height=3)
+    hh.place(x=0, y=0)
+
+    tt = tk.Label(hh, text='Обновления', background='#ededed',
+                  fg='#1489cc', font=('', 12))
+    tt.place(x=10, y=5)
+    df = tk.Label(hh, text='Всего найдено записей', background='#ededed',
+                  fg='black', font=('', 7))
+    df.place(x=12, y=25)
+
+    table = tk.Label(kvad, width=97, height=29, background='#adb4b8')
+    table.place(x=10, y=60)
+    t_2 = tk.Label(table,
+                   text='Name',
+                   background='#adb4b8')
+    t_2.place(x=60, y=10)
+    t_3 = tk.Label(table, text='Дата последних изменений',
+                   background='#adb4b8')
+    t_3.place(x=150, y=10)
+    t_4 = tk.Label(table, text='Name', background='#adb4b8')
+    t_4.place(x=360, y=10)
+    t_5 = tk.Label(table, text='Дата предстоящего релиза',
+                   background='#adb4b8')
+    t_5.place(x=450, y=10)
+
+    kom = get_dop()
+    lox = 50
+    for i in kom:
+        asas = '#d9dadb'
+        if i.id % 2 == 0:
+            asas = '#ededed'
+        dfd = tk.Label(table, width=97, height=2, background=asas)
+        dfd.place(x=0, y=lox)
+        lox += 40
+
+        h_2 = tk.Label(dfd, text=f'{i.name_l}', background=asas,
+                       justify='center', fg='#1489CC')
+        h_2.place(x=50, y=5)
+
+        h_3 = tk.Label(dfd, text=f'{i.last}', background=asas,
+                       justify='center')
+        h_3.place(x=190, y=5)
+
+        h_4 = tk.Label(dfd, text=f'{i.name_r}', background=asas,
+                       font=('', 9),
+                       fg='#1489CC')
+        h_4.place(x=350, y=5)
+
+        h_5 = tk.Label(dfd, text=f'{i.rel}', background=asas)
+        h_5.place(x=490, y=5)
 
 
 def open_glavna():

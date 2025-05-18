@@ -192,6 +192,22 @@ class Polzovat(BaseModel):
     naznach = CharField()
 
 
+class Modem(BaseModel):
+    id = AutoField()
+    model = CharField()
+    wifi = CharField()
+    iter = CharField()
+    strana = CharField()
+
+
+class Dop(BaseModel):
+    id = AutoField()
+    name_l = CharField()
+    last = CharField()
+    name_r = CharField()
+    rel = CharField()
+
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
                   User, Maintenance, Svodka, News,
@@ -199,6 +215,7 @@ db.create_tables([VendingMachine, Product, Sale,
                   Zagrux, Denech_sredst, Inform_Status,
                   AutorizRegus, Otchet_torgov_avtomat,
                   Otchet_monitor, Otchet_kompanyu,
-                  Forma_str1, Forma_str2, Forma_str3],
+                  Forma_str1, Forma_str2, Forma_str3,
+                  Modem, Dop],
                  safe=True)
 db.close()
