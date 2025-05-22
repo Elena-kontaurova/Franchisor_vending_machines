@@ -7,8 +7,8 @@ import random
 from grafic import graf, svodk, graf_1, graf_2, one_ychet_1, \
     two_ychet_1, three_ychet_1, fo_ychet_1, one_ychet_2, \
     two_ychet_2, three_ychet_2, fo_ychet_2, one_ychet_3, \
-    two_ychet_3, three_ychet_3, fo_ychet_3, sosi, ss, \
-    sdff, sadofi, kjh, asdf, aaaaaa
+    two_ychet_3, three_ychet_3, fo_ychet_3, sosi, aaaaaa, \
+    axy, axye, axyet
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase.ttfonts import TTFont
@@ -2266,16 +2266,70 @@ def open_dop(_):
         h_5.place(x=490, y=5)
 
 
+def open_glav(_):
+    ff = tk.Label(root, background='#060a0d', width=100, height=10)
+    ff.place(x=800, y=50)
+    gg = tk.Label(root, text='Администирование / Товары',
+                  background='#060a0d', fg='#c4cacf',
+                  font=('', 12))
+    gg.place(x=880, y=60)
+    hh = tk.Label(root, width=200, height=200,
+                  background='#c4cacf')
+    hh.place(x=285, y=100)
+
+    kvad = tk.Label(hh, width=100, height=34, background='white')
+    kvad.place(x=70, y=30)
+
+    a = axy()
+    aa = tk.Label(kvad, image=a, background='white')
+    aa.place(x=50, y=50)
+
+    afaf = axye()
+    af = tk.Label(kvad, image=afaf, background='white')
+    af.place(x=275, y=50)
+
+    aaaf = axyet()
+    aafa = tk.Label(kvad, image=aaaf, background='white')
+    aafa.place(x=500, y=50)
+
+    t1 = tk.Label(kvad, text='Торговые аппараты для напитков',
+                  wraplength=200, background='#21cc06', font=('', 12),
+                  width=23)
+    t1.place(x=20, y=350)
+    t1.bind('<Button-1>', open_ychet_1)
+
+    t2 = tk.Label(kvad, text='Торговые аппараты для сладостей',
+                  wraplength=200, background='#279fba', font=('', 12),
+                  width=23)
+    t2.place(x=245, y=350)
+    t2.bind('<Button-1>', open_ychet_2)
+
+    t3 = tk.Label(kvad, text='Торговые аппараты для снэковы',
+                  wraplength=200, background='#21cc06', font=('', 12),
+                  width=23)
+    t3.place(x=470, y=350)
+    t3.bind('<Button-1>', open_ychet_3)
+
+
+def get_adm():
+    return AutorizRegus.select()
+
+
 def open_glavna():
+    global pole_one
+    global role
+
     def open_pod_menu_detot(_):
         global atsosite
         lkj.place(x=10, y=380)
         sdf.place(x=10, y=440)
-        hhhhg.place(x=65, y=390)
-        hhhhh.place(x=65, y=450)
+        hhhhg.place(x=40, y=390)
+        hhhhh.place(x=40, y=430)
         ff2.place(x=250, y=390)
         ff3.place(x=250, y=450)
+        hghggd.place(x=40, y=470)
         ff1.config(image=soss)
+
         atsosite = tk.Label(root, background='#0b1217',
                             width=40, height=5)
         atsosite.place(x=0, y=300)
@@ -2296,9 +2350,10 @@ def open_glavna():
     def open_pod_menu_ychet(_):
         global ststs
         sdf.place(x=10, y=440)
-        hhhhh.place(x=65, y=450)
+        hhhhh.place(x=40, y=450)
         ff3.place(x=250, y=450)
         ff2.config(image=soss)
+        hghggd.place(x=40, y=500)
         ststs = tk.Label(root, background='#0b1217',
                          width=40, height=5)
         ststs.place(x=0, y=350)
@@ -2319,6 +2374,7 @@ def open_glavna():
 
     def open_pod_menu_admin(_):
         global ssss
+        hghggd.place(x=40, y=580)
         ff3.config(image=soss)
         ssss = tk.Label(root, background='#0b1217',
                         width=40, height=10)
@@ -2348,25 +2404,28 @@ def open_glavna():
         global atsosite
         lkj.place(x=10, y=300)
         sdf.place(x=10, y=360)
-        hhhhg.place(x=65, y=310)
-        hhhhh.place(x=65, y=370)
+        hhhhg.place(x=40, y=310)
+        hhhhh.place(x=40, y=370)
         ff2.place(x=250, y=310)
         ff3.place(x=250, y=370)
         atsosite.destroy()
         ff1.config(image=galka)
+        hghggd.place(x=40, y=420)
 
     def close_pod_menu_ychet(_):
         global ststs
         sdf.place(x=10, y=360)
-        hhhhh.place(x=65, y=370)
+        hhhhh.place(x=40, y=370)
         ff3.place(x=250, y=370)
         ststs.destroy()
         ff2.config(image=galka)
+        hghggd.place(x=40, y=420)
 
     def close_pod_menu_adnim(_):
         global ssss
         ssss.destroy()
         ff3.config(image=galka)
+        hghggd.place(x=40, y=420)
 
     open_main_str()
     caphass.destroy()
@@ -2389,12 +2448,23 @@ def open_glavna():
     sls = tk.Label(root, background='white', border=2, relief='solid',
                    width=20, height=3)
     sls.place(x=980, y=0)
-    ttt = tk.Label(sls, text='Контаурова Е.С', background='white',
+    sls.bind('<Button-1>', user_profile)
+
+    ttt = tk.Label(sls, text=f'{pole_one}', background='white',
                    fg='black')
     ttt.place(x=40, y=5)
-    tt = tk.Label(sls, text='Администратор', background='white',
+    ttt.bind('<Button-1>', user_profile)
+
+    a = get_adm()
+    for i in a:
+        if pole_one == i.user:
+            role = i.role
+
+    tt = tk.Label(sls, text=f'{role}', background='white',
                   fg='#7f8182')
     tt.place(x=40, y=20)
+    tt.bind('<Button-1>', user_profile)
+
     one = tk.Label(sls, width=2, background='#c7c7c7')
     one.place(x=7, y=13)
     one = tk.Label(sls, width=2, background='#2809ed')
@@ -2423,62 +2493,70 @@ def open_glavna():
 
     # df = PhotoImage(file='image/frame12.png')
     # df = df.subsample(6)
-    df = ss()
-    ass = tk.Label(root, image=df, background='#1e2329')
+    # df = ss()
+    ass = tk.Label(root, background='#1e2329')
     ass.place(x=10, y=120)
     hghg = tk.Label(root, text='Главная', font=('', 14), background='#1e2329',
                     fg='#c4cacf')
-    hghg.place(x=65, y=130)
+    hghg.place(x=40, y=130)
     hghg.bind('<Button-1>', lambda e: open_main_str())
 
     # dfd = PhotoImage(file='image/frame13.png')
     # dfd = dfd.subsample(6)
 
-    dfd = sdff()
-    asff = tk.Label(root, image=dfd, background='#1e2329')
+    # dfd = sdff()
+    asff = tk.Label(root, background='#1e2329')
     asff.place(x=10, y=180)
     hghgg = tk.Label(root, text='Монитор ТА', font=('', 14),
                      background='#1e2329',
                      fg='#c4cacf')
-    hghgg.place(x=65, y=190)
+    hghgg.place(x=40, y=190)
     hghgg.bind('<Button-1>', open_monik_str)
 
     # aaa = PhotoImage(file='image/frame14.png')
     # aaa = aaa.subsample(6)
 
-    aaa = sadofi()
-    asas = tk.Label(root, image=aaa, background='#1e2329')
+    # aaa = sadofi()
+    asas = tk.Label(root, background='#1e2329')
     asas.place(x=10, y=240)
     hghhg = tk.Label(root, text='Детальные отчеты', font=('', 14),
                      background='#1e2329',
                      fg='#c4cacf')
-    hghhg.place(x=65, y=250)
+    hghhg.place(x=40, y=250)
     hghhg.bind('<Button-1>', open_pod_menu_detot)
 
     # ggg = PhotoImage(file='image/frame16.png')
     # ggg = ggg.subsample(6)
 
-    ggg = kjh()
-    lkj = tk.Label(root, image=ggg, background='#1e2329')
+    # ggg = kjh()
+    lkj = tk.Label(root, background='#1e2329')
     lkj.place(x=10, y=300)
 
     hhhhg = tk.Label(root, text='Учет ТМЦ', font=('', 14),
                      background='#1e2329',
                      fg='#c4cacf')
-    hhhhg.place(x=65, y=310)
+    hhhhg.place(x=40, y=310)
     hhhhg.bind('<Button-1>', open_pod_menu_ychet)
 
     # ddd = PhotoImage(file='image/frame15.png')
     # ddd = ddd.subsample(6)
 
-    ddd = asdf()
-    sdf = tk.Label(root, image=ddd, background='#1e2329')
+    # ddd = asdf()
+    sdf = tk.Label(root, background='#1e2329')
     sdf.place(x=10, y=360)
     hhhhh = tk.Label(root, text='Администрирование', font=('', 14),
                      background='#1e2329',
                      fg='#c4cacf')
-    hhhhh.place(x=65, y=370)
+    hhhhh.place(x=40, y=370)
     hhhhh.bind('<Button-1>', open_pod_menu_admin)
+
+    asffs = tk.Label(root, background='#1e2329')
+    asffs.place(x=10, y=210)
+    hghggd = tk.Label(root, text='Товары', font=('', 14),
+                      background='#1e2329',
+                      fg='#c4cacf')
+    hghggd.place(x=40, y=420)
+    hghggd.bind('<Button-1>', open_glav)
 
     galka = PhotoImage(file='image/galka.png')
     galka = galka.subsample(10)
@@ -2512,6 +2590,7 @@ def get_autoriz():
 def avtoriza(event=None):
     global lala
     global caphass
+    global pole_one
 
     lala = tk.Label(root, background='#1c1c15', width=50,
                     height=30)
@@ -2532,6 +2611,7 @@ def avtoriza(event=None):
     pa.place(x=120, y=155)
 
     def proverka():
+        global pole_one
         pole_one = us.get()
         pole_two = pa.get()
         aut = get_autoriz()
@@ -2580,6 +2660,8 @@ def avtoriza(event=None):
 
 
 def requsts(_):
+    global pole_one
+    global role
     global lalal
     lalal = tk.Label(root, background='#1c1c15', width=50,
                      height=30)
@@ -2599,13 +2681,23 @@ def requsts(_):
     pa = tk.Entry(lalal)
     pa.place(x=200, y=155)
 
+    pasww = tk.Label(lalal, text='Ваша роль: ', fg='white',
+                     background='#1c1c15', font=('', 14))
+    pasww.place(x=10, y=210)
+    paw = tk.Entry(lalal)
+    paw.place(x=200, y=215)
+
     def reg():
-        userget = us.get()
+        global pole_one
+        global role
+        pole_one = us.get()
         paswget = pa.get()
+        role = paw.get()
 
         _ = AutorizRegus.create(
-            user=userget,
-            password=paswget
+            user=pole_one,
+            password=paswget,
+            role=role
         )
         messagebox.showinfo('Успех', 'Вы успешно зарегестрировались!')
         capha()
@@ -2643,6 +2735,20 @@ def requsts(_):
         main.pack()
         knopka = tk.Button(caphass, text='Отправить', command=upup)
         knopka.pack()
+
+
+def user_profile(_):
+    global pole_one
+    global role
+
+    the_general_page = tk.Label(root, width=160, height=47,
+                                background='#e5d3ae')
+    the_general_page.place(x=0, y=0)
+
+    to_close = tk.Button(the_general_page, text='На главную',
+                         fg='white', font=('', 10), background='#40331a',
+                         command=open_glavna, width=15)
+    to_close.place(x=500, y=620)
 
 
 avtoriza()

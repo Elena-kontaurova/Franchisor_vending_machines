@@ -132,6 +132,7 @@ class AutorizRegus(BaseModel):
     id = AutoField()
     user = CharField()
     password = CharField()
+    role = CharField()
 
 
 class Otchet_torgov_avtomat(BaseModel):

@@ -163,3 +163,24 @@ def aaaaaa():
     ddd = tk.PhotoImage(file='logo/lk.png')
     ddd = ddd.subsample(25)
     return ddd
+
+
+def axy():
+    global a
+    a = tk.PhotoImage(file='str_tovar/voda.png')
+    a = a.subsample(2)
+    return a
+
+
+def axye():
+    global z
+    z = tk.PhotoImage(file='str_tovar/vlus.png')
+    z = z.subsample(2)
+    return z
+
+
+def axyet():
+    global zz
+    zz = tk.PhotoImage(file='str_tovar/snk.png')
+    zz = zz.subsample(2)
+    return zz
