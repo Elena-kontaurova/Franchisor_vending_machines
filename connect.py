@@ -12,6 +12,7 @@ class BaseModel(Model):
         database = db
 
 
+# ао
 class VendingMachine(BaseModel):
     id = AutoField()
     location = CharField()
