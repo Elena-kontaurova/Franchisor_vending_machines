@@ -2687,6 +2687,7 @@ def requsts(_):
     paw = tk.Entry(lalal)
     paw.place(x=200, y=215)
 
+    #aaaa
     def reg():
         global pole_one
         global role
