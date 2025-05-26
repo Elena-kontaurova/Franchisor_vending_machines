@@ -2750,6 +2750,12 @@ def user_profile(_):
                          command=open_glavna, width=15)
     to_close.place(x=500, y=620)
 
+    the_bar_with_the_rofile_photo = tk.Label(the_general_page,
+                                             background='#b09d76',
+                                             width=100,
+                                             height=10)
+    the_bar_with_the_rofile_photo.place(x=50, y=50)
+
 
 avtoriza()
 root.mainloop()
