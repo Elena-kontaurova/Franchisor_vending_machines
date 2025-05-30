@@ -2763,6 +2763,6 @@ def user_profile(_):
     links_to_social_networks.place(x=50, y=370)
 
 
-# so
+# sosi
 avtoriza()
 root.mainloop()
