@@ -2687,7 +2687,6 @@ def requsts(_):
     paw = tk.Entry(lalal)
     paw.place(x=200, y=215)
 
-    #aaaa
     def reg():
         global pole_one
         global role
@@ -2753,10 +2752,17 @@ def user_profile(_):
 
     the_bar_with_the_rofile_photo = tk.Label(the_general_page,
                                              background='#b09d76',
-                                             width=100,
-                                             height=10)
+                                             width=60,
+                                             height=20)
     the_bar_with_the_rofile_photo.place(x=50, y=50)
 
+    links_to_social_networks = tk.Label(the_general_page,
+                                        background='#b09d76',
+                                        width=60,
+                                        height=15)
+    links_to_social_networks.place(x=50, y=370)
 
+
+# kjl
 avtoriza()
 root.mainloop()
