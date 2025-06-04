@@ -2787,7 +2787,7 @@ def user_profile(_):
                        height=18)
     plash_2.place(x=790, y=327)
 
-# канале
+# елена
 
 
 avtoriza()
