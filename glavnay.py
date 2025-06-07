@@ -2756,11 +2756,38 @@ def user_profile(_):
                                              height=20)
     the_bar_with_the_rofile_photo.place(x=50, y=50)
 
+    name = tk.Label(the_bar_with_the_rofile_photo,
+                    background='#b09d76',
+                    text='тут name',
+                    fg='black',
+                    font=('', 15))
+    name.place(x=180, y=180)
+
     links_to_social_networks = tk.Label(the_general_page,
                                         background='#b09d76',
                                         width=60,
                                         height=15)
     links_to_social_networks.place(x=50, y=370)
+
+    user_data = tk.Label(the_general_page,
+                         background='#b09d76',
+                         width=80,
+                         height=17)
+    user_data.place(x=500, y=50)
+
+    plash_1 = tk.Label(the_general_page,
+                       background='#b09d76',
+                       width=38,
+                       height=18)
+    plash_1.place(x=500, y=327)
+
+    plash_2 = tk.Label(the_general_page,
+                       background='#b09d76',
+                       width=38,
+                       height=18)
+    plash_2.place(x=790, y=327)
+
+# боже
 
 
 avtoriza()
