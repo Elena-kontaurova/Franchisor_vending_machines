@@ -3145,8 +3145,6 @@ def user_profile(_):
                          command=open_glavna, width=15)
     to_close.place(x=570, y=620)
 
-    # хихих
-
 
 avtoriza()
 root.mainloop()
