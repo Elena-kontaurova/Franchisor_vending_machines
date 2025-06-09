@@ -2,7 +2,8 @@ import tkinter as tk
 from tkinter import PhotoImage, messagebox
 from connect import Svodka, News, Torfavt, Kompany, AutorizRegus, \
     Otchet_torgov_avtomat, Otchet_monitor, Otchet_kompanyu, \
-    Forma_str1, Forma_str2, Forma_str3, User, Modem, Dop
+    Forma_str1, Forma_str2, Forma_str3, User, Modem, Dop, \
+    Profile_user
 import random
 from grafic import graf, svodk, graf_1, graf_2, one_ychet_1, \
     two_ychet_1, three_ychet_1, fo_ychet_1, one_ychet_2, \
@@ -2591,6 +2592,7 @@ def avtoriza(event=None):
     global lala
     global caphass
     global pole_one
+    global current_user_id
 
     lala = tk.Label(root, background='#1c1c15', width=50,
                     height=30)
@@ -2612,9 +2614,19 @@ def avtoriza(event=None):
 
     def proverka():
         global pole_one
+        global current_user_id
+
         pole_one = us.get()
         pole_two = pa.get()
         aut = get_autoriz()
+
+        user = AutorizRegus.get(
+            AutorizRegus.user == pole_one,
+            AutorizRegus.password == pole_two
+        )
+
+        current_user_id = user.id  # Сохраняем ID авторизованного пользователя
+
         for i in aut:
             if pole_one == i.user and pole_two == i.password:
                 # open_glavna()
@@ -2663,6 +2675,8 @@ def requsts(_):
     global pole_one
     global role
     global lalal
+    global current_user_id
+
     lalal = tk.Label(root, background='#1c1c15', width=50,
                      height=30)
     lalal.place(x=400, y=100)
@@ -2690,15 +2704,28 @@ def requsts(_):
     def reg():
         global pole_one
         global role
+        global current_user_id
         pole_one = us.get()
         paswget = pa.get()
         role = paw.get()
 
-        _ = AutorizRegus.create(
+        new_user = AutorizRegus.create(
             user=pole_one,
             password=paswget,
             role=role
         )
+
+        _ = Profile_user.create(
+            user_id=new_user
+        )
+
+        user = AutorizRegus.get(
+            AutorizRegus.user == pole_one,
+            AutorizRegus.password == paswget
+        )
+
+        current_user_id = user.id
+
         messagebox.showinfo('Успех', 'Вы успешно зарегестрировались!')
         capha()
 
@@ -2740,54 +2767,383 @@ def requsts(_):
 def user_profile(_):
     global pole_one
     global role
+    global current_user_id
 
     the_general_page = tk.Label(root, width=160, height=47,
-                                background='#e5d3ae')
+                                background='#1e2329')
     the_general_page.place(x=0, y=0)
 
-    to_close = tk.Button(the_general_page, text='На главную',
-                         fg='white', font=('', 10), background='#40331a',
-                         command=open_glavna, width=15)
-    to_close.place(x=500, y=620)
-
     the_bar_with_the_rofile_photo = tk.Label(the_general_page,
-                                             background='#b09d76',
+                                             background='#c4cacf',
                                              width=60,
-                                             height=20)
+                                             height=20,
+                                             borderwidth=1,
+                                             highlightcolor='black',
+                                             relief='solid')
     the_bar_with_the_rofile_photo.place(x=50, y=50)
 
     name = tk.Label(the_bar_with_the_rofile_photo,
-                    background='#b09d76',
-                    text='тут name',
+                    background='#c4cacf',
+                    text=f'{pole_one}',
                     fg='black',
-                    font=('', 15))
-    name.place(x=180, y=180)
+                    font=('', 15),
+                    width=15)
+    name.place(x=120, y=180)
+
+    post = tk.Label(the_bar_with_the_rofile_photo,
+                    background='#c4cacf',
+                    text=f'{role}',
+                    fg='black',
+                    font=('', 13),
+                    width=15)
+    post.place(x=140, y=210)
+
+    subscriptions = tk.Button(the_bar_with_the_rofile_photo,
+                              background='#fff',
+                              text='Подписки',
+                              fg='black',
+                              width=10)
+    subscriptions.place(x=65, y=250)
+
+    subscribers = tk.Button(the_bar_with_the_rofile_photo,
+                            background='#fff',
+                            text='Подписчики',
+                            fg='black',
+                            width=10)
+    subscribers.place(x=165, y=250)
+
+    messages = tk.Button(the_bar_with_the_rofile_photo,
+                         background="#fff",
+                         text='Сообщения',
+                         fg='black',
+                         width=10)
+    messages.place(x=265, y=250)
+
+    def photo():
+        global photo_p
+        photo_p = tk.PhotoImage(file='profile/polsovat.png')
+        photo_p = photo_p.subsample(6)
+        return photo_p
+
+    photo_polsovat = photo()
+    frame_polsovat = tk.Label(the_bar_with_the_rofile_photo,
+                              background='#c4cacf',
+                              image=photo_polsovat)
+    frame_polsovat.place(x=115, y=0)
 
     links_to_social_networks = tk.Label(the_general_page,
-                                        background='#b09d76',
+                                        background='#c4cacf',
                                         width=60,
-                                        height=15)
+                                        height=14,
+                                        borderwidth=1,
+                                        highlightcolor='black',
+                                        relief='solid')
     links_to_social_networks.place(x=50, y=370)
 
+    def photo_tg():
+        global photo_t
+        photo_t = tk.PhotoImage(file='profile/telegram.png')
+        photo_t = photo_t.subsample(26)
+        return photo_t
+
+    ikonka_tg = photo_tg()
+    ikonka_telega = tk.Label(links_to_social_networks,
+                             background='#c4cacf',
+                             image=ikonka_tg)
+    ikonka_telega.place(x=15, y=5)
+
+    text_tg = tk.Label(links_to_social_networks,
+                       background='#c4cacf',
+                       text='Телеграмм',
+                       font=('', 13))
+    text_tg.place(x=100, y=17)
+
+    profile = Profile_user.get(Profile_user.user_id == current_user_id)
+
+    forma_tg = tk.Entry(links_to_social_networks,
+                        width=25,
+                        background='#c4cacf')
+    forma_tg.place(x=230, y=20)
+
+    current_tg = forma_tg.get()
+    if not current_tg and profile.tg:
+        forma_tg.insert(0, profile.tg)
+    elif current_tg != profile.tg:
+        forma_tg.delete(0, tk.END)
+        forma_tg.insert(0, profile.tg or '')
+
+    def photo_vk():
+        global photo_v
+        photo_v = tk.PhotoImage(file='profile/vk.png')
+        photo_v = photo_v.subsample(23)
+        return photo_v
+
+    ikonka_vk = photo_vk()
+    ikonka_vkont = tk.Label(links_to_social_networks,
+                            background='#c4cacf',
+                            image=ikonka_vk)
+    ikonka_vkont.place(x=23, y=55)
+
+    text_vk = tk.Label(links_to_social_networks,
+                       background='#c4cacf',
+                       text='Вконтакте',
+                       font=('', 13))
+    text_vk.place(x=100, y=67)
+
+    forma_vk = tk.Entry(links_to_social_networks,
+                        width=25,
+                        background='#c4cacf')
+    forma_vk.place(x=230, y=70)
+
+    current_vk_value = forma_vk.get()
+    if not current_vk_value and profile.vk:
+        forma_vk.insert(0, profile.vk)
+    elif current_vk_value != profile.vk:
+        forma_vk.delete(0, tk.END)
+        forma_vk.insert(0, profile.vk or '')
+
+    def photo_github():
+        global photo_g
+        photo_g = tk.PhotoImage(file='profile/git.png')
+        photo_g = photo_g.subsample(37)
+        return photo_g
+
+    ikonka_git = photo_github()
+    ikonka_github = tk.Label(links_to_social_networks,
+                             background='#c4cacf',
+                             image=ikonka_git)
+    ikonka_github.place(x=23, y=105)
+
+    text_github = tk.Label(links_to_social_networks,
+                           background='#c4cacf',
+                           text='Github',
+                           font=('', 13))
+    text_github.place(x=100, y=117)
+
+    forma_git = tk.Entry(links_to_social_networks,
+                         width=25,
+                         background='#c4cacf')
+    forma_git.place(x=230, y=120)
+
+    current_github_value = forma_git.get()
+    if not current_github_value and profile.github:
+        forma_git.insert(0, profile.github)
+    elif current_github_value != profile.github:
+        forma_git.delete(0, tk.END)
+        forma_git.insert(0, profile.github or '')
+
+    def photo_web():
+        global photo_w
+        photo_w = tk.PhotoImage(file='profile/web.png')
+        photo_w = photo_w.subsample(31)
+        return photo_w
+
+    ikonka_web = photo_web()
+    ikonka_websait = tk.Label(links_to_social_networks,
+                              background='#c4cacf',
+                              image=ikonka_web)
+    ikonka_websait.place(x=17, y=150)
+
+    text_web = tk.Label(links_to_social_networks,
+                        background='#c4cacf',
+                        text='Web-сайт',
+                        font=('', 13))
+    text_web.place(x=100, y=167)
+
+    forma_web = tk.Entry(links_to_social_networks,
+                         width=25,
+                         background='#c4cacf')
+    forma_web.place(x=230, y=170)
+
+    current_web_value = forma_web.get()
+    if not current_web_value and profile.web:
+        forma_web.insert(0, profile.web)
+    elif current_web_value != profile.web:
+        forma_web.delete(0, tk.END)
+        forma_web.insert(0, profile.web or '')
+
     user_data = tk.Label(the_general_page,
-                         background='#b09d76',
+                         background='#c4cacf',
                          width=80,
-                         height=17)
+                         height=17,
+                         borderwidth=1,
+                         highlightcolor='black',
+                         relief='solid')
     user_data.place(x=500, y=50)
 
+    full_name = tk.Label(user_data,
+                         background='#c4cacf',
+                         text='Имя и Фамилия: ',
+                         font=('', 13))
+    full_name.place(x=30, y=40)
+
+    forma_full_name = tk.Entry(user_data,
+                               width=50,
+                               background='#c4cacf')
+    forma_full_name.place(x=190, y=45)
+
+    current_name_value = forma_full_name.get()
+    if not current_name_value and profile.full_name:
+        forma_full_name.insert(0, profile.full_name)
+    elif current_name_value != profile.full_name:
+        forma_full_name.delete(0, tk.END)
+        forma_full_name.insert(0, profile.full_name or '')
+
+    email = tk.Label(user_data,
+                     background='#c4cacf',
+                     text='Почта: ',
+                     font=('', 13))
+    email.place(x=30, y=90)
+
+    forma_email = tk.Entry(user_data,
+                           width=50,
+                           background='#c4cacf')
+    forma_email.place(x=190, y=95)
+
+    current_email_value = forma_email.get()
+    if not current_email_value and profile.email:
+        forma_email.insert(0, profile.email)
+    elif current_email_value != profile.email:
+        forma_email.delete(0, tk.END)
+        forma_email.insert(0, profile.email or '')
+
+    phone = tk.Label(user_data,
+                     background='#c4cacf',
+                     text='Номер телефона: ',
+                     font=('', 13))
+    phone.place(x=30, y=140)
+
+    forma_phone = tk.Entry(user_data,
+                           width=50,
+                           background='#c4cacf')
+    forma_phone.place(x=190, y=145)
+
+    current_phone_value = forma_phone.get()
+    if not current_phone_value and profile.phone:
+        forma_phone.insert(0, profile.phone)
+    elif current_phone_value != profile.phone:
+        forma_phone.delete(0, tk.END)
+        forma_phone.insert(0, profile.phone or '')
+
+    adress = tk.Label(user_data,
+                      background='#c4cacf',
+                      text='Адресс: ',
+                      font=('', 13))
+    adress.place(x=30, y=190)
+
+    forma_adress = tk.Entry(user_data,
+                            width=50,
+                            background='#c4cacf')
+    forma_adress.place(x=190, y=195)
+
+    current_adress_value = forma_adress.get()
+    if not current_adress_value and profile.adress:
+        forma_adress.insert(0, profile.adress)
+    elif current_adress_value != profile.adress:
+        forma_adress.delete(0, tk.END)
+        forma_adress.insert(0, profile.adress or '')
+
+    def prof_update():
+        global current_user_id
+
+        if current_user_id is None:
+            messagebox.showerror("Ошибка", "Пользователь не авторизован")
+            return
+
+        try:
+            profile = Profile_user.get(Profile_user.user_id == current_user_id)
+        except Profile_user.DoesNotExist:
+            profile = Profile_user.create(user_id=current_user_id)
+
+        profile.tg = forma_tg.get() or None
+        profile.vk = forma_vk.get() or None
+        profile.github = forma_git.get() or None
+        profile.web = forma_web.get() or None
+        profile.full_name = forma_full_name.get() or None
+        profile.email = forma_email.get() or None
+        profile.phone = forma_phone.get() or None
+        profile.adress = forma_adress.get() or None
+
+        profile.save()
+        messagebox.showinfo("Успех", "Данные профиля обновлены!")
+
     plash_1 = tk.Label(the_general_page,
-                       background='#b09d76',
+                       background='#c4cacf',
                        width=38,
-                       height=18)
+                       height=16,
+                       borderwidth=1,
+                       highlightcolor='black',
+                       relief='solid')
     plash_1.place(x=500, y=327)
 
+    tk.Label(plash_1, text="Финансовая статистика", font=('', 12, 'bold'),
+             bg='#c4cacf').place(x=10, y=10)
+
+    indicators = [
+        ("Доход сегодня:", "0 руб", 40),
+        ("Доход за месяц:", "0 руб", 70),
+        ("Средний чек:", "15000 руб", 100),
+        ("Популярный товар:", "Вендомат", 130)
+    ]
+
+    for text, value, y_pos in indicators:
+        tk.Label(plash_1, text=text, bg='#c4cacf').place(x=20, y=y_pos)
+        tk.Label(plash_1, text=value, bg='#c4cacf',
+                 fg='blue').place(x=150, y=y_pos)
+
+    canvas = tk.Canvas(plash_1, width=180, height=60, bg='#c4cacf')
+    canvas.place(x=20, y=160)
+
+    points = [(10, 50), (40, 30), (70, 40), (100, 10), (130, 30), (160, 20)]
+    for i in range(len(points)-1):
+        canvas.create_line(points[i], points[i+1], fill='green')
+
     plash_2 = tk.Label(the_general_page,
-                       background='#b09d76',
+                       background='#c4cacf',
                        width=38,
-                       height=18)
+                       height=16,
+                       borderwidth=1,
+                       highlightcolor='black',
+                       relief='solid')
     plash_2.place(x=790, y=327)
 
-# ываыа
+    tk.Label(plash_2, text="Мои автоматы", font=('', 12, 'bold'),
+             bg='#c4cacf').place(x=10, y=10)
+
+    machines = [
+        ("Автомат №1 (Офис):", "Работает", "green", 40),
+        ("Автомат №2 (ТЦ):", "Обслуживания", "orange", 70),
+        ("Автомат №3 (Унив.):", "Выключен", "red", 100)
+    ]
+
+    for name, status, color, y_pos in machines:
+        tk.Label(plash_2, text=name, bg='#c4cacf').place(x=20, y=y_pos)
+        tk.Label(plash_2, text=status, bg='#c4cacf',
+                 fg=color).place(x=150, y=y_pos)
+
+    tk.Label(plash_2, text="Последние события:", font=('', 10),
+             bg='#c4cacf').place(x=10, y=140)
+    event_frame = tk.Frame(plash_2, bg='#c4cacf', width=250, height=60)
+    event_frame.place(x=10, y=160)
+
+    events = [
+        "✅ Автомат №1: продажа (150 руб)",
+        "⚠️ Автомат №2: низкий уровень"
+    ]
+
+    for i, event in enumerate(events):
+        tk.Label(event_frame, text=event, bg='#c4cacf',
+                 anchor='w').pack(fill='x', padx=5, pady=2)
+
+    to_save = tk.Button(the_general_page, text='Сохранить',
+                        fg='black', font=('', 10), background='#fff',
+                        command=prof_update, width=15)
+    to_save.place(x=430, y=620)
+
+    to_close = tk.Button(the_general_page, text='На главную',
+                         fg='black', font=('', 10), background='#fff',
+                         command=open_glavna, width=15)
+    to_close.place(x=570, y=620)
 
 
 avtoriza()

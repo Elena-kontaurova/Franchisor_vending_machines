@@ -210,6 +210,19 @@ class Dop(BaseModel):
     rel = CharField()
 
 
+class Profile_user(BaseModel):
+    id = AutoField()
+    user_id = ForeignKeyField(AutorizRegus)
+    tg = CharField(null=True)
+    vk = CharField(null=True)
+    github = CharField(null=True)
+    web = CharField(null=True)
+    full_name = CharField(null=True)
+    email = CharField(null=True)
+    phone = CharField(null=True)
+    adress = CharField(null=True)
+
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
                   User, Maintenance, Svodka, News,
@@ -218,6 +231,6 @@ db.create_tables([VendingMachine, Product, Sale,
                   AutorizRegus, Otchet_torgov_avtomat,
                   Otchet_monitor, Otchet_kompanyu,
                   Forma_str1, Forma_str2, Forma_str3,
-                  Modem, Dop],
+                  Modem, Dop, Profile_user],
                  safe=True)
 db.close()
