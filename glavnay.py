@@ -1556,6 +1556,7 @@ def get_komp():
 
 def open_torg_avt(_):
     ''' Администрирование / торговые автоматы'''
+    global role_prava
 
     def create_zap():
         ff = tk.Toplevel()
@@ -1649,9 +1650,11 @@ def open_torg_avt(_):
     df = tk.Label(hh, text='Всего найдено 9 записей', background='#ededed',
                   fg='black', font=('', 7))
     df.place(x=12, y=25)
-    kn_create = tk.Button(hh, text='Добавить', background='#ededed',
-                          fg='black', command=create_zap)
-    kn_create.place(x=610, y=15)
+
+    if role_prava == 'Администратор':
+        kn_create = tk.Button(hh, text='Добавить', background='#ededed',
+                              fg='black')
+        kn_create.place(x=610, y=15)
 
     table = tk.Label(kvad, width=97, height=29, background='#adb4b8')
     table.place(x=10, y=60)
@@ -1806,19 +1809,21 @@ def open_torg_avt(_):
         h_6.place(x=440, y=0)
         h_7 = tk.Label(dfd, text=f'{i.word}', background=asas)
         h_7.place(x=530, y=5)
-        h_8 = tk.Label(dfd, text='R', background=asas,
-                       fg='#1489CC')
-        h_8.place(x=610, y=5)
-        h_8.bind('<Button-1>', lambda event, item=i: redak_torg_avt(item))
 
-        h_9 = tk.Label(dfd, text='D', background=asas,
-                       fg='#1489CC')
-        h_9.place(x=630, y=5)
-        h_9.bind('<Button-1>', lambda event, item=i: delete_torg_avt(item))
+        if role_prava == 'Администратор':
+            h_8 = tk.Label(dfd, text='R', background=asas,
+                           fg='#1489CC')
+            h_8.place(x=610, y=5)
+            h_8.bind('<Button-1>', lambda event, item=i: redak_torg_avt(item))
 
-        h_0 = tk.Label(dfd, text='C', background=asas,
-                       fg='#1489CC')
-        h_0.place(x=650, y=5)
+            h_9 = tk.Label(dfd, text='D', background=asas,
+                           fg='#1489CC')
+            h_9.place(x=630, y=5)
+            h_9.bind('<Button-1>', lambda event, item=i: delete_torg_avt(item))
+
+            h_0 = tk.Label(dfd, text='C', background=asas,
+                           fg='#1489CC')
+            h_0.place(x=650, y=5)
 
 
 def open_komp(_):
@@ -2593,6 +2598,7 @@ def avtoriza(event=None):
     global caphass
     global pole_one
     global current_user_id
+    global role_prava
 
     lala = tk.Label(root, background='#1c1c15', width=50,
                     height=30)
@@ -2615,6 +2621,7 @@ def avtoriza(event=None):
     def proverka():
         global pole_one
         global current_user_id
+        global role_prava
 
         pole_one = us.get()
         pole_two = pa.get()
@@ -2626,6 +2633,7 @@ def avtoriza(event=None):
         )
 
         current_user_id = user.id  # Сохраняем ID авторизованного пользователя
+        role_prava = user.role
 
         for i in aut:
             if pole_one == i.user and pole_two == i.password:
@@ -2676,6 +2684,7 @@ def requsts(_):
     global role
     global lalal
     global current_user_id
+    global role_prava
 
     lalal = tk.Label(root, background='#1c1c15', width=50,
                      height=30)
@@ -2705,6 +2714,8 @@ def requsts(_):
         global pole_one
         global role
         global current_user_id
+        global role_prava
+
         pole_one = us.get()
         paswget = pa.get()
         role = paw.get()
@@ -2725,6 +2736,7 @@ def requsts(_):
         )
 
         current_user_id = user.id
+        role_prava = user.role
 
         messagebox.showinfo('Успех', 'Вы успешно зарегестрировались!')
         capha()
