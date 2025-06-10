@@ -2609,7 +2609,7 @@ def avtoriza(event=None):
     pasw = tk.Label(lala, text='Пароль: ', fg='white',
                     background='#1c1c15', font=('', 14))
     pasw.place(x=10, y=150)
-    pa = tk.Entry(lala)
+    pa = tk.Entry(lala, show='•')
     pa.place(x=120, y=155)
 
     def proverka():
