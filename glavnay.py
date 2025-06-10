@@ -1914,9 +1914,11 @@ def open_komp(_):
     df = tk.Label(hh, text='Всего найдено 9 записей', background='#ededed',
                   fg='black', font=('', 7))
     df.place(x=12, y=25)
-    kn_create = tk.Button(hh, text='Добавить', background='#ededed',
-                          fg='black', command=create_komp)
-    kn_create.place(x=610, y=15)
+
+    if role_prava == 'Администратор':
+        kn_create = tk.Button(hh, text='Добавить', background='#ededed',
+                              fg='black', command=create_komp)
+        kn_create.place(x=610, y=15)
 
     table = tk.Label(kvad, width=97, height=29, background='#adb4b8')
     table.place(x=10, y=60)
@@ -2049,19 +2051,20 @@ def open_komp(_):
                        wraplength=70, justify='center', font=('', 10))
         h_6.place(x=460, y=5)
 
-        h_8 = tk.Label(dfd, text='R', background=asas,
-                       fg='#1489CC')
-        h_8.place(x=580, y=5)
-        h_8.bind('<Button-1>', lambda event, item=i: update_komp(item))
+        if role_prava == 'Администратор':
+            h_8 = tk.Label(dfd, text='R', background=asas,
+                           fg='#1489CC')
+            h_8.place(x=580, y=5)
+            h_8.bind('<Button-1>', lambda event, item=i: update_komp(item))
 
-        h_9 = tk.Label(dfd, text='D', background=asas,
-                       fg='#1489CC')
-        h_9.place(x=600, y=5)
-        h_9.bind('<Button-1>', lambda event, item=i: del_komp(item))
+            h_9 = tk.Label(dfd, text='D', background=asas,
+                           fg='#1489CC')
+            h_9.place(x=600, y=5)
+            h_9.bind('<Button-1>', lambda event, item=i: del_komp(item))
 
-        h_0 = tk.Label(dfd, text='C', background=asas,
-                       fg='#1489CC')
-        h_0.place(x=620, y=5)
+            h_0 = tk.Label(dfd, text='C', background=asas,
+                           fg='#1489CC')
+            h_0.place(x=620, y=5)
 
 
 def get_pol():
