@@ -1,9 +1,9 @@
-# Пути (измените на свои!)
+# пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ!)
 $exePath = "C:\Users\Home\Desktop\franchisor_vending_machines"
 $iconPath = "C:\Users\Home\Desktop\franchisor_vending_machines\Frame-30.ico"
 $shortcutPath = [Environment]::GetFolderPath("Desktop") + "\vendingMachines.lnk"
 
-# Создание ярлыка
+# пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 $WScriptShell = New-Object -ComObject WScript.Shell
 $shortcut = $WScriptShell.CreateShortcut($shortcutPath)
 $shortcut.TargetPath = $exePath
