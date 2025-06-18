@@ -184,3 +184,5 @@ def axyet():
     zz = tk.PhotoImage(file='str_tovar/snk.png')
     zz = zz.subsample(2)
     return zz
+
+# окак
