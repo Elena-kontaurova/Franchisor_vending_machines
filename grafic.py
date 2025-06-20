@@ -185,4 +185,4 @@ def axyet():
     zz = zz.subsample(2)
     return zz
 
-# воттаквот
+# каквот
