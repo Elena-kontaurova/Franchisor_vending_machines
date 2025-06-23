@@ -200,4 +200,4 @@ async def get_inform():
         'oblak': inf.oblak
     } for inf in info]
 
-# жиза
+# фэйм
