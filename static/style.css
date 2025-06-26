@@ -27,14 +27,14 @@ body {
 
 
 .menu {
-    width: 700px;
+    width: 800px;
     background-color: #1e2329;
     height: 737 qpx;
     color: white;
 }
 
 .verh {
-    width: 1220px;
+    width: 1200px;
     height: 100px;
     background-color: #090d14;
 
@@ -45,8 +45,8 @@ body {
 }
 
 .str_nuz {
-    width: 1220px;
-    height: 670px;
+    width: 1200px;
+    height: 664px;
     background-color: #c4c4c4;
     display: flex;
     justify-content: center;
@@ -55,25 +55,25 @@ body {
 
 .menu ul {
     display: block;
-    padding-top: 20px;
+    padding-top: 30px;
 }
 
 ul li {
     display: flex;
-    padding-top: 15px;
+    padding-top: 0px;
 }
 
 .img {
-    width: 100px;
+    width: 60px;
 }
 
 li h3 {
-    padding-left: 25px;
-    padding-top: 10px;
+    padding-left: 20px;
+    padding-top: 5px;
 }
 
 .menu h1 {
-    padding-left: 40px;
+    padding-left: 30px;
     padding-top: 10px;
 }
 

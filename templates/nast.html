@@ -1,10 +1,86 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
-    <title>Настройки</title>
-    <link rel="stylesheet", href="static/style.css">
+    <title>Главная</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="icon" href="/static/image/Frame-30.ico" type="image/x-icon">
+    <style>
+        .has-submenu {
+            position: relative;
+        }
+        
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50px;
+            background: #2c3138;
+            border-radius: 4px;
+            padding: 10px 0;
+            margin-top: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            list-style: none;
+            z-index: 100;
+            width: 200px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .submenu.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .submenu li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .submenu a {
+            display: block;
+            padding: 10px 20px;
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+        
+        .submenu a:hover {
+            background: #3a4049;
+            color: white;
+            padding-left: 25px;
+        }
+        
+        .submenu-indicator {
+            display: inline-block;
+            margin-left: 8px;
+            transition: transform 0.3s;
+            font-size: 0.8em;
+        }
+        
+        .has-submenu.active .submenu-indicator {
+            transform: rotate(180deg);
+        }
+        
+        .menu-trigger {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            width: 100%;
+        }
+        /* Убираем стандартное поведение ссылок в меню */
+        
+        .menu-trigger a {
+            pointer-events: none;
+        }
+    </style>
 </head>
+
 <body>
     <div class="bly">
         <div class="str_verh"></div>
@@ -17,34 +93,65 @@
             <ul>
                 <li>
                     <a href="/">
-                        <img src="/static/image/frame12.png", class="img">
+                        <img src="/static/image/frame12.png" class="img">
                     </a>
-                    <a href="/", class="link-as-text">
+                    <a href="/" class="link-as-text">
                         <h3>Главная</h3>
                     </a>
                 </li>
                 <li>
-                    <a href="/torg">
-                        <img src="/static/image/frame13.png", class="img">
+                    <a href="/monitor">
+                        <img src="/static/image/frame13.png" class="img">
                     </a>
-                    <a href="/torg", class="link-as-text">
-                        <h3>Торговые автоматы</h3>
+                    <a href="/monitor" class="link-as-text">
+                        <h3>Монитор ТА</h3>
                     </a>
                 </li>
-                <li>
-                    <a href="/dogo">
-                        <img src="/static/image/frame14.png", class="img">
-                    </a>
-                    <a href="/dogo", class="link-as-text">
-                        <h3>Договоры</h3>
-                    </a>
+                <li class="has-submenu" id="reports-item">
+                    <div class="menu-trigger" id="reports-trigger">
+                        <img src="/static/image/frame14.png" class="img">
+                        <h3>
+                            Детальные отчеты
+                            <span class="submenu-indicator">▼</span>
+                        </h3>
+                    </div>
+                    <ul class="submenu" id="reports-submenu">
+                        <li><a href="/torg/sales">Отчет торговые автоматы</a></li>
+                        <li><a href="/torg/stock">Отчет мониторы</a></li>
+                        <li><a href="/torg/movements">Отчет компании</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu" id="inventory-item">
+                    <div class="menu-trigger" id="inventory-trigger">
+                        <!-- Убраны ссылки из триггера -->
+                        <img src="/static/image/frame16.png" class="img">
+                        <h3>
+                            Учет ТМЦ
+                            <span class="submenu-indicator">▼</span>
+                        </h3>
+                    </div>
+                    <ul class="submenu" id="inventory-submenu">
+                        <li><a href="/ychet/sales">Аппараты для напитков</a></li>
+                        <li><a href="/ychet/stock">Аппараты для сладостей</a></li>
+                        <li><a href="/ychet/movements">Аппараты для снэков</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="/nast">
-                        <img src="/static/image/frame15.png", class="img">
+                        <img src="/static/image/frame15.png" class="img">
                     </a>
-                    <a href="/nast", class="link-as-text">
-                        <h3>Настройки</h3>
+                    <a href="/nast" class="link-as-text">
+                        <h3>Администрирование</h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="/products">
+                        <!-- Добавлена правильная ссылка -->
+                        <img src="/static/image/frame12.png" class="img">
+                    </a>
+                    <a href="/products" class="link-as-text">
+                        <!-- Добавлена правильная ссылка -->
+                        <h3>Товары</h3>
                     </a>
                 </li>
             </ul>
@@ -55,8 +162,64 @@
             </div>
             <div class="str_nuz"></div>
         </div>
-            
-        </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Обработчики для всех подменю
+            function setupSubmenu(triggerId, submenuId) {
+                const trigger = document.getElementById(triggerId);
+                const submenu = document.getElementById(submenuId);
+                const parentItem = trigger.closest('.has-submenu');
+
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const isOpen = submenu.classList.contains('active');
+
+                    // Закрыть все подменю
+                    document.querySelectorAll('.submenu').forEach(menu => {
+                        if (menu !== submenu) {
+                            menu.classList.remove('active');
+                        }
+                    });
+                    document.querySelectorAll('.has-submenu').forEach(item => {
+                        if (item !== parentItem) {
+                            item.classList.remove('active');
+                        }
+                    });
+
+                    // Переключить текущее подменю
+                    submenu.classList.toggle('active', !isOpen);
+                    parentItem.classList.toggle('active', !isOpen);
+                });
+            }
+
+            // Настройка подменю
+            setupSubmenu('reports-trigger', 'reports-submenu');
+            setupSubmenu('inventory-trigger', 'inventory-submenu');
+
+            // Закрытие при клике вне меню
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.has-submenu')) {
+                    document.querySelectorAll('.submenu').forEach(menu => {
+                        menu.classList.remove('active');
+                    });
+                    document.querySelectorAll('.has-submenu').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
+            });
+
+            // Предотвращение закрытия при клике внутри подменю
+            document.querySelectorAll('.submenu').forEach(menu => {
+                menu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>

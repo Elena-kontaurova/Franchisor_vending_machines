@@ -18,6 +18,12 @@ async def main_str(request: Request):
                                       {'request': request})
 
 
+@app.get('/monitor', response_class=HTMLResponse)
+async def monik_str(request: Request):
+    return templates.TemplateResponse('monitor.html',
+                                      {'request': request})
+
+
 @app.get('/torg', response_class=HTMLResponse)
 async def torg_str(request: Request):
     torg_avt = Torfavt.select()
