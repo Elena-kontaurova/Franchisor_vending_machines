@@ -24,34 +24,75 @@ async def monik_str(request: Request):
                                       {'request': request})
 
 
-@app.get('/torg', response_class=HTMLResponse)
+@app.get('/sales', response_class=HTMLResponse)
 async def torg_str(request: Request):
-    torg_avt = Torfavt.select()
-    avtom = [{
-        'id': avt.id,
-        'name': avt.name,
-        'model': avt.model,
-        'kompany': avt.kompany,
-        'modem': avt.modem,
-        'adress': avt.adress,
-        'word': avt.word,
-        'deist': avt.deist,
-
-    } for avt in torg_avt]
-    return templates.TemplateResponse('torg.html',
-                                      {'request': request,
-                                       'torg_avt': avtom})
-
-
-@app.get('/dogo', response_class=HTMLResponse)
-async def dogo_str(request: Request):
-    return templates.TemplateResponse('dogo.html',
+    return templates.TemplateResponse('otch_torgavt.html',
                                       {'request': request})
 
 
-@app.get('/nast', response_class=HTMLResponse)
-async def nast_str(request: Request):
-    return templates.TemplateResponse('nast.html',
+@app.get('/stock', response_class=HTMLResponse)
+async def torg_stock(request: Request):
+    return templates.TemplateResponse('otch_monik.html',
+                                      {'request': request})
+
+
+@app.get('/movements', response_class=HTMLResponse)
+async def torg_movements(request: Request):
+    return templates.TemplateResponse('otch_kompany.html',
+                                      {'request': request})
+
+
+@app.get('/ychet/water', response_class=HTMLResponse)
+async def ychet_water(request: Request):
+    return templates.TemplateResponse('apparat_water.html',
+                                      {'request': request})
+
+
+@app.get('/ychet/sweet', response_class=HTMLResponse)
+async def ychet_sweeet(request: Request):
+    return templates.TemplateResponse('apparat_sweet.html',
+                                      {'request': request})
+
+
+@app.get('/echet/snacks', response_class=HTMLResponse)
+async def ychet_snacks(request: Request):
+    return templates.TemplateResponse('apparat_snacks.html',
+                                      {'request': request})
+
+
+@app.get('/adm/torgavt', response_class=HTMLResponse)
+async def adm_torgavt(request: Request):
+    return templates.TemplateResponse('adm_torgavt.html',
+                                      {'request': request})
+
+
+@app.get('/adm/company', response_class=HTMLResponse)
+async def adm_company(request: Request):
+    return templates.TemplateResponse('adm_company.html',
+                                      {'request': request})
+
+
+@app.get('/adm/polsivat', response_class=HTMLResponse)
+async def adm_polsovat(request: Request):
+    return templates.TemplateResponse('adm_polsovat.html',
+                                      {'request': request})
+
+
+@app.get('/adm/modem', response_class=HTMLResponse)
+async def adm_modem(request: Request):
+    return templates.TemplateResponse('adm_modem.html',
+                                      {'request': request})
+
+
+@app.get('/adm/dop', response_class=HTMLResponse)
+async def adm_dop(request: Request):
+    return templates.TemplateResponse('adm_dop.html',
+                                      {'request': request})
+
+
+@app.get('/products', response_class=HTMLResponse)
+async def adm_products(request: Request):
+    return templates.TemplateResponse('product.html',
                                       {'request': request})
 
 
