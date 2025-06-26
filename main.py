@@ -42,49 +42,49 @@ async def torg_movements(request: Request):
                                       {'request': request})
 
 
-@app.get('/ychet/water', response_class=HTMLResponse)
+@app.get('/water', response_class=HTMLResponse)
 async def ychet_water(request: Request):
     return templates.TemplateResponse('apparat_water.html',
                                       {'request': request})
 
 
-@app.get('/ychet/sweet', response_class=HTMLResponse)
+@app.get('/sweet', response_class=HTMLResponse)
 async def ychet_sweeet(request: Request):
     return templates.TemplateResponse('apparat_sweet.html',
                                       {'request': request})
 
 
-@app.get('/echet/snacks', response_class=HTMLResponse)
+@app.get('/snacks', response_class=HTMLResponse)
 async def ychet_snacks(request: Request):
     return templates.TemplateResponse('apparat_snacks.html',
                                       {'request': request})
 
 
-@app.get('/adm/torgavt', response_class=HTMLResponse)
+@app.get('/torgavt', response_class=HTMLResponse)
 async def adm_torgavt(request: Request):
     return templates.TemplateResponse('adm_torgavt.html',
                                       {'request': request})
 
 
-@app.get('/adm/company', response_class=HTMLResponse)
+@app.get('/company', response_class=HTMLResponse)
 async def adm_company(request: Request):
     return templates.TemplateResponse('adm_company.html',
                                       {'request': request})
 
 
-@app.get('/adm/polsivat', response_class=HTMLResponse)
+@app.get('/polsivat', response_class=HTMLResponse)
 async def adm_polsovat(request: Request):
     return templates.TemplateResponse('adm_polsovat.html',
                                       {'request': request})
 
 
-@app.get('/adm/modem', response_class=HTMLResponse)
+@app.get('/modem', response_class=HTMLResponse)
 async def adm_modem(request: Request):
     return templates.TemplateResponse('adm_modem.html',
                                       {'request': request})
 
 
-@app.get('/adm/dop', response_class=HTMLResponse)
+@app.get('/dop', response_class=HTMLResponse)
 async def adm_dop(request: Request):
     return templates.TemplateResponse('adm_dop.html',
                                       {'request': request})
