@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>404error</title>
+    <link rel="icon" href="/static/image/Frame-30.ico" type="image/x-icon">
+    <style>
+        /* Убираем все отступы */
+        
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .image-container {
+            width: 100vw;
+            /* На всю ширину экрана */
+            height: 100vh;
+            /* На всю высоту экрана */
+            overflow: hidden;
+            /* Скрываем выходящие за границы части */
+            position: relative;
+        }
+        
+        .image-container img {
+            width: 100%;
+            /* Занимает всю ширину */
+            height: 100%;
+            /* На 10% больше высоты экрана */
+            object-fit: cover;
+            /* Заполнение с обрезкой */
+            object-position: center 40%;
+            /* Подрезаем сверху (центрируем ниже) */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="image-container">
+        <img src="/static/image/error_kot/kot_404.png" alt="404 Error">
+    </div>
+</body>
+
+</html>

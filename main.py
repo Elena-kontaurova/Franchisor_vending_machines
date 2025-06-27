@@ -4,12 +4,34 @@ from connect import VendingMachine, Product, Sale, User, Maintenance, \
     Torfavt, Kompany, Soston_svz, Zagrux, Denech_sredst, Inform_Status
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
+from starlette.exceptions import HTTPException as StarletteHTTPException
+from starlette.status import HTTP_404_NOT_FOUND
 
 app = FastAPI()  # бл
 
 templates = Jinja2Templates(directory='templates')
 app.mount('/static', StaticFiles(directory='static'), name='static')
+
+
+@app.exception_handler(StarletteHTTPException)
+async def custom_404_handler(request: Request, exc: StarletteHTTPException):
+    if exc.status_code == HTTP_404_NOT_FOUND:
+        return templates.TemplateResponse(
+            "error404.html",
+            {"request": request},
+            status_code=HTTP_404_NOT_FOUND
+        )
+    return JSONResponse(
+        {"detail": exc.detail},
+        status_code=exc.status_code
+    )
+
+
+@app.get('/404', response_class=HTMLResponse)
+async def error_404(request: Request):
+    return templates.TemplateResponse('error404.html',
+                                      {'request': request})
 
 
 @app.get('/', response_class=HTMLResponse)
