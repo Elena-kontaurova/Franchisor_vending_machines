@@ -8,6 +8,7 @@
     <link rel="icon" href="/static/image/Frame-30.ico" type="image/x-icon">
     <style>
         /* Стили для меню */
+        /* Стили для меню */
         
         .menu ul {
             list-style: none;
@@ -33,6 +34,7 @@
             color: #e0e0e0;
             text-decoration: none;
             transition: background 0.3s;
+            width: 100%;
         }
         
         .menu>ul>li>a:hover {
@@ -41,6 +43,12 @@
         
         .has-submenu>a {
             cursor: pointer;
+            width: 100%;
+        }
+        
+        .has-submenu>a>h3 {
+            display: flex;
+            width: 100%;
         }
         
         .submenu {
@@ -88,8 +96,8 @@
         
         .submenu-indicator {
             display: inline-block;
-            margin-left: 8px;
-            transition: transform 0.3s;
+            margin-left: auto;
+            transition: 0.2s ease;
             font-size: 0.8em;
         }
         
