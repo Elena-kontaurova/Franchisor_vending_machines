@@ -1,10 +1,12 @@
-
 body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
 
-.bly {
+
+/* Основная шапка */
+
+.header-container {
     display: flex;
 }
 
@@ -12,19 +14,42 @@ body {
     width: 1550px;
     height: 80px;
     background-color: #c4c4c4;
+    display: flex;
+    align-items: center;
 }
 
 .avtor {
     width: 250px;
     height: 80px;
     background-color: white;
-    
 }
+
+
+/* Контейнер для основного контента */
 
 .container {
     display: flex;
 }
 
+
+/* Контейнер для логотипа */
+
+.logo-container {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    /* Отступ слева */
+}
+
+.logo-container img {
+    height: 70px;
+    /* Чуть меньше высоты шапки */
+    width: auto;
+}
+
+
+/* Стили для меню */
 
 .menu {
     width: 800px;
@@ -37,7 +62,6 @@ body {
     width: 1200px;
     height: 100px;
     background-color: #090d14;
-
 }
 
 .str {
@@ -87,7 +111,7 @@ li h3 {
 
 .link-as-text {
     text-decoration: none;
-    color: white; 
+    color: white;
 }
 
 .table {
@@ -129,5 +153,4 @@ li h3 {
     display: flex;
     padding-left: 60px;
     padding-top: 30px;
-
 }
