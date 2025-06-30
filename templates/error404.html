@@ -8,43 +8,82 @@
     <style>
         /* Убираем все отступы */
         
-        body,
-        html {
-            height: 100%;
+        * {
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            box-sizing: border-box;
         }
         
-        .image-container {
-            width: 100vw;
-            /* На всю ширину экрана */
-            height: 100vh;
-            /* На всю высоту экрана */
-            overflow: hidden;
-            /* Скрываем выходящие за границы части */
+        .app {
             position: relative;
+            height: 100svh;
+            background: #050505;
+            overflow: hidden;
+            font-family: "Montserrat", sans-serif;
+            color: #fff;
+            font-size: 18px;
         }
         
-        .image-container img {
-            width: 100%;
-            /* Занимает всю ширину */
-            height: 100%;
-            /* На 10% больше высоты экрана */
-            object-fit: cover;
-            /* Заполнение с обрезкой */
-            object-position: center 40%;
-            /* Подрезаем сверху (центрируем ниже) */
+        .img {
             position: absolute;
-            top: 0;
-            left: 0;
+            bottom: 0;
+            max-width: 1920px;
+            margin: 0 auto;
+            animation: catAnim 1.5s ease forwards;
+        }
+        
+        .img img {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        @keyframes catAnim {
+            0% {
+                translate: 0 50%;
+            }
+            100% {
+                translate: 0 0;
+            }
+        }
+        
+        .okak {
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            translate: -50% 0;
+            font-weight: 900;
+            font-size: 115px;
+        }
+        
+        .error {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 680px;
+            font-weight: 900;
+            transform: translate(-50%, 800px);
+            animation: errorAnim 1.5s ease forwards;
+        }
+        
+        @keyframes errorAnim {
+            100% {
+                transform: translate(-50%, -400px);
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="image-container">
-        <img src="/static/image/error_kot/kot_new404_2.png" alt="404 Error">
+    <div class="app">
+        <div class="error">
+            404
+        </div>
+        <div class="img">
+            <img src="static/image/error_kot/cat.png" alt="cat">
+            <h1 class="okak">ОКАК</h1>
+        </div>
     </div>
 </body>
 

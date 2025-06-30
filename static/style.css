@@ -101,12 +101,41 @@ li h3 {
     padding-top: 10px;
 }
 
+
+/* Основные стили */
+
 .zaeb {
+    display: flex;
+    justify-content: space-between;
+    /* Распределение по краям */
+    align-items: center;
+    /* Вертикальное выравнивание */
+    width: 100%;
+    padding-top: 30px;
+}
+
+.plash_text_right {
     color: white;
     font-weight: 600;
     font-size: xx-large;
-    padding-top: 30px;
     padding-left: 30px;
+    /* Оставляем без flex, чтобы занимал только нужное пространство */
+}
+
+.plash_text_left {
+    color: #787777;
+    font-size: large;
+    margin-left: auto;
+    /* Автоматический отступ слева прижимает вправо */
+    padding-right: 20px;
+    /* Отступ от правого края */
+}
+
+
+/* Убираем старый отступ */
+
+.plash_text_left {
+    margin-left: 0 !important;
 }
 
 .link-as-text {
