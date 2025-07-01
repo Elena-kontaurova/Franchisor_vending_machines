@@ -1,5 +1,6 @@
 import tkinter as tk
 
+# так
 
 def graf():
     global c
