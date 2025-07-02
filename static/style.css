@@ -183,3 +183,56 @@ li h3 {
     padding-left: 60px;
     padding-top: 30px;
 }
+
+.menu>ul>li a:hover {
+    background: linear-gradient(to right, #2c3138, #1e2329) !important;
+}
+
+
+/* Все основные пункты меню *//* Общие стили для всех основных пунктов меню */
+.menu>ul>li a {
+    background: #1e2329; /* Базовый цвет */
+    transition: all 0.3s ease;
+}
+
+/* Градиент при наведении (для всех пунктов) */
+.menu>ul>li a:hover {
+    background: linear-gradient(to right, #2c3138, #1e2329);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Стили для основных пунктов меню */
+.menu>ul>li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: all 0.3s ease-i     n-out; /* Плавные переходы */
+    width: 100%;
+    background: #1e2329; /* Базовый цвет */
+}
+
+/* Градиент при наведении */
+.menu>ul>li a:hover {
+    background: linear-gradient(to right, #303233, #1e2329);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Анимация для подчёркивания */
+.menu>ul>li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background:  #303233;
+    transition: width 0.3s ease;
+}
+
+.menu>ul>li a:hover::after {
+    width: 100%;
+}
+

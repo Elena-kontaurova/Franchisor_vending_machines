@@ -109,6 +109,23 @@
             width: 24px;
             height: 24px;
         }
+        .submenu.active {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+            transform: translateX(0) scale(1);
+        }
+
+        .submenu {
+            transform: translateX(-10px) scale(0.95);
+            transition: all 0.3s ease;
+        }
+        .submenu-indicator {
+            display: inline-block;
+            margin-left: auto;
+            transition: 0.2s ease;
+            font-size: 0.8em;
+            transform-origin: center;
+        }
+
     </style>
 </head>
 
@@ -116,7 +133,7 @@
     <div class="header-container">
         <div class="str_verh">
             <div class="logo-container">
-                <img src="/static/image/logo.PNG" alt="logo">
+                <img src="/static/image/logo2.PNG" alt="logo">
             </div>
         </div>
         <div class="avtor"></div>
