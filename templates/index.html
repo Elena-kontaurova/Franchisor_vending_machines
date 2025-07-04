@@ -126,6 +126,77 @@
             transform-origin: center;
         }
 
+        .block-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+            grid-template-rows: auto auto; /* 2 строки */
+            gap: 20px; /* Расстояние между блоками */
+            padding: 1px;
+        }
+
+        .block {
+            background-color: #ffffff;
+            border: 2px solid #9c9b9b;
+            padding: 0; /* Убираем отступы у родителя */
+            text-align: center;
+            height: 250px;
+            width: 290px;
+            position: relative;
+        }
+
+        .block-wide {
+            grid-column: span 2; /* Занимает 2 колонки */
+            background-color: #ffffff;
+            border: 1px solid #838282;
+            padding: 0; /* Убираем отступы у родителя */
+            text-align: center;
+            position: relative;
+        }
+
+        .block_2 {
+            background: linear-gradient(135deg, #cccbc9, #a9a8a6);
+            width: 100%;
+            height: 50px;
+            padding: 0 !important;
+            margin: 0 !important;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute; /* Закрепляем блок внутри .block */
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* Убираем отступы у всех дочерних элементов */
+        .block_2 * {
+            margin: 0 !important;
+            padding: 0 !important;
+            line-height: normal !important;
+        }
+
+        /* Убираем дефолтные стили у текста */
+        .block_2 h1, .block_2 h2, .block_2 h3, .block_2 p, .block_2 span {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .block-wide .block_2 {
+            height: 100px;
+            display: flex;
+            align-items: flex-start; /* Прижимаем к верху */
+            justify-content: center; /* Центрируем по горизонтали */
+            padding-top: 20px !important; /* Убираем внутренний отступ */
+        }
+
+        .block-wide .block_2 span {
+            margin-top: 10px; /* Отступ сверху */
+            display: inline-block;
+        }
+
+
+
     </style>
 </head>
 
@@ -214,7 +285,34 @@
                     <div class="plash_text_left">Главная</div>
                 </div>
             </div>
-            <div class="str_nuz"></div>
+            <div class="str_nuz">
+                <!-- Добавим контейнер для блоков -->
+                <div class="block-container">
+                    <!-- Первая строка -->
+                    <div class="block">
+                        <div class="block_2">Эффективность сети</div>
+                        <div class="block_3">сучка</div>
+                    </div>
+                    <div class="block">
+                        <div class="block_2">Состояние сети</div>
+                        <div class="block_3">сучка</div>
+                    </div>
+                    <div class="block">
+                        <div class="block_2">Сводка</div>
+                        <div class="block_3">сучка</div>
+                    </div>
+                    
+                    <!-- Вторая строка -->
+                    <div class="block-wide">
+                        <div class="block_2">Динамика продаж за последние 10 дней</div>
+                        <div class="block_3">сучка</div>
+                    </div>
+                    <div class="block">
+                        <div class="block_2">Новости</div>
+                        <div class="block_3">сучка</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
