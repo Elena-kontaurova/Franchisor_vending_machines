@@ -5,111 +5,9 @@
     <meta charset="UTF-8">
     <title>Аппараты для сладостей</title>
     <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/css/css_appart_sweet.css">
     <link rel="icon" href="/static/image/Frame-30.ico" type="image/x-icon">
-    <style>
-        /* Стили для меню */
-        
-        .menu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .menu>ul>li {
-            margin-bottom: 25px;
-            /* Большой отступ между пунктами */
-        }
-        
-        .menu li {
-            position: relative;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .menu>ul>li>a {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
-            color: #e0e0e0;
-            text-decoration: none;
-            transition: background 0.3s;
-            width: 100%;
-        }
-        
-        .menu>ul>li>a:hover {
-            background: #3a4049;
-        }
-        
-        .has-submenu>a {
-            cursor: pointer;
-            width: 100%;
-        }
-        
-        .has-submenu>a>h3 {
-            display: flex;
-            width: 100%;
-        }
-        
-        .submenu {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 100%;
-            background: #2c3138;
-            border-radius: 4px;
-            padding: 10px 0;
-            margin-left: 5px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            list-style: none;
-            z-index: 100;
-            width: 200px;
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        
-        .submenu.active {
-            display: block;
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .submenu li {
-            margin: 0;
-        }
-        
-        .submenu a {
-            display: block;
-            padding: 10px 20px;
-            color: #e0e0e0;
-            text-decoration: none;
-            transition: all 0.2s;
-            font-size: 14px;
-        }
-        
-        .submenu a:hover {
-            background: #3a4049;
-            color: white;
-            padding-left: 25px;
-        }
-        
-        .submenu-indicator {
-            display: inline-block;
-            margin-left: auto;
-            transition: 0.2s ease;
-            font-size: 0.8em;
-        }
-        
-        .has-submenu.active .submenu-indicator {
-            transform: rotate(180deg);
-        }
-        
-        .img {
-            margin-right: 10px;
-            width: 24px;
-            height: 24px;
-        }
-    </style>
+    <script src="static/js/app.js"></script>
 </head>
 
 <body>
@@ -200,54 +98,6 @@
             <div class="str_nuz"></div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const submenuItems = document.querySelectorAll('.has-submenu');
-
-            submenuItems.forEach(item => {
-                const trigger = item.querySelector('a:first-child');
-                const submenu = item.querySelector('.submenu');
-
-                trigger.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    // Закрываем все другие подменю
-                    submenuItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                            otherItem.querySelector('.submenu').classList.remove('active');
-                        }
-                    });
-
-                    // Переключаем текущее подменю
-                    item.classList.toggle('active');
-                    submenu.classList.toggle('active');
-                });
-            });
-
-            // Закрытие подменю при клике вне его области
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.has-submenu')) {
-                    submenuItems.forEach(item => {
-                        item.classList.remove('active');
-                        item.querySelector('.submenu').classList.remove('active');
-                    });
-                }
-            });
-
-            // Отключение кликов на ссылках в скрытом подменю
-            document.querySelectorAll('.submenu a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const submenu = e.target.closest('.submenu');
-                    if (!submenu || !submenu.classList.contains('active')) {
-                        e.preventDefault(); // Запрещаем переход, если подменю скрыто
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 
 </html>
