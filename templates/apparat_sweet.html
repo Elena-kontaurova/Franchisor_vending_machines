@@ -203,7 +203,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Обработчики для всех пунктов меню с подменю
             const submenuItems = document.querySelectorAll('.has-submenu');
 
             submenuItems.forEach(item => {
@@ -228,9 +227,8 @@
                 });
             });
 
-            // Закрытие подменю при клике в любом месте документа
+            // Закрытие подменю при клике вне его области
             document.addEventListener('click', function(e) {
-                // Если клик был не по подменю или его триггеру
                 if (!e.target.closest('.has-submenu')) {
                     submenuItems.forEach(item => {
                         item.classList.remove('active');
@@ -239,10 +237,13 @@
                 }
             });
 
-            // Предотвращаем закрытие при клике внутри подменю
-            document.querySelectorAll('.submenu').forEach(menu => {
-                menu.addEventListener('click', function(e) {
-                    e.stopPropagation();
+            // Отключение кликов на ссылках в скрытом подменю
+            document.querySelectorAll('.submenu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const submenu = e.target.closest('.submenu');
+                    if (!submenu || !submenu.classList.contains('active')) {
+                        e.preventDefault(); // Запрещаем переход, если подменю скрыто
+                    }
                 });
             });
         });

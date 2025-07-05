@@ -236,3 +236,126 @@ li h3 {
     width: 100%;
 }
 
+.submenu {
+    pointer-events: none; /* Отключаем взаимодействие */
+}
+.submenu.active {
+    pointer-events: auto; /* Включаем взаимодействие при открытии */
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu>ul>li {
+    margin-bottom: 25px;
+    /* Большой отступ между пунктами */
+}
+
+.menu li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.menu>ul>li>a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.menu>ul>li>a:hover {
+    background: #3a4049;
+}
+
+.has-submenu>a {
+    cursor: pointer;
+    width: 100%;
+}
+
+.has-submenu>a>h3 {
+    display: flex;
+    width: 100%;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: #2c3138;
+    border-radius: 4px;
+    padding: 10px 0;
+    margin-left: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    list-style: none;
+    z-index: 100;
+    width: 200px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.submenu.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.submenu li {
+    margin: 0;
+}
+
+.submenu a {
+    display: block;
+    padding: 10px 20px;
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.submenu a:hover {
+    background: #3a4049;
+    color: white;
+    padding-left: 25px;
+}
+
+.submenu-indicator {
+    display: inline-block;
+    margin-left: auto;
+    transition: 0.2s ease;
+    font-size: 0.8em;
+}
+
+.has-submenu.active .submenu-indicator {
+    transform: rotate(180deg);
+}
+
+.img {
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+}
+.submenu.active {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    transform: translateX(0) scale(1);
+}
+
+.submenu {
+    transform: translateX(-10px) scale(0.95);
+    transition: all 0.3s ease;
+}
+.submenu-indicator {
+    display: inline-block;
+    margin-left: auto;
+    transition: 0.2s ease;
+    font-size: 0.8em;
+    transform-origin: center;
+}
