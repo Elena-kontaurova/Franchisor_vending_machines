@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="static/css/css_index.css">
     <link rel="icon" href="/static/image/Frame-30.ico" type="image/x-icon">
     <script src="static/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="static/js/index.js"></script>
 </head>
 
 <body>
@@ -101,7 +103,11 @@
                     <!-- Первая строка -->
                     <div class="block">
                         <div class="block_2">Эффективность сети</div>
-                        <div class="block_3">сучка</div>
+                        <div class="block_3">
+                            <div class="chart-container">
+                                <canvas id="efficiencyChart"></canvas>
+                            </div>
+                        </div>
                     </div>
                     <div class="block">
                         <div class="block_2">Состояние сети</div>
