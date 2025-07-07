@@ -88,5 +88,67 @@
 }
 
 .block_3 .chart-container {
-    padding-top: 20px;
+    padding-top: 10px;
+}
+
+.chart-container {
+    position: relative;
+    height: 90%;
+    width: 100%;
+}
+
+.error-message {
+    color: #ff0000;
+    padding: 10px;
+    text-align: center;
+    background-color: #ffeeee;
+    border: 1px solid #ffcccc;
+    border-radius: 5px;
+}
+
+/* Стили для центрального текста */
+.doughnut-center {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10; /* Важно: должен быть над графиком */
+}
+
+.total-percent {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(75, 192, 192, 1);
+}
+
+.status-text {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Обеспечиваем видимость canvas */
+canvas {
+    position: relative;
+    z-index: 5;
+}
+
+.status-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    transform: translate(-50%, -100%);
+    white-space: nowrap;
+}
+
+.status-tooltip.show {
+    opacity: 1;
 }
