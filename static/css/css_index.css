@@ -172,3 +172,23 @@ canvas {
     margin-left: 10px; /* Отступ между названием и ценой */
     padding-right: 10px;
 }
+
+.item1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px; /* Отступ между элементами */
+    padding-top: 8px;
+}
+
+.date {
+    font-size: 13px;
+    text-align: left; /* Выравнивание по левому краю */
+    padding-left: 20px;
+}
+
+.text {
+    font-size: 13px;
+    text-align: right; /* Выравнивание по правому краю */
+    margin-left: 10px; /* Отступ между названием и ценой */
+    padding-right: 10px;
+}

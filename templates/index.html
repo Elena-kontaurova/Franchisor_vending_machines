@@ -140,7 +140,14 @@
                     </div>
                     <div class="block">
                         <div class="block_2">Новости</div>
-                        <div class="block_3">сучка</div>
+                        <div class="block_3">
+                            {% for new in news %}
+                                <div class="item1">
+                                    <div class="date">{{ new.date }}</div>
+                                    <div class="text">{{ new.text }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
