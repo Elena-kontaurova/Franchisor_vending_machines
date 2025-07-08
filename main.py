@@ -1,7 +1,8 @@
 ''' api '''
 from fastapi import FastAPI, Request
 from connect import VendingMachine, Product, Sale, User, Maintenance, \
-    Torfavt, Kompany, Soston_svz, Zagrux, Denech_sredst, Inform_Status
+    Torfavt, Kompany, Soston_svz, Zagrux, Denech_sredst, Inform_Status, \
+    Svodka
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, JSONResponse
@@ -36,8 +37,16 @@ async def error_404(request: Request):
 
 @app.get('/', response_class=HTMLResponse)
 async def main_str(request: Request):
+    svodka = Svodka.select()
+    sv = [{
+        'id': svo.id,
+        'name': svo.name,
+        'price': svo.price}
+        for svo in svodka
+    ]
     return templates.TemplateResponse('index.html',
-                                      {'request': request})
+                                      {'request': request,
+                                       'svodka': sv})
 
 
 @app.get('/monitor', response_class=HTMLResponse)

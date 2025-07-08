@@ -122,13 +122,21 @@
                     </div>
                     <div class="block">
                         <div class="block_2">Сводка</div>
-                        <div class="block_3">сучка</div>
+                        <div class="block_3">
+                            {% for svo in svodka %}
+                                <div class="item">
+                                    <div class="name">{{ svo.name }}</div>
+                                    <div class="price">{{ svo.price }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
                     
                     <!-- Вторая строка -->
                     <div class="block-wide">
                         <div class="block_2">Динамика продаж за последние 10 дней</div>
-                        <div class="block_3">сучка</div>
+                        <div class="block_3">сучка
+                        </div>
                     </div>
                     <div class="block">
                         <div class="block_2">Новости</div>
