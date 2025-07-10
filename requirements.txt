@@ -5,3 +5,4 @@ mysql-connector
 mysqlclient
 Jinja2
 requests
+
