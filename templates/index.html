@@ -133,9 +133,21 @@
                     </div>
                     
                     <!-- Вторая строка -->
+                    <!-- Вторая строка -->
                     <div class="block-wide">
-                        <div class="block_2">Динамика продаж за последние 10 дней</div>
-                        <div class="block_3">сучка
+                        <div class="block_2">
+                            <div class="sales-header">
+                                <div class="sales-title">Динамика продаж за последние 10 дней</div>
+                                <div class="sales-buttons">
+                                    <button class="sales-btn active" data-type="amount">По сумме</button>
+                                    <button class="sales-btn" data-type="quantity">По количеству</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block_3">
+                            <div class="chart-container">
+                                <canvas id="salesChart"></canvas>
+                            </div>
                         </div>
                     </div>
                     <div class="block">
