@@ -1,0 +1,228 @@
+.monitor-container {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.filters-panel {
+    background: #2c3138;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    color: #a0aec0;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+}
+
+.filter-group select, .filter-group input {
+    background: #1e2329;
+    border: 1px solid #3a4049;
+    border-radius: 4px;
+    padding: 6px 10px;
+    color: #e2e8f0;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.filter-group select:focus, .filter-group input:focus {
+    border-color: #4299e1;
+}
+
+.buttons-group {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.btn {
+    padding: 7px 14px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background: #4299e1;
+    color: white;
+}
+
+.btn-secondary {
+    background: #4a5568;
+    color: #e2e8f0;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Уменьшенные карточки */
+.card {
+    background: #2c3138;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    height: 200px; /* Уменьшенная высота */
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background: #4299e1;
+    padding: 8px 12px; /* Уменьшенный отступ */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 0.95rem; /* Уменьшенный размер шрифта */
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.status-indicator {
+    width: 8px; /* Уменьшенный размер */
+    height: 8px; /* Уменьшенный размер */
+    border-radius: 50%;
+    margin-left: 6px;
+    flex-shrink: 0;
+}
+
+.status-online {
+    background: #48bb78;
+}
+
+.status-warning {
+    background: #ecc94b;
+}
+
+.status-offline {
+    background: #e53e3e;
+}
+
+.card-body {
+    padding: 10px 12px; /* Уменьшенный отступ */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px; /* Уменьшенный промежуток */
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    color: #a0aec0;
+    font-size: 0.75rem; /* Уменьшенный размер шрифта */
+    margin-bottom: 2px;
+}
+
+.info-value {
+    color: #e2e8f0;
+    font-weight: 500;
+    font-size: 0.85rem; /* Уменьшенный размер шрифта */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.value-normal {
+    color: #e2e8f0;
+}
+
+.value-warning {
+    color: #ecc94b;
+}
+
+.value-critical {
+    color: #fc8181;
+}
+
+.card-footer {
+    background: #1e2329;
+    padding: 6px 10px; /* Уменьшенный отступ */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem; /* Уменьшенный размер шрифта */
+    color: #a0aec0;
+}
+
+.total-info {
+    text-align: center;
+    padding: 12px;
+    background: #2c3138;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для скроллбара */
+.cards-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cards-container::-webkit-scrollbar-track {
+    background: #1e2329;
+    border-radius: 3px;
+}
+
+.cards-container::-webkit-scrollbar-thumb {
+    background: #4299e1;
+    border-radius: 3px;
+}
+
+.cards-container::-webkit-scrollbar-thumb:hover {
+    background: #3182ce;
+}
+
+/* Фильтр по городу */
+.city-filter-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.city-filter-container input {
+    flex: 1;
+}

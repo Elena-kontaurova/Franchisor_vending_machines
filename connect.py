@@ -223,6 +223,17 @@ class Profile_user(BaseModel):
     adress = CharField(null=True)
 
 
+class Monitor_TA(BaseModel):
+    id = AutoField()
+    name = CharField()
+    connection_status = CharField()  # Статус связи
+    last_connection = IntegerField()  # Время с последней связи в минутах
+    load_percent = IntegerField()    # Процент загрузки
+    money_amount = IntegerField()    # Денежные средства
+    events = CharField()             # События
+    location = CharField()           # Местоположение
+
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
                   User, Maintenance, Svodka, News,
@@ -231,6 +242,6 @@ db.create_tables([VendingMachine, Product, Sale,
                   AutorizRegus, Otchet_torgov_avtomat,
                   Otchet_monitor, Otchet_kompanyu,
                   Forma_str1, Forma_str2, Forma_str3,
-                  Modem, Dop, Profile_user],
+                  Modem, Dop, Profile_user, Monitor_TA],
                  safe=True)
 db.close()

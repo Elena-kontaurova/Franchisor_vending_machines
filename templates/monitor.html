@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Монитор</title>
+    <title>Монитор ТА</title>
     <link rel="stylesheet" href="static/style.css">
     <link rel="stylesheet" href="static/css/css_monitor.css">
     <link rel="icon" href="/static/image/Frame-30.ico" type="image/x-icon">
-    <script src="static/js/app.js"></script>
+    <script src="static/js/monitor.js"></script>
 </head>
 
 <body>
@@ -95,7 +95,121 @@
                     <div class="plash_text_left">Монитор ТА</div>
                 </div>
             </div>
-            <div class="str_nuz"></div>
+            <div class="str_nuz">
+                <div class="monitor-container">
+                    <!-- Панель фильтров -->
+                    <div class="filters-panel">
+                        <div class="filter-group">
+                            <label>Общее состояние</label>
+                            <select id="status-filter">
+                                <option value="all">Все</option>
+                                <option value="normal">Норма</option>
+                                <option value="warning">Предупреждение</option>
+                                <option value="critical">Критическое</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Подключение</label>
+                            <select id="connection-filter">
+                                <option value="all">Все</option>
+                                <option value="online">Онлайн</option>
+                                <option value="offline">Офлайн</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Сортировка</label>
+                            <select id="sort-by">
+                                <option value="name">По названию</option>
+                                <option value="status">По статусу</option>
+                                <option value="connection">По времени связи</option>
+                                <option value="city">По городу</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Фильтр по городу</label>
+                            <div class="city-filter-container">
+                                <input type="text" id="city-filter" placeholder="Начните вводить город...">
+                            </div>
+                        </div>
+                        
+                        <div class="buttons-group">
+                            <button class="btn btn-primary" id="apply-filters">Применить</button>
+                            <button class="btn btn-secondary" id="clear-filters">Очистить</button>
+                        </div>
+                    </div>
+                    
+                    <div class="cards-container">
+                        {% for mon in monit %}
+                        <div class="card" 
+                            data-id="{{ mon.id }}" 
+                            data-status="{{ 'normal' if mon.load_percent > 30 else 'warning' if mon.load_percent > 10 else 'critical' }}" 
+                            data-connection="{{ 'online' if mon.last_connection < 60 else 'offline' }}" 
+                            data-city="{{ mon.location.split(',')[0] }}">
+                            
+                            <div class="card-header">
+                                <div class="card-title">{{ mon.name }}</div>
+                                <div class="status-indicator 
+                                    {% if mon.last_connection < 60 %}status-online
+                                    {% else %}status-offline{% endif %}">
+                                </div>
+                            </div>
+                            
+                            <div class="card-body">
+                                <div class="info-item">
+                                    <span class="info-label">Связь</span>
+                                    <span class="info-value 
+                                        {% if mon.last_connection < 60 %}value-normal
+                                        {% elif mon.last_connection < 1440 %}value-warning
+                                        {% else %}value-critical{% endif %} 
+                                        last-connection">
+                                        {{ mon.last_connection | format_minutes }}
+                                    </span>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <span class="info-label">Загрузка</span>
+                                    <span class="info-value 
+                                        {% if mon.load_percent > 30 %}value-normal
+                                        {% elif mon.load_percent > 10 %}value-warning
+                                        {% else %}value-critical{% endif %}">
+                                        {{ mon.load_percent }}%
+                                    </span>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <span class="info-label">Денежные средства</span>
+                                    <span class="info-value value-normal money-value">
+                                        {{ mon.money_amount }} р.
+                                    </span>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <span class="info-label">События</span>
+                                    <span class="info-value">
+                                        {{ mon.events }}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="card-footer">
+                                <span class="city">{{ mon.location }}</span>
+                                <span>ID: {{ mon.id }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Итоговая информация -->
+                    <div class="total-info">
+                        Итого автоматов: {{ total_machines }}. 
+                        Денег в автоматах: {{ total_money }} р.
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </body>

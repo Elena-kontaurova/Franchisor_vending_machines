@@ -2,7 +2,7 @@
 from fastapi import FastAPI, Request
 from connect import VendingMachine, Product, Sale, User, Maintenance, \
     Torfavt, Kompany, Soston_svz, Zagrux, Denech_sredst, Inform_Status, \
-    Svodka, News
+    Svodka, News, Monitor_TA
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, JSONResponse
@@ -13,6 +13,21 @@ app = FastAPI()  # блять
 
 templates = Jinja2Templates(directory='templates')
 app.mount('/static', StaticFiles(directory='static'), name='static')
+
+
+def format_minutes(minutes):
+    if minutes < 60:
+        return f"{minutes} мин. назад"
+    elif minutes < 1440:
+        hours = minutes // 60
+        return f"{hours} час. назад"
+    else:
+        days = minutes // 1440
+        return f"{days} дн. назад"
+
+
+# Добавляем фильтр в шаблоны
+templates.env.filters["format_minutes"] = format_minutes
 
 
 @app.exception_handler(StarletteHTTPException)
@@ -59,8 +74,17 @@ async def main_str(request: Request):
 
 @app.get('/monitor', response_class=HTMLResponse)
 async def monik_str(request: Request):
+    # Получаем все записи
+    monit = list(Monitor_TA.select())
+    # Рассчитываем итоговые значения
+    total_machines = len(monit)
+    total_money = sum(mon.money_amount for mon in monit)
+
     return templates.TemplateResponse('monitor.html',
-                                      {'request': request})
+                                      {'request': request,
+                                       'monit': monit,
+                                       'total_machines': total_machines,
+                                       'total_money': total_money})
 
 
 @app.get('/sales', response_class=HTMLResponse)
