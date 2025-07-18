@@ -8,6 +8,106 @@
     <link rel="stylesheet" href="static/css/css_otch_torgavt.css">
     <link rel="icon" href="/static/image/Frame-30.ico" type="image/x-icon">
     <script src="static/js/app.js"></script>
+    <script src="static/js/otch_torg_avt.js"></script>
+    <style>
+        /* Добавленные стили для таблицы */
+        .table-container {
+            width: 98%;
+            height: 580px;
+            overflow: auto;
+            margin: 10px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .report-table th {
+            background-color: #090d14;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            position: sticky;
+            top: 0;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .report-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eaeaea;
+            color: #333;
+        }
+        
+        .report-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .report-table tr:hover {
+            background-color: #f0f5ff;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-online { background-color: #28a745; }
+        .status-offline { background-color: #dc3545; }
+        .status-warning { background-color: #ffc107; }
+        
+        .event-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .event-critical { background-color: #ffe0e0; color: #dc3545; }
+        .event-warning { background-color: #fff3cd; color: #856404; }
+        .event-normal { background-color: #e0ffe7; color: #28a745; }
+        
+        .details-btn {
+            background-color: #090d14;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        
+        .details-btn:hover {
+            background-color: #1e2329;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .load-low { background-color: #dc3545; }
+        .load-medium { background-color: #ffc107; }
+        .load-high { background-color: #28a745; }
+    </style>
 </head>
 
 <body>
@@ -95,9 +195,149 @@
                     <div class="plash_text_left">Отчет торговые автоматы</div>
                 </div>
             </div>
-            <div class="str_nuz"></div>
+            <div class="str_nuz">
+                <!-- Контейнер для таблицы -->
+                <div class="table-container">
+                    <table class="report-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Название</th>
+                                <th>Статус</th>
+                                <th>Загрузка</th>
+                                <th>Денежные средства</th>
+                                <th>События</th>
+                                <th>Адрес</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Данные по торговым автоматам (отсортировано по ID) -->
+                            <tr>
+                                <td>1</td>
+                                <td>K-001 - ТЦ РИО Напитки</td>
+                                <td>
+                                    <span class="status-indicator status-online"></span>
+                                    15 мин. назад
+                                </td>
+                                <td>
+                                    65%
+                                    <div class="progress-bar">
+                                        <div class="progress-fill load-medium" style="width:65%"></div>
+                                    </div>
+                                </td>
+                                <td>18 450 ₽</td>
+                                <td><span class="event-badge event-normal">Нет</span></td>
+                                <td>Кострома, ТЦ РИО, 1 этаж</td>
+                                <td><button class="details-btn">Подробнее</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>K-002 - Университет Снеки</td>
+                                <td>
+                                    <span class="status-indicator status-online"></span>
+                                    45 мин. назад
+                                </td>
+                                <td>
+                                    22%
+                                    <div class="progress-bar">
+                                        <div class="progress-fill load-low" style="width:22%"></div>
+                                    </div>
+                                </td>
+                                <td>9 870 ₽</td>
+                                <td><span class="event-badge event-warning">Запас</span></td>
+                                <td>Кострома, ул. Дзержинского, 17</td>
+                                <td><button class="details-btn">Подробнее</button></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>K-003 - "Вокзал" Сладости</td>
+                                <td>
+                                    <span class="status-indicator status-offline"></span>
+                                    20 час. назад
+                                </td>
+                                <td>
+                                    8%
+                                    <div class="progress-bar">
+                                        <div class="progress-fill load-low" style="width:8%"></div>
+                                    </div>
+                                </td>
+                                <td>24 350 ₽</td>
+                                <td><span class="event-badge event-critical">Офлайн</span></td>
+                                <td>Кострома, Ж/д вокзал, зал ожидания</td>
+                                <td><button class="details-btn">Подробнее</button></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>M-101 - БЦ Москва-Сити Напитки</td>
+                                <td>
+                                    <span class="status-indicator status-online"></span>
+                                    8 мин. назад
+                                </td>
+                                <td>
+                                    78%
+                                    <div class="progress-bar">
+                                        <div class="progress-fill load-high" style="width:78%"></div>
+                                    </div>
+                                </td>
+                                <td>32 150 ₽</td>
+                                <td><span class="event-badge event-normal">Нет</span></td>
+                                <td>Москва, Пресненская наб., 8</td>
+                                <td><button class="details-btn">Подробнее</button></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Y-021 - ТЦ Аура Снеки</td>
+                                <td>
+                                    <span class="status-indicator status-online"></span>
+                                    25 мин. назад
+                                </td>
+                                <td>
+                                    54%
+                                    <div class="progress-bar">
+                                        <div class="progress-fill load-medium" style="width:54%"></div>
+                                    </div>
+                                </td>
+                                <td>15 780 ₽</td>
+                                <td><span class="event-badge event-normal">Нет</span></td>
+                                <td>Ярославль, ул. Чайковского, 3</td>
+                                <td><button class="details-btn">Подробнее</button></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>ТРЦ Солнечный Сладости</td>
+                                <td>
+                                    <span class="status-indicator status-online"></span>
+                                    1 час. назад
+                                </td>
+                                <td>
+                                    18%
+                                    <div class="progress-bar">
+                                        <div class="progress-fill load-low" style="width:18%"></div>
+                                    </div>
+                                </td>
+                                <td>7 650 ₽</td>
+                                <td><span class="event-badge event-critical">Замена</span></td>
+                                <td>Кострома, Кинешемское шоссе, 76</td>
+                                <td><button class="details-btn">Подробнее</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Обработчики для кнопок "Подробнее"
+            document.querySelectorAll('.details-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const machineId = row.cells[0].textContent;
+                    const machineName = row.cells[1].textContent;
+                    alert(`Подробная информация по автомату: ${machineName} (ID: ${machineId})`);
+                });
+            });
+        });
+    </script>
 </body>
-
-</html>
