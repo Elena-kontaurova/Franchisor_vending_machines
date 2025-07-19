@@ -234,6 +234,16 @@ class Monitor_TA(BaseModel):
     location = CharField()           # Местоположение
 
 
+class TorgAvt(BaseModel):
+    id = AutoField()
+    name = CharField()
+    last_connection = IntegerField()
+    load_percent = IntegerField()
+    money_amount = IntegerField()
+    events = CharField(null=True)
+    address = CharField()
+
+
 db.connect()
 db.create_tables([VendingMachine, Product, Sale,
                   User, Maintenance, Svodka, News,
@@ -242,6 +252,7 @@ db.create_tables([VendingMachine, Product, Sale,
                   AutorizRegus, Otchet_torgov_avtomat,
                   Otchet_monitor, Otchet_kompanyu,
                   Forma_str1, Forma_str2, Forma_str3,
-                  Modem, Dop, Profile_user, Monitor_TA],
+                  Modem, Dop, Profile_user, Monitor_TA,
+                  TorgAvt],
                  safe=True)
 db.close()

@@ -196,7 +196,6 @@
                 </div>
             </div>
             <div class="str_nuz">
-                <!-- Контейнер для таблицы -->
                 <div class="table-container">
                     <table class="report-table">
                         <thead>
@@ -212,115 +211,40 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Данные по торговым автоматам (отсортировано по ID) -->
+                            {% for avt in torg_avt_list %}
                             <tr>
-                                <td>1</td>
-                                <td>K-001 - ТЦ РИО Напитки</td>
+                                <td>{{ avt.id }}</td>
+                                <td>{{ avt.name }}</td>
                                 <td>
-                                    <span class="status-indicator status-online"></span>
-                                    15 мин. назад
+                                    <span class="status-indicator 
+                                        {% if avt.last_connection < 60 %}status-online
+                                        {% elif avt.last_connection < 1440 %}status-warning
+                                        {% else %}status-offline{% endif %}"></span>
+                                    {{ avt.last_connection|format_minutes }}
                                 </td>
                                 <td>
-                                    65%
+                                    {{ avt.load_percent }}%
                                     <div class="progress-bar">
-                                        <div class="progress-fill load-medium" style="width:65%"></div>
+                                        <div class="progress-fill 
+                                            {% if avt.load_percent < 30 %}load-low
+                                            {% elif avt.load_percent < 70 %}load-medium
+                                            {% else %}load-high{% endif %}" 
+                                            style="width:{{ avt.load_percent }}%"></div>
                                     </div>
                                 </td>
-                                <td>18 450 ₽</td>
-                                <td><span class="event-badge event-normal">Нет</span></td>
-                                <td>Кострома, ТЦ РИО, 1 этаж</td>
+                                <td>{{ avt.formatted_money }}</td>
+                                <td>
+                                    <span class="event-badge 
+                                        {% if not avt.events or avt.events == 'Нет' %}event-normal
+                                        {% elif avt.events in ['Низкий запас', 'Запас'] %}event-warning
+                                        {% else %}event-critical{% endif %}">
+                                        {{ avt.events or 'Нет' }}
+                                    </span>
+                                </td>
+                                <td>{{ avt.address }}</td>
                                 <td><button class="details-btn">Подробнее</button></td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>K-002 - Университет Снеки</td>
-                                <td>
-                                    <span class="status-indicator status-online"></span>
-                                    45 мин. назад
-                                </td>
-                                <td>
-                                    22%
-                                    <div class="progress-bar">
-                                        <div class="progress-fill load-low" style="width:22%"></div>
-                                    </div>
-                                </td>
-                                <td>9 870 ₽</td>
-                                <td><span class="event-badge event-warning">Запас</span></td>
-                                <td>Кострома, ул. Дзержинского, 17</td>
-                                <td><button class="details-btn">Подробнее</button></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>K-003 - "Вокзал" Сладости</td>
-                                <td>
-                                    <span class="status-indicator status-offline"></span>
-                                    20 час. назад
-                                </td>
-                                <td>
-                                    8%
-                                    <div class="progress-bar">
-                                        <div class="progress-fill load-low" style="width:8%"></div>
-                                    </div>
-                                </td>
-                                <td>24 350 ₽</td>
-                                <td><span class="event-badge event-critical">Офлайн</span></td>
-                                <td>Кострома, Ж/д вокзал, зал ожидания</td>
-                                <td><button class="details-btn">Подробнее</button></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>M-101 - БЦ Москва-Сити Напитки</td>
-                                <td>
-                                    <span class="status-indicator status-online"></span>
-                                    8 мин. назад
-                                </td>
-                                <td>
-                                    78%
-                                    <div class="progress-bar">
-                                        <div class="progress-fill load-high" style="width:78%"></div>
-                                    </div>
-                                </td>
-                                <td>32 150 ₽</td>
-                                <td><span class="event-badge event-normal">Нет</span></td>
-                                <td>Москва, Пресненская наб., 8</td>
-                                <td><button class="details-btn">Подробнее</button></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Y-021 - ТЦ Аура Снеки</td>
-                                <td>
-                                    <span class="status-indicator status-online"></span>
-                                    25 мин. назад
-                                </td>
-                                <td>
-                                    54%
-                                    <div class="progress-bar">
-                                        <div class="progress-fill load-medium" style="width:54%"></div>
-                                    </div>
-                                </td>
-                                <td>15 780 ₽</td>
-                                <td><span class="event-badge event-normal">Нет</span></td>
-                                <td>Ярославль, ул. Чайковского, 3</td>
-                                <td><button class="details-btn">Подробнее</button></td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>ТРЦ Солнечный Сладости</td>
-                                <td>
-                                    <span class="status-indicator status-online"></span>
-                                    1 час. назад
-                                </td>
-                                <td>
-                                    18%
-                                    <div class="progress-bar">
-                                        <div class="progress-fill load-low" style="width:18%"></div>
-                                    </div>
-                                </td>
-                                <td>7 650 ₽</td>
-                                <td><span class="event-badge event-critical">Замена</span></td>
-                                <td>Кострома, Кинешемское шоссе, 76</td>
-                                <td><button class="details-btn">Подробнее</button></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

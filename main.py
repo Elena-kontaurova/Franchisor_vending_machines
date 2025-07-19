@@ -2,7 +2,7 @@
 from fastapi import FastAPI, Request
 from connect import VendingMachine, Product, Sale, User, Maintenance, \
     Torfavt, Kompany, Soston_svz, Zagrux, Denech_sredst, Inform_Status, \
-    Svodka, News, Monitor_TA
+    Svodka, News, Monitor_TA, TorgAvt
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, JSONResponse
@@ -87,10 +87,19 @@ async def monik_str(request: Request):
                                        'total_money': total_money})
 
 
-@app.get('/sales', response_class=HTMLResponse)
+@app.get("/sales", response_class=HTMLResponse)
 async def torg_str(request: Request):
-    return templates.TemplateResponse('otch_torgavt.html',
-                                      {'request': request})
+    # Получаем данные из БД и сортируем по ID
+    torg_avt_list = TorgAvt.select().order_by(TorgAvt.id)
+
+    # Форматируем денежные суммы
+    for avt in torg_avt_list:
+        avt.formatted_money = f"{avt.money_amount:,} ₽".replace(",", " ")
+
+    return templates.TemplateResponse(
+        "otch_torgavt.html",
+        {"request": request, "torg_avt_list": torg_avt_list}
+    )
 
 
 @app.get('/stock', response_class=HTMLResponse)
