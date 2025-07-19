@@ -1,0 +1,97 @@
+/* Добавленные стили для таблицы */
+.table-container {
+    width: 98%;
+    height: 580px;
+    overflow: auto;
+    margin: 10px auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-table th {
+    background-color: #090d14;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.report-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eaeaea;
+    color: #333;
+}
+
+.report-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.report-table tr:hover {
+    background-color: #f0f5ff;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.status-online { background-color: #28a745; }
+.status-offline { background-color: #dc3545; }
+.status-warning { background-color: #ffc107; }
+
+.event-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.event-critical { background-color: #ffe0e0; color: #dc3545; }
+.event-warning { background-color: #fff3cd; color: #856404; }
+.event-normal { background-color: #e0ffe7; color: #28a745; }
+
+.details-btn {
+    background-color: #090d14;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.details-btn:hover {
+    background-color: #1e2329;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 4px;
+}
+
+.load-low { background-color: #dc3545; }
+.load-medium { background-color: #ffc107; }
+.load-high { background-color: #28a745; }
