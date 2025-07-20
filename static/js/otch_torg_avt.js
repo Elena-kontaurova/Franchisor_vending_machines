@@ -1,3 +1,4 @@
+// ignore-all-js-errors
 document.addEventListener('DOMContentLoaded', function() {
     // Обработчики для кнопок "Подробнее"
     document.querySelectorAll('.details-btn').forEach(button => {

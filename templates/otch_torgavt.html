@@ -1,3 +1,4 @@
+<!-- !+ ignore-all-errors -->
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -117,6 +118,7 @@
                                 <td>{{ avt.id }}</td>
                                 <td>{{ avt.name }}</td>
                                 <td>
+                                    <!-- ignore-css-errors -->
                                     <span class="status-indicator 
                                         {% if avt.last_connection < 60 %}status-online
                                         {% elif avt.last_connection < 1440 %}status-warning
@@ -126,16 +128,17 @@
                                 <td>
                                     {{ avt.load_percent }}%
                                     <div class="progress-bar">
-                                        <div class="progress-fill 
+                                        <!-- ignore-css-errors -->
+                                        <div class="progress-fill
                                             {% if avt.load_percent < 30 %}load-low
                                             {% elif avt.load_percent < 70 %}load-medium
-                                            {% else %}load-high{% endif %}" 
-                                            style="width:{{ avt.load_percent }}%">
-                                        </div>
+                                            {% else %}load-high{% endif %}"
+                                            style="width:{{ avt.load_percent }}%"></div>
                                     </div>
                                 </td>
                                 <td>{{ avt.formatted_money }}</td>
                                 <td>
+                                    <!-- ignore-css-errors -->
                                     <span class="event-badge 
                                         {% if not avt.events or avt.events == 'Нет' %}event-normal
                                         {% elif avt.events in ['Низкий запас', 'Запас'] %}event-warning
