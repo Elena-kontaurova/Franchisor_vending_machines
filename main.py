@@ -8,8 +8,22 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.status import HTTP_404_NOT_FOUND
+from pydantic import BaseModel
 
 app = FastAPI()  # блять
+
+
+class InformCreate(BaseModel):
+    podk: str
+    nastr: str
+    oblak: str
+
+
+class InformUpdate(BaseModel):
+    podk: str
+    nastr: str
+    oblak: str
+
 
 templates = Jinja2Templates(directory='templates')
 app.mount('/static', StaticFiles(directory='static'), name='static')
@@ -318,3 +332,29 @@ async def get_inform():
         'nastr': inf.nastr,
         'oblak': inf.oblak
     } for inf in info]
+
+
+@app.post('/inform_post')
+async def post_inform(podk, nastr, oblak):
+    info = Inform_Status.create(
+        podk=podk,
+        nastr=nastr,
+        oblak=oblak
+    )
+    return info
+
+
+@app.put('/inform_put/{inform_id}')
+async def put_inform(inform_id, podk, nastr, oblak):
+    info = Inform_Status.get(Inform_Status.id == inform_id)
+    info.podk = podk
+    info.nastr = nastr
+    info.oblak = oblak
+    info.save()
+    return info
+
+
+@app.delete('/inform_delete/{inform_id}')
+async def delete_inform(inform_id):
+    a = Inform_Status.delete_by_id(inform_id)
+    return a

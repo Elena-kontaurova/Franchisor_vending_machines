@@ -2596,7 +2596,7 @@ def get_autoriz():
     return aut
 
 
-def avtoriza(event=None):
+def  avtoriza(event=None):
     global lala
     global caphass
     global pole_one
